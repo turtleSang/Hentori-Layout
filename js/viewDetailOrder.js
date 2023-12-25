@@ -109,7 +109,7 @@ const renderAccessory = (orderAccessoryDtoList) => {
 const selectDetailItem = (e) => {
     // Get element select
     let eleSelect = e.currentTarget;
-    let value = eleSelect.innerHTML;
+    let value = eleSelect.innerHTML.trim();
     // Get button 
     let eleParent = eleSelect.parentElement.parentElement.parentElement;
     let mainEle = eleParent.querySelector(".btn-info");
@@ -229,7 +229,26 @@ const caculateTotalSuit = () => {
     document.getElementById("total_suit").value = formatNumber(total);
 }
 
-// Create orderSuitRequest 
+const caculateTotalTrousers = ()=>{
+    let amountTrousers = formatNumberToRaw(document.getElementById("amount_trousers").value);
+    let priceTrousers = formatNumberToRaw(document.getElementById("price_trousers").value);
+    let total = amountTrousers*priceTrousers;
+    document.getElementById("total_trousers").value = formatNumber(total);
+}
+// Create request 
+const createOrderUpdateRequest = ()=>{
+    let appointmentDay = getDateFormInput("appointment_day");
+    let payment = formatNumberToRaw(document.getElementById("payment").value);
+    let id = document.getElementById("order-status").getAttribute("order-status");
+    return {
+        appointmentDay,
+        payment,
+        orderStatusRequest:{
+            id
+        }
+    }
+}
+
 const createOrderSuitRequest = () => {
     let kieuAo = document.getElementById("kieuao").getAttribute("data-item");
     let formAo = document.getElementById("formao").getAttribute("data-item");
@@ -246,7 +265,23 @@ const createOrderSuitRequest = () => {
         kieuTui,price,amount, note, fabric)
 }
 
-// Event
+const createOrderTrouserRequest = ()=>{
+    let formQuan =  document.getElementById("formquan").getAttribute("data-item");
+    let kieuLung = document.getElementById("kieulung").getAttribute("data-item");
+    let kieuTuiTruoc = document.getElementById("kieutuitruoc").getAttribute("data-item");
+    let kieuTuiSau = document.getElementById("kieutuisau").getAttribute("data-item");
+    let soTui = document.getElementById("sotuisau").getAttribute("data-item");
+    let kieuLai = document.getElementById("kieulai").getAttribute("data-item");
+
+    let fabric = document.getElementById("fabric_trousers").value;
+    let note = document.getElementById("note_trousers").value;
+    let price = formatNumberToRaw(document.getElementById("price_trousers").value);
+    let amount = formatNumberToRaw(document.getElementById("amount_trousers").value);
+
+    return new OrderTrouderRequest(formQuan, kieuLung, kieuTuiTruoc, kieuTuiSau, soTui,
+        kieuLai, price, amount, note, fabric);
+}
+// Event call API
 document.getElementById("update_suit").onclick = ()=>{
     let suitId = document.getElementById("suit_attribute").getAttribute("data-item-id");
     let orderSuitRequest = createOrderSuitRequest();
@@ -258,12 +293,40 @@ document.getElementById("update_suit").onclick = ()=>{
         document.getElementById("close_update_suit").click();
         location.reload();
     }).catch(err =>{
-        console.log(err);
+        alert(err)
     })
     
 }
 
+document.getElementById("update_trousers").onclick = ()=>{
+    let orderTrousersRequest = createOrderTrouserRequest();
+    let trousersId = document.getElementById("trousers_attribute").getAttribute("data-item-id");
+    axios({
+        method: "put",
+        url: `http://localhost:8080/trousers/${trousersId}`,
+        data: orderTrousersRequest
+    }).then(res =>{
+        document.getElementById("close_update_trousers").click();
+        location.reload();
+    }).catch(err =>{
+        alert(err)
+    })
+}
 
+document.getElementById("update_main_orders").onclick = ()=>{
+    let orderUpdateRequest = createOrderUpdateRequest();
+    axios({
+        url : `http://localhost:8080/order/update/${orderId}`,
+        method: "put",
+        data: orderUpdateRequest
+    }).then(res =>{
+        alert("Đã cập nhật thành công")
+    }).catch(err =>{
+        alert(err)
+    })
+}
+
+// Load
 axios({
     url: `http://localhost:8080/order/detail/${orderId}`,
     method: "get"

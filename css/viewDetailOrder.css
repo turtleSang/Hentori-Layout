@@ -223,6 +223,11 @@ body section .main_info {
   width: 90%;
   margin: 0 auto;
 }
+body section .main_info .main_title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
 body section .main_info #order_info {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

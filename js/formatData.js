@@ -13,7 +13,7 @@ const formatDateISOtoVN = (date)=>{
     return `${day}/${month}/${year}`
 }
 const getDateFormInput = (element_id)=>{
-    let appointmentDay = document.getElementById("element_id").value;
+    let appointmentDay = document.getElementById(element_id).value;
     let year = appointmentDay.slice(0,4);
     let month = appointmentDay.slice(5,7);
     let day = appointmentDay.slice(8,10);

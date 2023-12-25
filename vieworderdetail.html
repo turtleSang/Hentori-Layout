@@ -32,7 +32,10 @@
 
     <section>
         <div class="main_info">
-            <h3>Thông tin khách hàng</h3>
+            <div class="main_title">
+                <h3>Thông tin khách hàng</h3>
+                <button id="update_main_orders" type="button" class="btn btn-success">Cập nhật lại thông tin</button>
+            </div>
             <div id="client_info">
                 <div class="client_info_item">
                     <label for="client_name">Tên khách hàng</label>
@@ -57,7 +60,7 @@
                     <p>Trạng thái đơn hàng</p>
                     <div class="selection_status" class="btn-group">
                         <button id="order-status" type="button" class="btn btn-info dropdown-toggle"
-                            data-bs-toggle="dropdown" data-status="">
+                            data-bs-toggle="dropdown">
                             Trạng thái đơn
                         </button>
                         <ul class="dropdown-menu">
@@ -76,7 +79,7 @@
                 </div>
                 <div class="order_info_item">
                     <label for="payment">Đã Thanh Toán</label>
-                    <input class="input" id="payment" type="text" disabled>
+                    <input class="input" id="payment" type="text" oninput="formatInputNumber(event)">
                 </div>
             </div>
         </div>
@@ -387,13 +390,13 @@
                     </div>
                     <div class="item_detail_info">
                         <h6>Đơn giá</h6>
-                        <input class="input input-number" id="price_trousers" type="text" value="" onblur=""
+                        <input class="input input-number" id="price_trousers" type="text" value="" onblur="caculateTotalTrousers()"
                             oninput="formatInputNumber(event)">
                     </div>
                     <div class="item_detail_info">
                         <h6>Số lượng</h6>
                         <input class="input input-number" id="amount_trousers" type="text" value=""
-                            onblur="caculateTotalSuit()" oninput="formatInputNumber(event)">
+                            onblur="caculateTotalTrousers()" oninput="formatInputNumber(event)">
                     </div>
                     <div class="item_detail_info">
                         <h6>Tổng tiền</h6>
@@ -401,8 +404,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button id="update_trousers" type="button" class="btn btn-primary">Lưu thay đổi</button>
+                    <button id="close_update_trousers" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     
                 </div>
             </div>
