@@ -1,0 +1,51 @@
+.btn-info{
+    display: block;
+    @include styleButton(40%, 40px, 5px, none, wheat, $bg-normal, $font-black-01, $bg-yellow);
+    margin-bottom: 20px;
+    &.active{
+        color: black;
+        background-color: $bg-yellow;
+    }
+}
+.btn-delete{
+    font-size: 20px;
+    line-height: 40px;
+    @include styleButton(40px, 40px, 50%, none, wheat, $bg-normal, $font-black-01, $bg-yellow)
+
+}
+.btn-create{
+    font-size: 15px;
+    line-height: 40px;
+    font-weight: 700;
+    @include styleButton(40%, 50px, 5px, none, wheat, $bg-normal, $font-black-01, $bg-yellow)
+}
+.btn-add-item{
+    @include styleButton(150px, 50px, 5px, none, wheat, $bg-normal, $font-black-01, $bg-yellow)
+    
+}
+#create_user{
+    display: none;
+}
+#update_user{
+    display: none;
+}
+.accept_phoneNumber{
+    background-color: #8F714B;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    color:#e7af13 ;
+}
+.denine_phoneNumber{
+    background-color: #e7af13;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    color: #8F714B;
+}

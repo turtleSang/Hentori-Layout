@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Montserrat:wght@300;400;500;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/viewDetailOrder.css">
+    <title>Xem Chi tiết Đơn Hàng</title>
+
+</head>
+
+<body>
+
+    <header class="container-fuid text-center">
+        <div class="title">
+            <h1>Xem chi tiết đơn hàng</h1>
+        </div>
+    </header>
+
+    <section>
+        <div class="main_info">
+            <h3>Thông tin khách hàng</h3>
+            <div id="client_info">
+                <div class="client_info_item">
+                    <label for="client_name">Tên khách hàng</label>
+                    <input class="input" id="client_name" type="text" disabled>
+                </div>
+                <div class="client_info_item">
+                    <label for="client_phone">Số điện thoại</label>
+                    <input class="input" id="client_phone" type="text" disabled>
+                </div>
+            </div>
+            <h3>Thông tin đơn hàng</h3>
+            <div id="order_info">
+                <div class="order_info_item">
+                    <label for="created_at">Ngày tạo</label>
+                    <input class="input" id="created_at" type="text" disabled>
+                </div>
+                <div class="order_info_item">
+                    <label for="appointment_day">Ngày hẹn</label>
+                    <input class="input" id="appointment_day" type="date">
+                </div>
+                <div class="order_info_item">
+                    <p>Trạng thái đơn hàng</p>
+                    <div class="selection_status" class="btn-group">
+                        <button id="order-status" type="button" class="btn btn-info dropdown-toggle"
+                            data-bs-toggle="dropdown" data-status="">
+                            Trạng thái đơn
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="select-item dropdown-item" data-status="1" href="#"
+                                    onclick="selectStatus(event)">Hẹn lần 1</a></li>
+                            <li><a class="select-item dropdown-item" data-status="2" href="#"
+                                    onclick="selectStatus(event)">Hẹn lần 2</a></li>
+                            <li><a class="select-item dropdown-item" data-status="3" href="#"
+                                    onclick="selectStatus(event)">Hoàng thành</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="order_info_item">
+                    <label for="total">Tổng tiền</label>
+                    <input class="input" id="total" type="text" disabled>
+                </div>
+                <div class="order_info_item">
+                    <label for="payment">Đã Thanh Toán</label>
+                    <input class="input" id="payment" type="text" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="item_info">
+            <h3>Sản phẩm</h3>
+            <div id="list_item">
+                <div class="item suit">
+                    <div class="item_name">Loại:<span></span></div>
+                    <div class="item_properties">Kiểu:<span></span></div>
+                    <div class="item_price">Đơn giá:<span></span></div>
+                    <div class="item_amount">Số lượng:<span></span></div>
+                    <div class="item_total">Tổng tiền:<span></span></div>
+                    <div class="item_button">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#suit">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="item trousers">
+                    <div class="item_name">Loại:<span></span></div>
+                    <div class="item_properties">Kiểu:<span></span></div>
+                    <div class="item_price">Đơn giá:<span></span></div>
+                    <div class="item_amount">Số lượng:<span></span></div>
+                    <div class="item_total">Tổng tiền:<span></span></div>
+                    <div class="item_button">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#trousers">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="item accessory">
+                    <div class="item_name">Loại:<span></span></div>
+                    <div class="item_properties">Tên:<span></span></div>
+                    <div class="item_price">Đơn giá:<span></span></div>
+                    <div class="item_amount">Số lượng:<span></span></div>
+                    <div class="item_total">Tổng tiền:<span></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="suit" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Chỉnh sửa Suit</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="suit_attribute" class="modal-body list-attribute">
+                    <div class="item_detail_info">
+                        <h6>Kiểu áo</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieuao" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu áo
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Suit Jacket </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#"
+                                        onclick="selectDetailItem(event)">Blazer</a></li>
+                                <li><a class="select-item dropdown-item" onclick="selectDetailItem(event)">Spot
+                                        Jacket</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Form áo</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="formao" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Form áo
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Ôm body </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Ôm vừa</a></li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Form rộng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu nút</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieunut" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu nút
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        2 </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        1</a></li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Double breasted</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu túi</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieutui" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu túi
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Túi mổ </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Túi đắp</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu ve áo</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieuveao" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu ve áo
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Ve K</a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Ve nhọn</a></li>
+                                <li><a class="select-item dropdown-item" " href=" #" " onclick="
+                                        selectDetailItem(event)">
+                                        Ve Sam</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Lót áo</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="lotao" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Lót áo
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Full lót</a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Lót demi</a></li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Không lót</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Mã vải</h6>
+                        <input class="input" id="fabric_suit" type="text" value="">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Ghi chú</h6>
+                        <textarea name="" id="note_suit" cols="25" rows="5"></textarea>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Đơn giá</h6>
+                        <input class="input input-number" id="price_suit" type="text" value=""
+                            onblur="caculateTotalSuit()" oninput="formatInputNumber(event)">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Số lượng</h6>
+                        <input class="input input-number" id="amount_suit" type="text" value=""
+                            onblur="caculateTotalSuit()" oninput="formatInputNumber(event)">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Tổng tiền</h6>
+                        <input class="input" id="total_suit" type="text" value="" disabled>
+                    </div>
+                </div>
+                <div class="modal-footer">                    
+                    <button id="update_suit" type="button" class="btn btn-primary">Lưu Thay Đổi</button>
+                    <button id="close_update_suit" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="trousers" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="trousers_attribute" class="modal-body list-attribute">
+                    <div class="item_detail_info">
+                        <h6>Form Quần</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="formquan" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Form quần
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Ôm body </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Ôm vừa</a></li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Form rộng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu lưng</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieulung" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu Lưng
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Kiểu lưng </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Basic</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu lưng</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieutuitruoc" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu túi trước
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Túi thẳng </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Túi xéo</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu túi sau</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieutuisau" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu túi sau
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Túi mỹ </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Túi viền</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Số túi sau</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="sotuisau" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Số túi sau
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        1 </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        2</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu lai</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieulai" type="button" class="btn btn-info dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu lai
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Lai thường </a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Lai V</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Mã vải</h6>
+                        <input class="input" id="fabric_trousers" type="text" value="">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Ghi chú</h6>
+                        <textarea name="" id="note_trousers" cols="25" rows="5"></textarea>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Đơn giá</h6>
+                        <input class="input input-number" id="price_trousers" type="text" value="" onblur=""
+                            oninput="formatInputNumber(event)">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Số lượng</h6>
+                        <input class="input input-number" id="amount_trousers" type="text" value=""
+                            onblur="caculateTotalSuit()" oninput="formatInputNumber(event)">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Tổng tiền</h6>
+                        <input class="input" id="total_trousers" type="text" value="" disabled>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="./js/validate.js"></script>
+
+    <!-- Model -->
+    <!-- Client Model -->
+    <script src="./js/model/clientSuitRequest.js"></script>
+    <script src="./js/model/clientTrousersRequest.js"></script>
+    <script src="./js/model/clientRequest.js"></script>
+    <!-- Order Model -->
+    <script src="./js/model/orderSuitRequest.js"></script>
+    <script src="./js/model/orderTrousersRequest.js"></script>
+    <script src="./js/model/orderAccessoryList.js"></script>
+
+    <!-- Format Data -->
+    <script src="./js/formatData.js"></script>
+    <script src="./js/viewDetailOrder.js"></script>
+
+</body>
+
+</html>

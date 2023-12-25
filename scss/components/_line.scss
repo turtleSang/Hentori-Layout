@@ -1,0 +1,17 @@
+.line{
+    margin: 10px 0px;
+    &::after {
+        content: "";
+        display: block;
+        height: 5px;
+        width: 100%;
+        background: rgb(143, 113, 75);
+        background: linear-gradient(
+            93deg,
+            rgba(143, 113, 75, 1) 0%,
+            rgba(205, 178, 107, 1) 46%,
+            rgba(203, 169, 79, 1) 100%
+        );
+        border-radius: 10px 0px 0px 10px;
+    }
+}

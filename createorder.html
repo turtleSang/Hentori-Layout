@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- GG FONT -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Montserrat:wght@300;400;500;600;800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Montserrat:wght@300;400;500;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Main Css -->
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Hentori Management</title>
+</head>
+
+<body>
+    <main class="container-fluid text-center">
+        <div class="row">
+            <div class="col-2 mt-0 px-0">
+                <div class="menu_bar">
+                    <div id="logo">
+                        <a href="./index.html"><img id="logo-img" src="./img/Logo.png" alt=""></a>
+                        <img id="logo-name" src="./img/BrandName.png" alt="">
+                    </div>
+                    <div id="menu">
+                        <a class="menu_item active" href="./createorder.html">
+                            <i class="fa-solid fa-plus"></i>
+                            Tạo Đơn
+                        </a>
+                        <a class="menu_item" href="./vieworder.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
+                                <path
+                                    d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5M11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                                <path
+                                    d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118l.137-.274z" />
+                            </svg>
+                            Xem Đơn
+                        </a>
+                        <a class="menu_item" href="./user.html">
+                            <i class="fa-solid fa-user"></i>
+                            Khách hàng
+                        </a>
+                        <a class="menu_item" href="./report.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-clipboard-data-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z" />
+                                <path
+                                    d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1" />
+                            </svg>
+                            Báo Cáo
+                        </a>
+                    </div>
+                    <div id="signature">
+                        <img src="./img/signature.png" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="main_content" class=" col-10 mt-0 px-0">
+                <div class="title">
+                    <h2>Tạo Đơn Hàng</h2>
+                </div>
+                <div class="content">
+                    <h3>Thông tin khách hàng</h3>
+                    <div class="info-normal">
+                        <div class="group_item">
+                            <label class="label" for="phonenumber">SĐT: <span id="nofication_phonenumber"> </span>
+                            </label>
+                            <input type="text" name="phonenumber" id="phonenumber">
+                            <button id="find_user" type="button" disabled><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <div class="group_item">
+                            <label class="label" for="username">Tên khách hàng:</label>
+                            <input type="text" name="name" id="username">
+                        </div>
+                    </div>
+
+                    <div id="detail_info" class="detail_info">
+                        <div class="line"></div>
+                        <h3>Thông tin số đo</h3>
+                        <div class="suit">
+                            <button class="btn-info" id="btn-suilt">
+                                SUIT
+                                <i class="fa-solid fa-arrow-down arrow-icon"></i>
+                            </button>
+                            <div id="suilt_detail" class="suilt_detail">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"> <label for="doxuoivai">Độ xuôi vai chuẩn</label> </th>
+                                            <td><input type="text" id="doxuoivai"></td>
+                                            <th scope="row"> <label for="dangvai">Dáng vai</label> </th>
+                                            <td><input type="text" id="dangvai"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="rongvai">Rộng vai theo bảng thiết kế</label>
+                                            </th>
+                                            <td><input type="text" id="rongvai"></td>
+                                            <th scope="row"> <label for="hacaikhuy">Hạ cài khuy</label> </th>
+                                            <td><input type="text" id="hacaikhuy"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="daitay">Dài tay</label>
+                                            </th>
+                                            <td><input type="text" id="daitay"></td>
+                                            <th scope="row"> <label for="hanguc">Hạ ngực</label>
+                                            </th>
+                                            <td><input type="text" id="hanguc"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="daiao">Dài áo T/S</label>
+                                            </th>
+                                            <td><input type="text" id="daiao"></td>
+                                            <th scope="row"> <label for="haeo">Hạ heo</label>
+                                            </th>
+                                            <td><input type="text" id="haeo"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="baptaykhuytay">Bắp tay / Khủy tay</label>
+                                            </th>
+                                            <td><input type="text" id="baptaykhuytay"></td>
+                                            <th scope="row"> <label for="habung">Hạ bụng</label>
+                                            </th>
+                                            <td><input type="text" id="habung"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="mangsec">Măng sec</label>
+                                            </th>
+                                            <td><input type="text" id="mangsec"></td>
+                                            <th scope="row"> <label for="vongco">Vòng cổ</label>
+                                            </th>
+                                            <td><input type="text" id="vongco"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="vongnach">Vòng nách</label>
+                                            </th>
+                                            <td><input type="text" id="vongnach"></td>
+                                            <th scope="row"> <label for="hakhuy">Hạ khủy</label>
+                                            </th>
+                                            <td><input type="text" id="hakhuy"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="vongeobung">Vòng eo / bụng</label>
+                                            </th>
+                                            <td><input type="text" id="vongeobung"></td>
+                                            <th scope="row"> <label for="ngangbungts">Ngang bụng + T/S</label>
+                                            </th>
+                                            <td><input type="text" id="ngangbungts"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <label for="mongao">Mông áo</label>
+                                            </th>
+                                            <td><input type="text" id="mongao"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <label for="hahomlung">Hạ hõng lưng</label>
+                                            </th>
+                                            <td><input type="text" id="hahomlung"></td>
+                                            <th scope="row"> <label for="hachombung">Hạ chồm bụng</label>
+                                            </th>
+                                            <td><input type="text" id="hachombung"></td>
+                                        </tr>
+                                        <tr>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="btn-info" id="btn-trousers">
+                                TROUSERS
+                                <i class="fa-solid fa-arrow-down arrow-icon"></i>
+                            </button>
+                            <div id="trousers_detail" class="trousers_detail">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"> <label for="vonglung">Vòng lưng</label> </th>
+                                            <td><input type="text" id="vonglung"></td>
+                                            <th scope="row"> <label for="ngangbung">Ngang bụng</label> </th>
+                                            <td><input type="text" id="ngangbung"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="vongday">Vòng đáy</label> </th>
+                                            <td><input type="text" id="vongday"></td>
+                                            <th scope="row"> <label for="duigiua">Đùi giữa</label> </th>
+                                            <td><input type="text" id="duigiua"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="vongmong">Vòng mông</label> </th>
+                                            <td><input type="text" id="vongmong"></td>
+                                            <th scope="row"> <label for="daiquan">Dài quần</label> </th>
+                                            <td><input type="text" id="daiquan"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="vongdui">Vòng đùi</label> </th>
+                                            <td><input type="text" id="vongdui"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="vonggoi">Vòng gối</label> </th>
+                                            <td><input type="text" id="vonggoi"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="vongbapchan">Vòng bắp chân</label> </th>
+                                            <td><input type="text" id="vongbapchan"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> <label for="ongquan">Ống quần</label> </th>
+                                            <td><input type="text" id="ongquan"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <button id="create_user" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#create">Tạo mới khách
+                                    hàng</button>
+                                <button id="update_user" type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#update">Cập nhật khách
+                                    hàng</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="order_info">
+                        <div class="order_bar">
+                            <h3>Đơn Hàng</h3>
+                            <ul>
+                                <li><Button id="add_shirt" class="btn-add-item"><i class="fa-solid fa-vest"></i> Thêm
+                                        Áo</Button></li>
+                                <li><Button id="add_trousers" class="btn-add-item"> <i class="fa-solid fa-person"></i>
+                                        Thêm Quần</Button></li>
+                                <li><Button id="add_accessory" class="btn-add-item"> <i class="fa-solid fa-socks"></i>
+                                        Thêm Phụ Kiện</Button></li>
+                            </ul>
+                        </div>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tên hàng</th>
+                                    <th scope="col">Đặc tính</th>
+                                    <th scope="col">Đơn giá</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Mã vải</th>
+                                    <th scope="col">Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody id="detail_order" class="detail_order">
+
+                            </tbody>
+                        </table>
+
+                        <div class="schedule">
+                            <div class="schedule-item">
+                                <label for="appointment">Ngày hẹn</label>
+                                <input type="date" id="appointment">
+                            </div>
+
+                            <div class="schedule-item">
+                                <label for="order_status">Trạng thái đơn hàng</label>
+                                <select name="" id="order_status">
+                                    <option value="1">Hẹn lần 1</option>
+                                    <option value="2">Hẹn lần 2</option>
+                                    <option value="3">Hoàn thành</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="print">
+                    <button id="create_order" class="btn-create" data-bs-toggle="modal"
+                        data-bs-target="#create_order_modal">Tạo đơn hàng</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <!-- Create Modal -->
+    <div class="modal fade" id="create" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tạo mới khách hàng</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm_create_client" type="button" class="btn btn-primary">Đồng ý</button>
+                    <button id="close_confirm_create" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Update Modal -->
+    <div class="modal fade" id="update" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cập nhật lại khách hàng</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm_update_client" type="button" class="btn btn-primary">Đồng ý</button>
+                    <button id="close_confirm_update" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Create Order Modal -->
+    <div class="modal fade" id="create_order_modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xác nhận tạo đơn hàng</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="info_client">
+                        <h4>Thông tin khách hàng</h4>
+                        <div class="detail_info_client">
+                            <p>Tên khách hàng: <span id="client_name"></span></p>
+                            <p>Số điện thoại: <span id="client_phone"></span></p>
+                            <p>Ngày hẹn khách hàng: <span id="appointment_day"></span></p>
+                        </div>
+                    </div>
+                    <div class="info_order">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tên</th>
+                                    <th scope="col">Kiểu</th>
+                                    <th scope="col">Đơn giá</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col"> Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="confirm_order_table">
+                                <tr>
+                                    <th colspan="4" style="text-align: center;">Tổng tiền</th>
+                                    <td id="tongtien"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="payment">
+                            <label for="payment">Số tiền khách hàng thanh toán</label>
+                            <input id="payment" type="number">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm_create_order" type="button" class="btn btn-primary">Đồng ý</button>
+                    <button id="close_create_order" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- Bootstrap -->
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="./js/validate.js"></script>
+
+    <!-- Model -->
+    <!-- Client Model -->
+    <script src="./js/model/clientSuitRequest.js"></script>
+    <script src="./js/model/clientTrousersRequest.js"></script>
+    <script src="./js/model/clientRequest.js"></script>
+    <!-- Order Model -->
+    <script src="./js/model/orderSuitRequest.js"></script>
+    <script src="./js/model/orderTrousersRequest.js"></script>
+    <script src="./js/model/orderAccessoryList.js"></script>
+
+    <!-- Format Data -->
+    <script src="./js/formatData.js"></script>
+    <!-- Add item -->
+    <script src="./js/addItem.js"></script>
+
+    <!-- Main JS -->
+    <script src="./js/createOrder.js"></script>
+
+
+</body>
+
+</html>

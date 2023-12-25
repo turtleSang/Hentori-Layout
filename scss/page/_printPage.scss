@@ -1,0 +1,44 @@
+.print_page{
+    font-family: 'Times New Roman', Times, serif;
+    .header{       
+        .logo{
+            #img_logo{
+                display: block;
+                width: 25%;
+                margin: 0 auto;
+            }
+            #img_brand_name{
+                display: block;
+                width: 50%;
+                margin: 20px auto;
+            }
+        }
+        .title{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .store_info{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            p{
+                font-size: 1rem;
+            }
+
+        }
+    }
+    .info_overall{
+        p{
+            font-size: 0.8rem;
+        }
+    }
+    .space{
+        height: 200px;
+    }
+    .total_money{
+        text-align: right;
+    }
+}

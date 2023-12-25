@@ -1,0 +1,14 @@
+.modal-content {
+    height: 600px;
+
+    .modal-body {
+        max-height: 500px;
+        overflow-y: auto;
+        p {
+            margin: 0;
+            span {
+                font-weight: 700;
+            }
+        }
+    }
+}

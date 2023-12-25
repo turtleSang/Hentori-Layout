@@ -1,0 +1,91 @@
+body {
+    background-color: $bg-normal;
+    header {
+        height: 20vh;
+        padding: 20px 0;
+        .title {
+            height: 100%;
+            background-color: $bg-yellow;
+            width: 80%;
+            margin: 0 auto;
+            border-radius: 20px;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h1 {
+                margin: 0;
+            }
+        }
+    }
+    section {
+        width: 80%;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 20px 20px 0 0;
+        padding-top: 20px;
+        .main_info {
+            width: 90%;
+            margin: 0 auto;
+            #order_info {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                .order_info_item {
+                    label {
+                        display: block;
+                    }
+                }
+                .order_info_item:nth-child(3) {
+                    grid-column: 1 / span 2;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    margin: 10px 0;
+                    align-items: center;
+                }
+            }
+            #client_info {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .item_info {
+            width: 90%;
+            margin: 20px auto 0;
+            #list_item {
+                max-height: 300px;
+                overflow-y: auto;
+                .item {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                    border: 1px solid $bg-yellow;
+                    margin: 20px 0;
+                    .item_button{
+                        grid-column: 3 /span 1;
+                        grid-row: 1 /span 3;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
+    // Modal
+    .list-attribute{
+        .item_detail_info{
+            display: flex;
+            margin: 10px 0;
+            h6{
+                width: 40%;
+            }
+            .selection_status{
+                width: 50%;
+                button{
+                    width: 80%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+#main_content {
+    .title {
+        width: 100%;
+        text-align: left;
+        margin-top: 20px;
+        
+        h2 {
+            background-color: $bg-yellow;
+            width: 40%;
+            margin-left: auto;
+            padding: 10px 20px;
+            border-radius: 10px 0 0 10px;
+        }
+    }
+    #myTab{
+        justify-content: center;
+    }
+    #myTabContent {
+        .list_orders{
+            .order_item{
+                width: 95%;
+                margin: 10px auto;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                text-align: left;
+                background-color: $bg-yellow;
+                padding: 10px 50px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.5s;
+                &:hover{
+                    background-color: $bg-normal;
+                }
+                span{
+                    font-weight: 700;
+                }
+                p{
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

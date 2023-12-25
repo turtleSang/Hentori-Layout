@@ -1,0 +1,12 @@
+.input{
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: right;
+    border: 1px solid $bg-normal;
+    transition: all 0.5s;
+    &:focus-visible{
+        outline: none;
+        border: 2px solid $bg-yellow;
+        box-shadow: 0px 0px 11px 1px #CBA94F;
+    }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./css/index.css">
+    <title>IN HÓA ĐƠN</title>
+</head>
+
+<body>
+    <main class="print_page">
+        <div class="header my-5 text-center container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <div class="logo">
+                        <img id="img_logo" src="./img/Logo.png" alt="">
+                        <img id="img_brand_name" src="./img/BrandName.png" alt="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="title">
+                        <h2>PHIẾU THÔNG TIN ĐẶT HÀNG</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info_overall container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="client_info">
+                        <h4>Tên khách hàng: <span id="client_name">Thanh Sang</span></h4>
+                        <h4>Số điện thoại: <span id="client_phone">0865093909</span></h4>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="order_info">
+                        <h4>Ngày đặt hàng: <span id="create_at">10/10/2023</span></h4>
+                        <h4>Ngày hẹn: <span id="appointment_day">12/12/2023</span></h4>
+                        <h4>Ngày nhận hàng: ... ... /... ... /.........</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info_table container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Sản Phẩm</th>
+                        <th class="text-center" scope="col">Thông tin</th>
+                        <th class="text-center" scope="col">Đơn giá</th>
+                        <th class="text-center" scope="col">Số lượng</th>
+                        <th class="text-center" scope="col">Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="info_table_detail">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="signature container text-center">
+            <div class="row">
+                <div class="col-6">
+                    <h5>Người Lập Phiếu</h5>
+                </div>
+                <div class="col-6">
+                    <h5>Khách Hàng</h5>
+                </div>
+            </div>
+        </div>
+        <div class="space"></div>
+    </main>
+
+    <!-- Boostrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="./js/printOrder.js"></script>
+</body>
+
+</html>
