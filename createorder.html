@@ -23,7 +23,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Main Css -->
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/create.css">
     <title>Hentori Management</title>
 </head>
 
@@ -74,224 +74,668 @@
             </div>
 
             <div id="main_content" class=" col-10 mt-0 px-0">
-                <div class="title">
-                    <h2>Tạo Đơn Hàng</h2>
+                <div class="title-page">
+                    <h2>Tạo mới đơn hàng</h2>
                 </div>
-                <div class="content">
-                    <h3>Thông tin khách hàng</h3>
-                    <div class="info-normal">
-                        <div class="group_item">
-                            <label class="label" for="phonenumber">SĐT: <span id="nofication_phonenumber"> </span>
-                            </label>
-                            <input type="text" name="phonenumber" id="phonenumber">
-                            <button id="find_user" type="button" disabled><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="client_info">
+                    <div class="main_info">
+                        <div class="title-info">
+                            <h3>Thông tin khách hàng</h3>
                         </div>
-                        <div class="group_item">
-                            <label class="label" for="username">Tên khách hàng:</label>
-                            <input type="text" name="name" id="username">
+                        <div class="main_info_item">
+                            <div class="nofication_input">
+                                <label for="client_phone">Số Điện Thoại</label>
+                                <div id="nofication_phone_number"></div>
+                            </div>
+
+                            <div class="input-phone-number">
+                                <input id="client_phone" class="input input-client" type="text">
+                                <button id="find_user" type="button" class="btn-search-little"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
                         </div>
-                    </div>
-
-                    <div id="detail_info" class="detail_info">
-                        <div class="line"></div>
-                        <h3>Thông tin số đo</h3>
-                        <div class="suit">
-                            <button class="btn-info" id="btn-suilt">
-                                SUIT
-                                <i class="fa-solid fa-arrow-down arrow-icon"></i>
-                            </button>
-                            <div id="suilt_detail" class="suilt_detail">
-                                <table class="table table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row"> <label for="doxuoivai">Độ xuôi vai chuẩn</label> </th>
-                                            <td><input type="text" id="doxuoivai"></td>
-                                            <th scope="row"> <label for="dangvai">Dáng vai</label> </th>
-                                            <td><input type="text" id="dangvai"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="rongvai">Rộng vai theo bảng thiết kế</label>
-                                            </th>
-                                            <td><input type="text" id="rongvai"></td>
-                                            <th scope="row"> <label for="hacaikhuy">Hạ cài khuy</label> </th>
-                                            <td><input type="text" id="hacaikhuy"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="daitay">Dài tay</label>
-                                            </th>
-                                            <td><input type="text" id="daitay"></td>
-                                            <th scope="row"> <label for="hanguc">Hạ ngực</label>
-                                            </th>
-                                            <td><input type="text" id="hanguc"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="daiao">Dài áo T/S</label>
-                                            </th>
-                                            <td><input type="text" id="daiao"></td>
-                                            <th scope="row"> <label for="haeo">Hạ heo</label>
-                                            </th>
-                                            <td><input type="text" id="haeo"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="baptaykhuytay">Bắp tay / Khủy tay</label>
-                                            </th>
-                                            <td><input type="text" id="baptaykhuytay"></td>
-                                            <th scope="row"> <label for="habung">Hạ bụng</label>
-                                            </th>
-                                            <td><input type="text" id="habung"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="mangsec">Măng sec</label>
-                                            </th>
-                                            <td><input type="text" id="mangsec"></td>
-                                            <th scope="row"> <label for="vongco">Vòng cổ</label>
-                                            </th>
-                                            <td><input type="text" id="vongco"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="vongnach">Vòng nách</label>
-                                            </th>
-                                            <td><input type="text" id="vongnach"></td>
-                                            <th scope="row"> <label for="hakhuy">Hạ khủy</label>
-                                            </th>
-                                            <td><input type="text" id="hakhuy"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="vongeobung">Vòng eo / bụng</label>
-                                            </th>
-                                            <td><input type="text" id="vongeobung"></td>
-                                            <th scope="row"> <label for="ngangbungts">Ngang bụng + T/S</label>
-                                            </th>
-                                            <td><input type="text" id="ngangbungts"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <label for="mongao">Mông áo</label>
-                                            </th>
-                                            <td><input type="text" id="mongao"></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <label for="hahomlung">Hạ hõng lưng</label>
-                                            </th>
-                                            <td><input type="text" id="hahomlung"></td>
-                                            <th scope="row"> <label for="hachombung">Hạ chồm bụng</label>
-                                            </th>
-                                            <td><input type="text" id="hachombung"></td>
-                                        </tr>
-                                        <tr>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <button class="btn-info" id="btn-trousers">
-                                TROUSERS
-                                <i class="fa-solid fa-arrow-down arrow-icon"></i>
-                            </button>
-                            <div id="trousers_detail" class="trousers_detail">
-                                <table class="table table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row"> <label for="vonglung">Vòng lưng</label> </th>
-                                            <td><input type="text" id="vonglung"></td>
-                                            <th scope="row"> <label for="ngangbung">Ngang bụng</label> </th>
-                                            <td><input type="text" id="ngangbung"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="vongday">Vòng đáy</label> </th>
-                                            <td><input type="text" id="vongday"></td>
-                                            <th scope="row"> <label for="duigiua">Đùi giữa</label> </th>
-                                            <td><input type="text" id="duigiua"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="vongmong">Vòng mông</label> </th>
-                                            <td><input type="text" id="vongmong"></td>
-                                            <th scope="row"> <label for="daiquan">Dài quần</label> </th>
-                                            <td><input type="text" id="daiquan"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="vongdui">Vòng đùi</label> </th>
-                                            <td><input type="text" id="vongdui"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="vonggoi">Vòng gối</label> </th>
-                                            <td><input type="text" id="vonggoi"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="vongbapchan">Vòng bắp chân</label> </th>
-                                            <td><input type="text" id="vongbapchan"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> <label for="ongquan">Ống quần</label> </th>
-                                            <td><input type="text" id="ongquan"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div>
-                                <button id="create_user" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#create">Tạo mới khách
-                                    hàng</button>
-                                <button id="update_user" type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#update">Cập nhật khách
-                                    hàng</button>
+                        <div class="main_info_item">
+                            <label for="client_name">Tên Khách hàng</label>
+                            <div class="input-phone-number">
+                                <input id="client_name" class="input input-client" type="text" disabled data-id=""
+                                    data-name="">
                             </div>
                         </div>
                     </div>
-                    <div class="line"></div>
-                    <div class="order_info">
-                        <div class="order_bar">
-                            <h3>Đơn Hàng</h3>
-                            <ul>
-                                <li><Button id="add_shirt" class="btn-add-item"><i class="fa-solid fa-vest"></i> Thêm
-                                        Áo</Button></li>
-                                <li><Button id="add_trousers" class="btn-add-item"> <i class="fa-solid fa-person"></i>
-                                        Thêm Quần</Button></li>
-                                <li><Button id="add_accessory" class="btn-add-item"> <i class="fa-solid fa-socks"></i>
-                                        Thêm Phụ Kiện</Button></li>
+                    <div id="measurements_info" class="mt-3">
+                        <div class="title-info">
+                            <h3>Thông tin số đo</h3>
+                            <div class="nav-title">
+                                <button id="create_client" data-bs-toggle="modal" data-bs-target="#create-client-modal"
+                                    class="btn-create">Tạo mới khách hàng</button>
+                                <button id="update_client" data-bs-toggle="modal" data-bs-target="#update-client-modal"
+                                    class="btn-update">Cập nhật</button>
+
+                            </div>
+                        </div>
+                        <div class="measurement_detail">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                        data-bs-target="#home-tab-pane" type="button" role="tab"
+                                        aria-controls="home-tab-pane" aria-selected="true">Số đo áo</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                        data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                        aria-controls="profile-tab-pane" aria-selected="false">Số đo quần</button>
+                                </li>
+
                             </ul>
-                        </div>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                    aria-labelledby="home-tab" tabindex="0">
+                                    <div id="suilt_detail" class="suilt_detail">
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"> <label for="doxuoivai">Độ xuôi vai chuẩn</label>
+                                                    </th>
+                                                    <td><input type="text" id="doxuoivai"></td>
+                                                    <th scope="row"> <label for="dangvai">Dáng vai</label> </th>
+                                                    <td><input type="text" id="dangvai"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="rongvai">Rộng vai theo bảng thiết
+                                                            kế</label>
+                                                    </th>
+                                                    <td><input type="text" id="rongvai"></td>
+                                                    <th scope="row"> <label for="hacaikhuy">Hạ cài khuy</label> </th>
+                                                    <td><input type="text" id="hacaikhuy"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="daitay">Dài tay</label>
+                                                    </th>
+                                                    <td><input type="text" id="daitay"></td>
+                                                    <th scope="row"> <label for="hanguc">Hạ ngực</label>
+                                                    </th>
+                                                    <td><input type="text" id="hanguc"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="daiao">Dài áo T/S</label>
+                                                    </th>
+                                                    <td><input type="text" id="daiao"></td>
+                                                    <th scope="row"> <label for="haeo">Hạ heo</label>
+                                                    </th>
+                                                    <td><input type="text" id="haeo"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="baptaykhuytay">Bắp tay / Khủy
+                                                            tay</label>
+                                                    </th>
+                                                    <td><input type="text" id="baptaykhuytay"></td>
+                                                    <th scope="row"> <label for="habung">Hạ bụng</label>
+                                                    </th>
+                                                    <td><input type="text" id="habung"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="mangsec">Măng sec</label>
+                                                    </th>
+                                                    <td><input type="text" id="mangsec"></td>
+                                                    <th scope="row"> <label for="vongco">Vòng cổ</label>
+                                                    </th>
+                                                    <td><input type="text" id="vongco"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="vongnach">Vòng nách</label>
+                                                    </th>
+                                                    <td><input type="text" id="vongnach"></td>
+                                                    <th scope="row"> <label for="hakhuy">Hạ khủy</label>
+                                                    </th>
+                                                    <td><input type="text" id="hakhuy"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="vongeobung">Vòng eo / bụng</label>
+                                                    </th>
+                                                    <td><input type="text" id="vongeobung"></td>
+                                                    <th scope="row"> <label for="ngangbungts">Ngang bụng + T/S</label>
+                                                    </th>
+                                                    <td><input type="text" id="ngangbungts"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <label for="mongao">Mông áo</label>
+                                                    </th>
+                                                    <td colspan="3"><input type="text" id="mongao"></td>
 
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tên hàng</th>
-                                    <th scope="col">Đặc tính</th>
-                                    <th scope="col">Đơn giá</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Mã vải</th>
-                                    <th scope="col">Ghi chú</th>
-                                </tr>
-                            </thead>
-                            <tbody id="detail_order" class="detail_order">
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <label for="hahomlung">Hạ hõng lưng</label>
+                                                    </th>
+                                                    <td><input type="text" id="hahomlung"></td>
+                                                    <th scope="row"> <label for="hachombung">Hạ chồm bụng</label>
+                                                    </th>
+                                                    <td><input type="text" id="hachombung"></td>
+                                                </tr>
+                                                <tr>
 
-                            </tbody>
-                        </table>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                        <div class="schedule">
-                            <div class="schedule-item">
-                                <label for="appointment">Ngày hẹn</label>
-                                <input type="date" id="appointment">
+                                </div>
+                                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                                    aria-labelledby="profile-tab" tabindex="0">
+                                    <div id="trousers_detail" class="trousers_detail">
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"> <label for="vonglung">Vòng lưng</label> </th>
+                                                    <td><input type="text" id="vonglung"></td>
+                                                    <th scope="row"> <label for="ngangbung">Ngang bụng</label> </th>
+                                                    <td><input type="text" id="ngangbung"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="vongday">Vòng đáy</label> </th>
+                                                    <td><input type="text" id="vongday"></td>
+                                                    <th scope="row"> <label for="duigiua">Đùi giữa</label> </th>
+                                                    <td><input type="text" id="duigiua"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="vongmong">Vòng mông</label> </th>
+                                                    <td><input type="text" id="vongmong"></td>
+                                                    <th scope="row"> <label for="daiquan">Dài quần</label> </th>
+                                                    <td><input type="text" id="daiquan"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="vongdui">Vòng đùi</label> </th>
+                                                    <td colspan="3"><input type="text" id="vongdui"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="vonggoi">Vòng gối</label> </th>
+                                                    <td colspan="3"><input type="text" id="vonggoi"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="vongbapchan">Vòng bắp chân</label>
+                                                    </th>
+                                                    <td colspan="3"><input type="text" id="vongbapchan"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"> <label for="ongquan">Ống quần</label> </th>
+                                                    <td colspan="3"><input type="text" id="ongquan"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
                             </div>
-
-                            <div class="schedule-item">
-                                <label for="order_status">Trạng thái đơn hàng</label>
-                                <select name="" id="order_status">
-                                    <option value="1">Hẹn lần 1</option>
-                                    <option value="2">Hẹn lần 2</option>
-                                    <option value="3">Hoàn thành</option>
-                                </select>
-                            </div>
-
                         </div>
                     </div>
                 </div>
-                <div class="print">
-                    <button id="create_order" class="btn-create" data-bs-toggle="modal"
-                        data-bs-target="#create_order_modal">Tạo đơn hàng</button>
+                <div class="line"></div>
+                <div class="order_info">
+                    <div class="order_nav">
+                        <div class="title-info">
+                            <h3>Thông tin đơn hàng</h3>
+                        </div>
+
+                        <div class="order_nav_button">
+                            <label for="">Trạng thái đơn hàng</label>
+
+                            <div class="dropdown">
+                                <button id="order-status" class="btn btn-dropdown dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" order-status="1">
+                                     Hẹn lần 1
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"  data-status="1" onclick="selectStatus(event)" href="#">Hẹn lần 1</a></li>
+                                    <li><a class="dropdown-item" data-status="2" onclick="selectStatus(event)" href="#">Hẹn lần 2
+                                            </a></li>
+                                    <li><a class="dropdown-item" data-status="3" onclick="selectStatus(event)" href="#">Hoàn thành</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="order_nav_button">
+                            <label for="appointment_day">Ngày hẹn</label>
+                            <input class="input" id="appointment_day" type="date">
+                        </div>
+                        <div class="order_nav_button">
+                            <div class="group-open">
+                                <a class="group-open-item" id="addShirt" href="#">
+                                    <img src="./img/shirt_1508833.png" alt="">
+                                </a>
+                                <a class="group-open-item" id="addTrousers" href="#">
+                                    <img src="./img/pants_12698389.png" alt="">
+                                    </i></a>
+                                <a class="group-open-item" id="addSuit" href="#">
+                                    <img src="./img/suit-tie-outfit_25978.png" alt="">
+                                    </i></a>
+                                <a class="group-open-item" id="addAccessory" href="#">
+                                    <img src="./img/necktie.png" alt="">
+                                </a>
+                                <a class="group-controller">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    <i class="fa-solid fa-ban d-none"></i>
+                                </a>
+                            </div>
+
+
+                        </div>
+                        <div class="order_nav_button">
+                            <button class="btn-create-small">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                        </div>
+
+
+
+                    </div>
+                    <div id="order_items_list">
+                        <!-- <div class="order_item ao">
+                            <div class="main_item_info">
+                                <div class="item_info">
+                                    <p>Suit</p>
+                                </div>
+                                <div class="item_info">
+                                    <h4>Loại Vải</h4>
+                                    <input type="text" class="fabric input">
+                                </div>
+                                <div class="item_info">
+                                    <h4>Số lượng</h4>
+                                    <div class="amount-group">
+                                        <button type="button" class="btn-amount btn-minus" onclick="minusAmount(event)"
+                                            disabled><i class="fa-solid fa-minus"></i></button>
+                                        <span class="amount">1</span>
+                                        <button type="button" class="btn-amount btn-plus" onclick="addAmount(event)"><i
+                                                class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item_info">
+                                    <h4>Đơn Giá</h4>
+                                    <input type="text" class="price input number" oninput="formatInputNumber(event)">
+                                </div>
+
+                            </div>
+                            <div class="attribute_item_info">
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieuao btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu áo
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Suit
+                                                    Jacket</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">Blazer</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">Sport Jacket</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="formao btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Form Áo
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ôm
+                                                    Body</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ôm
+                                                    Vừa</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Form
+                                                    rộng</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieuveao btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu ve áo
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ve
+                                                    nhọn</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ve
+                                                    K</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ve
+                                                    Sam</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieuxe btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu xẻ
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> Xẻ
+                                                    2 bên</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Xẻ 1
+                                                    bên</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">Không xẻ</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="lotao btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Lót áo
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">
+                                                    Full lót </a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Lót
+                                                    demi</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">Không lót</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieunut btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu nút
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> 2
+                                                    nút </a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">1
+                                                    nút</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">Double breasted</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieutui btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu túi
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> Túi
+                                                    mổ </a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                                                    đắp</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="item_attribute">
+                                    <h4>Chú thích</h4>
+                                    <textarea class="note"></textarea>
+                                </div>
+                            </div>
+                            <div class="delete-item">
+                                <button type="button" onclick="deleteItem(event)" class="btn-search-little">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="order_item quan">
+                            <div class="main_item_info">
+                                <div class="item_info">
+                                    <p>Quần</p>
+                                </div>
+                                <div class="item_info">
+                                    <h4>Loại Vải</h4>
+                                    <input type="text" class="fabric input">
+                                </div>
+                                <div class="item_info">
+                                    <h4>Số lượng</h4>
+                                    <div class="amount-group">
+                                        <button type="button" class="btn-amount btn-minus" onclick="minusAmount(event)"
+                                            disabled><i class="fa-solid fa-minus"></i></button>
+                                        <span class="amount">1</span>
+                                        <button type="button" class="btn-amount btn-plus" onclick="addAmount(event)"><i
+                                                class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item_info">
+                                    <h4>Đơn Giá</h4>
+                                    <input type="text" class="price input number" oninput="formatInputNumber(event)">
+                                </div>
+
+                            </div>
+                            <div class="attribute_item_info">
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="formquan btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Form quần
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">Body</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Vừa
+                                                    vặn</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Form
+                                                    rộng</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieulung btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu lưng
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Side
+                                                    Tab</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">Basic</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieutuitruoc btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu túi trước
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                                                    thẳng</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                                                    xéo</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieutuisau btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu túi sau
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                                                    mỹ</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                                                    viền</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="sotui btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Số túi
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> 1
+                                                    túi </a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">2
+                                                    túi</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieulai btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu lai
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> Lai
+                                                    thường </a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Lai
+                                                    V</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <h4>Chú thích</h4>
+                                    <textarea class="note"></textarea>
+                                </div>
+                            </div>
+                            <div class="delete-item">
+                                <button type="button" onclick="deleteItem(event)" class="btn-search-little">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="order_item phukien">
+                            <div class="main_item_info">
+                                <div class="item_info">
+                                    <p>Phụ kiện</p>
+                                </div>
+                                <div class="item_info">
+                                    <h4>Tên phụ kiện</h4>
+                                    <input type="text" class="tenphukien input">
+                                </div>
+                                <div class="item_info">
+                                    <h4>Số lượng</h4>
+                                    <div class="amount-group">
+                                        <button type="button" class="btn-amount btn-minus" onclick="minusAmount(event)"
+                                            disabled><i class="fa-solid fa-minus"></i></button>
+                                        <span class="amount">1</span>
+                                        <button type="button" class="btn-amount btn-plus" onclick="addAmount(event)"><i
+                                                class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item_info">
+                                    <h4>Đơn Giá</h4>
+                                    <input type="text" class="price input number" oninput="formatInputNumber(event)">
+                                </div>
+
+                            </div>
+                            <div class="delete-item">
+                                <button type="button" onclick="deleteItem(event)" class="btn-search-little">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="order_item somi">
+                            <div class="main_item_info">
+                                <div class="item_info">
+                                    <p>Sơ mi</p>
+                                </div>
+                                <div class="item_info">
+                                    <h4>Loại Vải</h4>
+                                    <input type="text" class="fabric input">
+                                </div>
+                                <div class="item_info">
+                                    <h4>Số lượng</h4>
+                                    <div class="amount-group">
+                                        <button type="button" class="btn-amount btn-minus" onclick="minusAmount(event)"
+                                            disabled><i class="fa-solid fa-minus"></i></button>
+                                        <span class="amount">1</span>
+                                        <button type="button" class="btn-amount btn-plus" onclick="addAmount(event)"><i
+                                                class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item_info">
+                                    <h4>Đơn Giá</h4>
+                                    <input type="text" class="price input number" oninput="formatInputNumber(event)">
+                                </div>
+
+                            </div>
+                            <div class="attribute_item_info">
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="formquan btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu cổ
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">A.01</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">A.02</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">A.03</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">A.04</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">B.01</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">B.02</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">B.03</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                                                    href="#">B.04</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieulung btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Mangsec
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                                                    Tròn</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                                                    vuông</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                                                    đúp</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item_attribute">
+                                    <div class="dropdown">
+                                        <button class="kieutuitruoc btn btn-dropdown dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown">
+                                             Kiểu đinh
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Đinh lật ra</a></li>
+                                            <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Đinh lật vô</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="item_attribute">
+                                    <h4>Chú thích</h4>
+                                    <textarea class="note"></textarea>
+                                </div>
+                            </div>
+                            <div class="delete-item">
+                                <button type="button" onclick="deleteItem(event)" class="btn-search-little">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+
+                        </div> -->
+                    </div>
                 </div>
             </div>
 
@@ -299,81 +743,39 @@
     </main>
 
     <!-- Modal -->
-    <!-- Create Modal -->
-    <div class="modal fade" id="create" tabindex="-1" aria-hidden="true">
+    <!-- Confirm Create Client -->
+    <div class="modal fade" id="create-client-modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tạo mới khách hàng</h1>
+                    <h1 class="modal-title fs-5">Tạo mới khách hàng</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-footer">
-                    <button id="confirm_create_client" type="button" class="btn btn-primary">Đồng ý</button>
-                    <button id="close_confirm_create" type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Hủy</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Update Modal -->
-    <div class="modal fade" id="update" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cập nhật lại khách hàng</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-footer">
-                    <button id="confirm_update_client" type="button" class="btn btn-primary">Đồng ý</button>
-                    <button id="close_confirm_update" type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Hủy</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Create Order Modal -->
-    <div class="modal fade" id="create_order_modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xác nhận tạo đơn hàng</h1>
                 </div>
                 <div class="modal-body">
-                    <div class="info_client">
-                        <h4>Thông tin khách hàng</h4>
-                        <div class="detail_info_client">
-                            <p>Tên khách hàng: <span id="client_name"></span></p>
-                            <p>Số điện thoại: <span id="client_phone"></span></p>
-                            <p>Ngày hẹn khách hàng: <span id="appointment_day"></span></p>
-                        </div>
-                    </div>
-                    <div class="info_order">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tên</th>
-                                    <th scope="col">Kiểu</th>
-                                    <th scope="col">Đơn giá</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col"> Thành tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody id="confirm_order_table">
-                                <tr>
-                                    <th colspan="4" style="text-align: center;">Tổng tiền</th>
-                                    <td id="tongtien"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="payment">
-                            <label for="payment">Số tiền khách hàng thanh toán</label>
-                            <input id="payment" type="number">
-                        </div>
-                    </div>
+                    <h4> Đồng ý tạo mới khách hàng</h4>
                 </div>
                 <div class="modal-footer">
-                    <button id="confirm_create_order" type="button" class="btn btn-primary">Đồng ý</button>
-                    <button id="close_create_order" type="button" class="btn btn-secondary"
+                    <button id="confirm_create_client" type="button" class="btn-create">Tạo mới khách hàng</button>
+                    <button id="close_confirm_create" type="button" class="btn-cancel"
+                        data-bs-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="update-client-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Cập nhật khách hàng</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4> Đồng ý cập nhật khách hàng</h4>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm_update_client" type="button" class="btn-create">Cập nhật khách hàng</button>
+                    <button id="close_confirm_update" type="button" class="btn-cancel"
                         data-bs-dismiss="modal">Hủy</button>
                 </div>
             </div>
@@ -382,16 +784,9 @@
 
     <!-- JS -->
     <!-- Bootstrap -->
-    <!-- Jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-
-
-
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

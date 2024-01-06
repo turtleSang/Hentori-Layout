@@ -1,12 +1,16 @@
 .input{
     border-radius: 10px;
     padding: 10px 20px;
-    text-align: right;
+    text-align: left;
     border: 1px solid $bg-normal;
     transition: all 0.5s;
+    display: block;
+    &.number{
+        text-align: right;
+    }
     &:focus-visible{
         outline: none;
-        border: 2px solid $bg-yellow;
+        border: 1px solid $bg-yellow;
         box-shadow: 0px 0px 11px 1px #CBA94F;
     }
 }

@@ -24,13 +24,7 @@ const renderStatusDto = (orderStatusDto) => {
     orderStatusEle.setAttribute("order-status", orderStatusDto.id);
 }
 
-const selectStatus = (e) => {
-    let selectItem = e.target;
-    let idStatus = selectItem.getAttribute("data-status");
-    let nameStatus = selectItem.innerHTML;
-    document.getElementById("order-status").innerHTML = nameStatus;
-    document.getElementById("order-status").setAttribute("order-status", idStatus);
-}
+
 
 const renderClient = (orderClientDto) => {
     document.getElementById("client_name").value = orderClientDto.username;
@@ -104,18 +98,6 @@ const renderAccessory = (orderAccessoryDtoList) => {
 
 }
 
-
-// Select attribute when user choosse
-const selectDetailItem = (e) => {
-    // Get element select
-    let eleSelect = e.currentTarget;
-    let value = eleSelect.innerHTML.trim();
-    // Get button 
-    let eleParent = eleSelect.parentElement.parentElement.parentElement;
-    let mainEle = eleParent.querySelector(".btn-info");
-    mainEle.innerHTML = value;
-    mainEle.setAttribute("data-item", value)
-}
 
 // Render Attribute of suit or trousers
 

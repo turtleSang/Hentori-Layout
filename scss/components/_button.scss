@@ -1,51 +1,158 @@
-.btn-info{
+.btn-info {
     display: block;
     @include styleButton(40%, 40px, 5px, none, wheat, $bg-normal, $font-black-01, $bg-yellow);
     margin-bottom: 20px;
-    &.active{
+    &.active {
         color: black;
         background-color: $bg-yellow;
     }
 }
-.btn-delete{
+.btn-search-little {
+    @include styleButton(50px, 50px, 50%, none, wheat, $bg-normal, $font-black-01, $bg-yellow);
+}
+.btn-delete {
     font-size: 20px;
     line-height: 40px;
-    @include styleButton(40px, 40px, 50%, none, wheat, $bg-normal, $font-black-01, $bg-yellow)
-
+    @include styleButton(30px, 30px, 50%, none, wheat, $bg-normal, $font-black-01, $bg-yellow);
 }
-.btn-create{
+.btn-create {
     font-size: 15px;
     line-height: 40px;
     font-weight: 700;
-    @include styleButton(40%, 50px, 5px, none, wheat, $bg-normal, $font-black-01, $bg-yellow)
+    @include styleButton(200px, 50px, 5px, none, $font-black-01, $bg-yellow, wheat, $bg-normal);
 }
-.btn-add-item{
-    @include styleButton(150px, 50px, 5px, none, wheat, $bg-normal, $font-black-01, $bg-yellow)
-    
+
+.btn-create-small {
+    font-size: 20px;
+    @include styleButton(70px, 60px, 10px, none, $font-black-01, $bg-normal, $font-black-01, $bg-yellow);
 }
-#create_user{
+
+.btn-update {
+    font-size: 15px;
+    line-height: 40px;
+    font-weight: 700;
+    @include styleButton(200px, 50px, 5px, 1px solid $bg-normal, $font-black-01, transparent, wheat, $bg-normal);
+}
+.btn-cancel {
+    @include styleButton(200px, 50px, 5px, none, wheat, #6c757d, wheat, #565e64);
+}
+.input-phone-number {
+    display: flex;
+    .input.input-client {
+        margin-right: 5px;
+    }
+}
+
+.amount-group{
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}
+
+.btn-amount {
+    @include styleButton(30px, 30px, 50%, none, wheat, $bg-normal, $font-black-01, $bg-yellow);
+    &:disabled{
+        @include styleButton(30px, 30px, 50%, none, wheat, grey, wheat, grey);
+    }
+}
+:disabled #create_user {
     display: none;
 }
-#update_user{
+#update_user {
     display: none;
 }
-.accept_phoneNumber{
-    background-color: #8F714B;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 50%;
-    color:#e7af13 ;
+
+.group-open {
+    position: relative;
+    width: 70px;
+    height: 60px;
+    .group-controller {
+        position: absolute;
+        width: 70px;
+        height: 60px;
+        background-color: $bg-normal;
+        font-size: 30px;
+        text-align: center;
+        line-height: 60px;
+        border-radius: 10px;
+        z-index: 10;
+        display: block;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.5s;
+        i {
+            cursor: pointer;
+        }
+        &:hover {
+            background-color: $bg-yellow;
+        }
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        height: 0px;
+        width: 0px;
+        background-color: $bg-yellow;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 8;
+        transition: all 0.5s;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .group-open-item {
+        position: absolute;
+        font-weight: 700;
+        z-index: 9;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.5s;
+        img {
+            width: 30px;
+            height: 30px;
+            display: block;
+        }
+    }
+    &.open {
+        .group-controller {
+            background-color: rgb(162 130 43);
+        }
+        &::after {
+            height: 160px;
+            width: 160px;
+        }
+        .group-open-item:nth-child(1) {
+            top: -50%;
+            left: 50%;
+        }
+        .group-open-item:nth-child(2) {
+            left: -45%;
+            top: 50%;
+        }
+        .group-open-item:nth-child(3) {
+            top: 150%;
+            left: 50%;
+        }
+        .group-open-item:nth-child(4) {
+            left: 145%;
+            top: 50%;
+        }
+    }
 }
-.denine_phoneNumber{
-    background-color: #e7af13;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 50%;
-    color: #8F714B;
+
+.btn-dropdown{
+    @include styleButton(100%, 40px, 5px, none, wheat, $bg-normal, $font-black-01, $bg-yellow);
+    &.show{
+        background-color: $bg-normal;
+    }
+    &.btn-dropdown-selected{
+       background-color: $bg-yellow;
+       color: $font-black-01;
+    }
 }

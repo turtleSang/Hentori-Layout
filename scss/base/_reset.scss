@@ -15,15 +15,20 @@ textarea{
     resize: none;
     border-radius: 10px;
     padding: 10px 20px;
-    text-align: right;
+    text-align: left;
     border: 1px solid $bg-normal;
     transition: all 0.5s;
     width: 208px;
+    height: 100px;
     &:focus-visible{
         outline: none;
         border: 2px solid $bg-yellow;
         box-shadow: 0px 0px 11px 1px #CBA94F;
     }
+}
+a{
+    text-decoration: none;
+    color: $font-black-01;
 }
 
 ul{

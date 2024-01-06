@@ -1,0 +1,89 @@
+#main_content {
+    text-align: start;
+    .client_info {
+        padding: 20px 20px;
+        .main_info {
+            display: flex;
+            flex-wrap: wrap;
+            .title-info {
+                width: 100%;
+            }
+            .main_info_item {
+                .nofication_input {
+                    position: relative;
+                    div {
+                        position: absolute;
+                        right: 35%;
+                        top: 0;
+                        color: $bg-yellow;
+                        font-size: 17px;
+                    }
+                }
+                width: 50%;
+                input {
+                    width: 70%;
+                }
+            }
+        }
+        #measurements_info {
+            display: none;
+        }
+    }
+    .order_info {
+        padding: 20px;
+        min-height: 500px; //delete
+        .order_nav {
+            display: flex;
+            justify-content: space-between;
+            .order_nav_group_button{
+                display: flex;
+                width: 50%;
+                justify-content: space-evenly;
+            }
+        }
+        #order_items_list{
+            .order_item{
+                margin: 30px 0;
+                padding: 30px 40px;
+                border-radius: 20px;
+                border: 2px solid $bg-normal;
+                position: relative;
+                .main_item_info{
+                    .item_info:first-child{
+                        width: 100%;
+                        p{
+                            font-size: 23px;
+                            font-weight: 700;
+                        }
+                    }                    
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    flex-wrap: wrap;
+                }
+                .attribute_item_info{
+                    margin-top: 20px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    .item_attribute{
+                        width: 20%;
+                        margin: 5px 10px;
+                        &:last-child{
+                            width: 100%;
+                            .note{
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+                .delete-item{
+                    position: absolute;
+                    top: -5%;
+                    right: -6px;
+                }
+            }
+            
+        }
+    }
+}

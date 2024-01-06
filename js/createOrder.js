@@ -6,13 +6,9 @@ const setValue = (eleId, value) => {
     document.getElementById(eleId).value = value;
 }
 
-//Format
-const renderNumber = (number)=>{
-    return number.toLocaleString("da-DK");
-}
-
 // Render info
 const renderClientSuit = (clientSuitDto) => {
+    console.log(clientSuitDto);
     if (clientSuitDto) {
         setValue("doxuoivai", clientSuitDto.doXuoiVai);
         setValue("dangvai", clientSuitDto.dangVai);
@@ -84,7 +80,7 @@ const renderClientTrousers = (clientTrousersDto) => {
 }
 
 const checkPhoneNumberInput = (phoneNumber) => {
-    let eleNofiPhone = document.getElementById("nofication_phonenumber");
+    let eleNofiPhone = document.getElementById("nofication_phone_number");
     let buttonSearch = document.getElementById("find_user");
 
     if (phoneNumber) {
@@ -216,7 +212,7 @@ const renderDefaultAppointmentDay = ()=>{
     let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
     let currentDate = `${yyyy}-${mm}-${dd}`;
-    document.getElementById("appointment").value = currentDate;
+    document.getElementById("appointment_day").value = currentDate;
 
 }
 
@@ -286,8 +282,8 @@ const createClientTrouserRequest = () => {
 }
 
 const createClientRequest = () => {
-    let phoneNumber = document.getElementById("phonenumber").value;
-    let username = document.getElementById("username").value
+    let phoneNumber = document.getElementById("client_phone").value;
+    let username = document.getElementById("client_name").value
     if (phoneNumber && username) {
         let clientSuitRequest = createClientSuitRequest();
         let clientTrousersRequest = createClientTrouserRequest();
@@ -395,41 +391,42 @@ const getAppointmentDay = ()=>{
 
 /*Action*/
 //render default appointment 
+// renderDefaultAppointmentDay();
 renderDefaultAppointmentDay();
-
 // Find client
 document.getElementById("find_user").onclick = () => {
-
-    let phoneNumber = document.getElementById("phonenumber").value;
-    document.getElementById("detail_info").style.display = "block";
+    let phoneNumber = document.getElementById("client_phone").value;
     axios({
         method: "get",
         url: `http://localhost:8080/client/getclient?phoneNumber=${phoneNumber}`
     }).then(res => {
         let userDto = res.data.object;
-        document.getElementById("username").value = userDto.username;
-        document.getElementById("username").setAttribute("data-id", userDto.id);
-        document.getElementById("username").setAttribute("data-name", userDto.username);
-        document.getElementById("update_user").style.display = "block";
-        document.getElementById("create_user").style.display = "none";
+        console.log(userDto);
+        document.getElementById("client_name").value = userDto.username;
+        document.getElementById("client_name").setAttribute("data-id", userDto.id);
+        document.getElementById("client_name").setAttribute("data-name", userDto.username);
+        document.getElementById("update_client").style.display = "block";
+        document.getElementById("create_client").style.display = "none";
+        document.getElementById("measurements_info").style.display = "block";
         renderClientSuit(userDto.clientSuitDto);
         renderClientTrousers(userDto.clientTrousersDto)
 
     }).catch(err => {
-        document.getElementById("username").setAttribute("data-id", "");
-        document.getElementById("username").value = "";
-        document.getElementById("update_user").style.display = "none";
-        document.getElementById("create_user").style.display = "block";
-        document.getElementById("btn-suilt").click();
-        document.getElementById("btn-trousers").click();
+        document.getElementById("client_name").setAttribute("data-id", "");
+        document.getElementById("client_name").value = "";
+        document.getElementById("client_name").disabled = false;
+        document.getElementById("update_client").style.display = "none";
+        document.getElementById("create_client").style.display = "block";
+        document.getElementById("measurements_info").style.display = "block";
         renderClientSuit("");
         renderClientTrousers("");
+    
     })
 
 }
 // Valitdate phonenumber
-document.getElementById("phonenumber").oninput = () => {
-    let phoneNumber = document.getElementById("phonenumber").value;
+document.getElementById("client_phone").oninput = () => {
+    let phoneNumber = document.getElementById("client_phone").value;
     checkPhoneNumberInput(phoneNumber);
 }
 
@@ -445,10 +442,10 @@ document.getElementById("confirm_create_client").onclick = () => {
             let client = res.data.object;
             console.log(client);
             document.getElementById("close_confirm_create").click();
-            document.getElementById("username").setAttribute("data-id", client.id)
-            document.getElementById("username").setAttribute("data-name", client.username)
-            document.getElementById("update_user").style.display = "block";
-            document.getElementById("create_user").style.display = "none";
+            document.getElementById("client_name").setAttribute("data-id", client.id)
+            document.getElementById("client_name").setAttribute("data-name", client.username)
+            document.getElementById("update_client").style.display = "block";
+            document.getElementById("create_client").style.display = "none";
             alert("Đã tạo mới khách hàng thành công");
         }).catch(err => {
             alert(err);
@@ -460,7 +457,7 @@ document.getElementById("confirm_create_client").onclick = () => {
 //Confirm update client
 document.getElementById("confirm_update_client").onclick = () => {
     let clientRequest = createClientRequest();
-    let client_id = document.getElementById("username").getAttribute("data-id");
+    let client_id = document.getElementById("client_name").getAttribute("data-id");
     if (client_id) {
         axios({
             method: 'put',
@@ -482,51 +479,51 @@ document.getElementById("confirm_update_client").onclick = () => {
 
 }
 //Confirm get info for order
-document.getElementById("create_order").onclick = () => {
-    let orderSuitRequestList = getSuitList();
-    let client_id = document.getElementById("username").getAttribute("data-id");
-    let orderTrousersRequestList = getTrouserList();
-    let orderAccessoryRequestList = getAccessoryList();
-    let appointmentDay = getAppointmentDay();
-    let orderStatusRequest = {
-        id: document.getElementById("order_status").value
-    }
-    if (!client_id) {
-        alert("Vui lòng điền hoàn thiện các thông tin");
-        document.getElementById("confirm_create_order").disabled = true;
-        return;
-    }
-    document.getElementById("confirm_create_order").disabled = false;
+// document.getElementById("create_order").onclick = () => {
+//     let orderSuitRequestList = getSuitList();
+//     let client_id = document.getElementById("client_name").getAttribute("data-id");
+//     let orderTrousersRequestList = getTrouserList();
+//     let orderAccessoryRequestList = getAccessoryList();
+//     let appointmentDay = getAppointmentDay();
+//     let orderStatusRequest = {
+//         id: document.getElementById("order_status").value
+//     }
+//     if (!client_id) {
+//         alert("Vui lòng điền hoàn thiện các thông tin");
+//         document.getElementById("confirm_create_order").disabled = true;
+//         return;
+//     }
+//     document.getElementById("confirm_create_order").disabled = false;
     
-    orderRequest ={
-        appointmentDay,
-        client_id,
-        orderStatusRequest,
-        orderSuitRequestList,
-        orderTrousersRequestList,
-        orderAccessoryRequestList
-    }
+//     orderRequest ={
+//         appointmentDay,
+//         client_id,
+//         orderStatusRequest,
+//         orderSuitRequestList,
+//         orderTrousersRequestList,
+//         orderAccessoryRequestList
+//     }
     
-    renderFormConfirmOrder(orderRequest);
+//     renderFormConfirmOrder(orderRequest);
     
-}
-document.getElementById("confirm_create_order").onclick = ()=>{ 
-    let payment = document.getElementById("payment").value;
-    orderRequest = {...orderRequest, payment};   
-    axios({
-        method: "post",
-        url: "http://localhost:8080/order/create",
-        data: orderRequest
-    }).then(res =>{
-        let {data} = res;
-        if (data.check) {
-            location.reload();
-            document.getElementById("close_create_order").click();
-            window.open(`printOrder.html?orderid=${data.object}`, "_blank");
-        }
+// }
+// document.getElementById("confirm_create_order").onclick = ()=>{ 
+//     let payment = document.getElementById("payment").value;
+//     orderRequest = {...orderRequest, payment};   
+//     axios({
+//         method: "post",
+//         url: "http://localhost:8080/order/create",
+//         data: orderRequest
+//     }).then(res =>{
+//         let {data} = res;
+//         if (data.check) {
+//             location.reload();
+//             document.getElementById("close_create_order").click();
+//             window.open(`printOrder.html?orderid=${data.object}`, "_blank");
+//         }
         
-    }).catch(err =>{
-        alert(err);
-    })
-}
+//     }).catch(err =>{
+//         alert(err);
+//     })
+// }
 

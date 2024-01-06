@@ -1,200 +1,446 @@
-let btnSuit = document.getElementById("btn-suilt");
-let btnTrousers = document.getElementById("btn-trousers");
-let number = 0;
+document.querySelector(".group-controller").addEventListener("click", (event) => {
+    let mainEle = event.currentTarget.parentElement;
+    mainEle.classList.toggle("open");
 
-btnSuit.onclick = ()=>{
-    let suitEle = document.getElementById("suilt_detail");
-    btnSuit.querySelector(".arrow-icon").classList.toggle("rotate");
-    btnSuit.classList.toggle("active");    
+    let eleList = event.currentTarget.children;
+    for (const item of eleList) {
+        item.classList.toggle("d-none")
+    }
 
-    let suitClass = suitEle.classList;
-    let flag = false;
-    for (const item of suitClass) {
-        if (item == "active") {
-            flag = true
-            break;
-        }
-    }
-    if (flag) {
-        suitClass.remove("active");
-    }else{
-        suitClass.add("active");    
-    }
+})
+
+const deleteItem = (e) => {
+    let deletedElement = e.currentTarget.parentElement.parentElement;
+    deletedElement.remove();
 }
 
-btnTrousers.onclick = ()=>{
-    let trousersEle = document.getElementById("trousers_detail");
-    btnTrousers.querySelector(".arrow-icon").classList.toggle("rotate");
-    btnTrousers.classList.toggle("active");    
+// add shirt
+document.getElementById("addShirt").onclick = (event) => {
+    event.preventDefault();
+    let content = `
+    <div class="order_item somi">
+    <div class="main_item_info">
+        <div class="item_info">
+            <p>Sơ mi</p>
+        </div>
+        <div class="item_info">
+            <h4>Loại Vải</h4>
+            <input type="text" class="fabric input">
+        </div>
+        <div class="item_info">
+            <h4>Số lượng</h4>
+            <div class="amount-group">
+                <button type="button" class="btn-amount btn-minus" onclick="minusAmount(event)"
+                    disabled><i class="fa-solid fa-minus"></i></button>
+                <span class="amount">1</span>
+                <button type="button" class="btn-amount btn-plus" onclick="addAmount(event)"><i
+                        class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="item_info">
+            <h4>Đơn Giá</h4>
+            <input type="text" class="price input number" oninput="formatInputNumber(event)">
+        </div>
 
-    let trouserClass = trousersEle.classList;
-    let flag = false;
-    for (const item of trouserClass) {
-        if (item == "active") {
-            flag = true
-            break;
-        }
-    }
-    if (flag) {
-        trouserClass.remove("active");
-    }else{
-        trouserClass.add("active");    
-    }
+    </div>
+    <div class="attribute_item_info">
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="formquan btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu cổ
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">A.01</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">A.02</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">A.03</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">A.04</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">B.01</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">B.02</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">B.03</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">B.04</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieulung btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Mangsec
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                            Tròn</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                            vuông</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                            đúp</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieutuitruoc btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu đinh
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Đinh lật ra</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Đinh lật vô</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="item_attribute">
+            <h4>Chú thích</h4>
+            <textarea class="note"></textarea>
+        </div>
+    </div>
+    <div class="delete-item">
+        <button type="button" onclick="deleteItem(event)" class="btn-search-little">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    </div>
+
+</div>
+    `
+    document.getElementById("order_items_list").innerHTML += content;
 }
+//add Suit
+document.getElementById("addSuit").onclick = (event) =>{
+    event.preventDefault();
+    let content = `
+<div class="order_item ao">
+    <div class="main_item_info">
+        <div class="item_info">
+            <p>Suit</p>
+        </div>
+        <div class="item_info">
+            <h4>Loại Vải</h4>
+            <input type="text" class="fabric input">
+        </div>
+        <div class="item_info">
+            <h4>Số lượng</h4>
+            <div class="amount-group">
+                <button type="button" class="btn-amount btn-minus" onclick="minusAmount(event)"
+                    disabled><i class="fa-solid fa-minus"></i></button>
+                <span class="amount">1</span>
+                <button type="button" class="btn-amount btn-plus" onclick="addAmount(event)"><i
+                        class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="item_info">
+            <h4>Đơn Giá</h4>
+            <input type="text" class="price input number" oninput="formatInputNumber(event)">
+        </div>
 
-document.getElementById("add_shirt").onclick = ()=>{
-    content = `
-    <tr class="ao">
-        <th class="tenhang">Áo</th>
-        <td class="dactinh">
-            <select class="kieuao" class="form-select form-select-sm">
-                <option value="" selected>Kiểu áo</option>
-                <option value="Suit Jacket">Suit Jacket</option>
-                <option value="Blazer">Blazer</option>
-                <option value="Spot Jacket">Spot Jacket</option>
-            </select>
-            <select class="formao" class="form-select form-select-sm">
-                <option value="" selected>Form Áo</option>
-                <option value="Ôm Body">Ôm Body</option>
-                <option value="Ôm Vừa">Ôm Vừa</option>
-                <option value="Form Rộng">Form Rộng</option>
-            </select>
-            <select class="kieuveao" class="form-select form-select-sm">
-                <option value="" selected>Kiểu ve áo</option>
-                <option value="Ve K">Ve K</option>
-                <option value="Ve nhọn">Ve nhọn</option>
-                <option value="Ve Sams">Ve Sam</option>
-            </select>
-            <select class="lotao" class="form-select form-select-sm">
-                <option value="" selected>Lót áo</option>
-                <option value="Full lót">Full lót</option>
-                <option value="Lót Demi">Lót Demi</option>
-                <option value="Không lót">Không lót</option>
-            </select>
-            <select class="kieunut" class="form-select form-select-sm">
-                <option value="" selected>Kiểu nút</option>
-                <option value="2">2 nút</option>
-                <option value="1">1 nút</option>
-                <option value="Double breasted">Double breasted</option>
-            </select>
-            <select class="kieutui" class="form-select form-select-sm">
-                <option value="" selected>Kiểu túi</option>
-                <option value="Suit Jacket">Túi mổ</option>
-                <option value="2">Túi Đắp</option>
-                <option value="3">Không lót</option>
-            </select>
-        </td>
-        <td class="">
-            <input class="dongia" type="number" oninput="formatNumber(event)">
-        </td>
-        <td class="">
-            <input class="soluong" type="number">
-        </td>
-        <td class="">
-            <input class="fabric" type="text">
-        </td>
-        <td class="">
-            <textarea name="" class="ghichu" cols="20" rows="5"
-                 placeholder="Ghi Chú"></textarea>
-        </td>
-        <td class="">
-            <button class="btn-delete" data-number="${number}" onclick="deleteItem(event)"><i class="fa-solid fa-xmark"></i></button>
-        </td>
+    </div>
+    <div class="attribute_item_info">
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieuao btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu áo
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Suit
+                            Jacket</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">Blazer</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">Sport Jacket</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="formao btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Form Áo
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ôm
+                            Body</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ôm
+                            Vừa</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Form
+                            rộng</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieuveao btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu ve áo
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ve
+                            nhọn</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ve
+                            K</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Ve
+                            Sam</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieuxe btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu xẻ
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> Xẻ
+                            2 bên</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Xẻ 1
+                            bên</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">Không xẻ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="lotao btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Lót áo
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">
+                            Full lót </a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Lót
+                            demi</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">Không lót</a></li>
+                </ul>
+            </div>
+        </div>
 
-    </tr>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieunut btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu nút
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> 2
+                            nút </a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">1
+                            nút</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">Double breasted</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieutui btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu túi
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> Túi
+                            mổ </a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                            đắp</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="item_attribute">
+            <h4>Chú thích</h4>
+            <textarea class="note"></textarea>
+        </div>
+    </div>
+    <div class="delete-item">
+        <button type="button" onclick="deleteItem(event)" class="btn-search-little">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    </div>
+
+</div>
+    
     `;
-    number++;
-    document.getElementById("detail_order").innerHTML += content;
+    document.getElementById("order_items_list").innerHTML += content;
 }
-
-document.getElementById("add_trousers").onclick = ()=>{
-    content = `
-    <tr class="quan">
-        <th>Quần</th>
-        <td class="dactinh">
-            <select class="formquan" class="form-select form-select-sm">
-                <option value="" selected>Form Quần</option>
-                <option value="Ôm Body">Ôm Body</option>
-                <option value="Ôm Vừa">Ôm Vừa</option>
-                <option value="Form Rộng">Form Rộng</option>
-            </select>
-            <select class="kieulung" class="form-select form-select-sm">
-                <option value="" selected>Kiểu lưng</option>
-                <option value="Side Tab">Side Tab</option>
-                <option value="Basic">Basic</option>
-            </select>
-            <select class="kieutuitruoc" class="form-select form-select-sm">
-                <option value="" selected>Kiểu túi trước</option>
-                <option value="Túi thẳng">Túi thẳng</option>
-                <option value="Túi xéo">Túi xéo</option>
-            </select>
-            <select class="kieutuisau" class="form-select form-select-sm">
-                <option value="" selected>Kiểu túi sau</option>
-                <option value="Túi mỹ">Túi mỹ</option>
-                <option value="Túi viền">Túi viền</option>
-            </select>
-            <select class="sotuisau" class="form-select form-select-sm">
-                <option value="" selected>Số túi sau</option>
-                <option value="1">1 Túi</option>
-                <option value="2">2 Túi</option>
-            </select>
-            <select class="kieulai" class="form-select form-select-sm">
-                <option value="" selected>Kiểu lai</option>
-                <option value="Lai thường">Lai thường</option>
-                <option value="Lai V">Lai V</option>
-            </select>
-        </td>
-        <td class="">
-            <input class="dongia" type="number">
-        </td>
-        <td class="">
-            <input class="soluong" type="number">
-        </td>
-        <td class="">
-            <input class="fabric" type="text">
-        </td>
-        <td class="">
-            <textarea name="" class="ghichu" cols="20" rows="5"
-                placeholder="Ghi Chú"></textarea>
-        </td>
-        <td class="">
-            <button class="btn-delete" data-number="${number}"  onclick="deleteItem(event)"><i class="fa-solid fa-xmark"></i></button>
-        </td>
-    </tr>
+//add accesory
+document.getElementById("addAccessory").onclick = (event) =>{
+    event.preventDefault();
+    let content = `
+<div class="order_item phukien">
+    <div class="main_item_info">
+        <div class="item_info">
+            <p>Phụ kiện</p>
+        </div>
+        <div class="item_info">
+            <h4>Tên phụ kiện</h4>
+            <input type="text" class="tenphukien input">
+        </div>
+        <div class="item_info">
+            <h4>Số lượng</h4>
+            <div class="amount-group">
+                <button type="button" class="btn-amount btn-minus" onclick="minusAmount(event)"
+                    disabled><i class="fa-solid fa-minus"></i></button>
+                <span class="amount">1</span>
+                <button type="button" class="btn-amount btn-plus" onclick="addAmount(event)"><i
+                        class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="item_info">
+            <h4>Đơn Giá</h4>
+            <input type="text" class="price input number" oninput="formatInputNumber(event)">
+        </div>
+    </div>
+    <div class="delete-item">
+        <button type="button" onclick="deleteItem(event)" class="btn-search-little">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    </div>
+</div>
     `;
-    number++;
-    document.getElementById("detail_order").innerHTML += content;
+    document.getElementById("order_items_list").innerHTML += content;
 }
-document.getElementById("add_accessory").onclick = ()=>{
-    content = `
-    <tr class="phukien">
-    <th scope="row">Phụ Kiện</th>
-    <td>
-        <input type="text" class="tenphukien" placeholder="Tên phụ kiện">
-    </td>
-    <td class="">
-        <input class="dongia" type="number">
-    </td>
-    <td class="">
-        <input class="soluong" type="number">
-    </td>
-    <td></td>
-    <td class="">
-        <textarea name="" class="ghichu" cols="20" rows="5"
-            placeholder="Ghi Chú"></textarea>
-    </td>
-    <td class="">
-        <button class="btn-delete" data-number="${number}"  onclick="deleteItem(event)"><i class="fa-solid fa-xmark"></i></button>
-    </td>
-    </tr>
+//add accesory
+document.getElementById("addTrousers").onclick = (event) =>{
+    event.preventDefault();
+    let content = `
+<div class="order_item quan">
+    <div class="main_item_info">
+        <div class="item_info">
+            <p>Quần</p>
+        </div>
+        <div class="item_info">
+            <h4>Loại Vải</h4>
+            <input type="text" class="fabric input">
+        </div>
+        <div class="item_info">
+            <h4>Số lượng</h4>
+            <div class="amount-group">
+                <button type="button" class="btn-amount btn-minus" onclick="minusAmount(event)"
+                    disabled><i class="fa-solid fa-minus"></i></button>
+                <span class="amount">1</span>
+                <button type="button" class="btn-amount btn-plus" onclick="addAmount(event)"><i
+                        class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="item_info">
+            <h4>Đơn Giá</h4>
+            <input type="text" class="price input number" oninput="formatInputNumber(event)">
+        </div>
+
+    </div>
+    <div class="attribute_item_info">
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="formquan btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Form quần
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">Body</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Vừa
+                            vặn</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Form
+                            rộng</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieulung btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu lưng
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Side
+                            Tab</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)"
+                            href="#">Basic</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieutuitruoc btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu túi trước
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                            thẳng</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                            xéo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieutuisau btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu túi sau
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                            mỹ</a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Túi
+                            viền</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="sotui btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Số túi
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> 1
+                            túi </a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">2
+                            túi</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="item_attribute">
+            <div class="dropdown">
+                <button class="kieulai btn btn-dropdown dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                     Kiểu lai
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#"> Lai
+                            thường </a></li>
+                    <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Lai
+                            V</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item_attribute">
+            <h4>Chú thích</h4>
+            <textarea class="note"></textarea>
+        </div>
+    </div>
+    <div class="delete-item">
+        <button type="button" onclick="deleteItem(event)" class="btn-search-little">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    </div>
+
+</div>
     `;
-    number++;
-    document.getElementById("detail_order").innerHTML += content;
+    document.getElementById("order_items_list").innerHTML += content;
 }
-
-const deleteItem = (event)=>{
-    let positon =event.currentTarget;
-    let eleRemove = positon.parentNode.parentNode;
-    document.getElementById("detail_order").removeChild(eleRemove);
-}
-

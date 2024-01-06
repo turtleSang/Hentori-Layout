@@ -13,12 +13,11 @@
 @import "./components/line";
 @import "./components/modal";
 @import "./components/input";
+@import "./components/title";
 
 //layout
 @import "./layout/menu";
 @import "./layout/carousel";
-@import "./layout/create";
 
 //Page
-@import "./page/printPage";
-@import "./page/viewOrder";
+@import "./page/createOrder";
