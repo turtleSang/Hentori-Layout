@@ -46,3 +46,25 @@
     
 
 }
+.page-nav{
+    display: flex;
+    justify-content: center;
+    .pagination{
+        flex-wrap: wrap;
+        justify-content: center;
+        .page-item{
+          .page-link{
+            border: 1px solid $bg-yellow;
+            background-color: $bg-normal;
+            color: wheat;
+            &.active{
+                background-color: $bg-yellow;
+                color: $font-black-01;
+            }
+            &:focus{
+                box-shadow: none;
+            }
+          }  
+        }
+    }
+}

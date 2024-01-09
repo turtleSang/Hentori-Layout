@@ -91,7 +91,8 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="complete-order" data-bs-toggle="tab"
                                 data-bs-target="#complete-order-pane" type="button" role="tab"
-                                aria-controls="complete-order-pane" aria-selected="false">Đơn Hàng Đã Hoàn Thành </button>
+                                aria-controls="complete-order-pane" aria-selected="false">Đơn Hàng Đã Hoàn Thành
+                            </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="view-order" data-bs-toggle="tab"
@@ -102,14 +103,14 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="order-due-pane" role="tabpanel"
                             aria-labelledby="order-due" tabindex="0">
-                        
+
                             <div class="list_orders">
                                 <h3>Danh Sách đơn hàng đến hạn</h3>
-                                <div id="list_orders_due">
+                                <div class="list_orders_detail" id="list_orders_due">
                                     <div class="order_item" data-order="12">
                                         <div class="created_at">
                                             <p>Ngày tạo: <span>20/10/2020</span></p>
-                                            
+
                                         </div>
                                         <div class="appointment_day">
                                             <p>Ngày hẹn: <span>25/10/2020</span></p>
@@ -119,7 +120,7 @@
                                         </div>
                                         <div class="status">
                                             <p>Trạng thái: <span>Hẹn lần 2</span></p>
-                                        </div>                                      
+                                        </div>
                                         <div class="total">
                                             <p>Tổng tiền: <span>1.300.000</span></p>
                                         </div>
@@ -130,7 +131,7 @@
                                     <div class="order_item" data-order="12">
                                         <div class="created_at">
                                             <p>Ngày tạo: <span>20/10/2020</span></p>
-                                            
+
                                         </div>
                                         <div class="appointment_day">
                                             <p>Ngày hẹn: <span>25/10/2020</span></p>
@@ -140,7 +141,7 @@
                                         </div>
                                         <div class="status">
                                             <p>Trạng thái: <span>Hẹn lần 2</span></p>
-                                        </div>                                      
+                                        </div>
                                         <div class="total">
                                             <p>Tổng tiền: <span>1.300.000</span></p>
                                         </div>
@@ -149,26 +150,47 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
-                        
-                        
+                            <nav class="page-nav" aria-label="Page navigation example">
+                                <ul data-call-api="due" data-render-id ="order-due-pane"  class="pagination">
+                                    <li class="page-item" onclick="directionalPagePrevious(event)">
+                                        <a class="page-link previous" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num" href="#">1</a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num active" href="#">2</a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num" href="#">3</a>
+                                    </li>
+                                    <li class="page-item" onclick="directionalPageNext(event)">
+                                        <a class="page-link next" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+
                         </div>
-                        <div class="tab-pane fade" id="processing-order-pane" role="tabpanel" aria-labelledby="processing-order"
-                            tabindex="0">
+                        <div class="tab-pane fade" id="processing-order-pane" role="tabpanel"
+                            aria-labelledby="processing-order" tabindex="0">
                             <div class="list_orders">
                                 <h3>Danh Sách đơn hàng đang xử lý</h3>
                                 <div class="order_item" data-order="12">
                                     <div class="created_at">
                                         <p>Ngày tạo: <span>20/10/2020</span></p>
-                                        
+
                                     </div>
                                     <div class="appointment_day">
                                         <p>Ngày hẹn: <span>25/10/2020</span></p>
                                     </div>
                                     <div class="name">
                                         <p>Tên khách hàng: <span>Nguyễn Thanh Sang</span></p>
-                                    </div>                                    
+                                    </div>
                                     <div class="total">
                                         <p>Tổng tiền: <span>1.300.000</span></p>
                                     </div>
@@ -176,10 +198,10 @@
                                         <p>Đã Thanh Toán: <span>500.000</span></p>
                                     </div>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
-                        <div class="tab-pane fade" id="complete-order-pane" role="tabpanel" aria-labelledby="complete-order"
-                            tabindex="0">
+                        <div class="tab-pane fade" id="complete-order-pane" role="tabpanel"
+                            aria-labelledby="complete-order" tabindex="0">
 
                         </div>
                         <div class="tab-pane fade" id="view-order-pane" role="tabpanel" aria-labelledby="view-order"

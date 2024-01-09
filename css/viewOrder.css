@@ -79,6 +79,27 @@ ul {
   width: 100%;
 }
 
+.page-nav {
+  display: flex;
+  justify-content: center;
+}
+.page-nav .pagination {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.page-nav .pagination .page-item .page-link {
+  border: 1px solid #CBA94F;
+  background-color: #8f714b;
+  color: wheat;
+}
+.page-nav .pagination .page-item .page-link.active {
+  background-color: #CBA94F;
+  color: #1b0a03;
+}
+.page-nav .pagination .page-item .page-link:focus {
+  box-shadow: none;
+}
+
 .rotate {
   transform: rotate(180deg);
 }
@@ -542,14 +563,14 @@ ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   text-align: left;
-  background-color: #CBA94F;
   padding: 10px 50px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.5s;
+  border: 2px solid #8F714B;
 }
 #main_content #myTabContent .list_orders .order_item:hover {
-  background-color: #8f714b;
+  background-color: #CBA94F;
 }
 #main_content #myTabContent .list_orders .order_item span {
   font-weight: 700;

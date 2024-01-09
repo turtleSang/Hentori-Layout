@@ -79,6 +79,27 @@ ul {
   width: 100%;
 }
 
+.page-nav {
+  display: flex;
+  justify-content: center;
+}
+.page-nav .pagination {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.page-nav .pagination .page-item .page-link {
+  border: 1px solid #CBA94F;
+  background-color: #8f714b;
+  color: wheat;
+}
+.page-nav .pagination .page-item .page-link.active {
+  background-color: #CBA94F;
+  color: #1b0a03;
+}
+.page-nav .pagination .page-item .page-link:focus {
+  box-shadow: none;
+}
+
 .rotate {
   transform: rotate(180deg);
 }
