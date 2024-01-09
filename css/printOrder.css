@@ -540,90 +540,40 @@ ul {
   width: 100%;
 }
 
-#main_content {
-  text-align: start;
+.print_page {
+  font-family: "Times New Roman", Times, serif;
 }
-#main_content .client_info {
-  padding: 20px 20px;
+.print_page .header .logo #img_logo {
+  display: block;
+  width: 10%;
+  margin: 0 auto;
 }
-#main_content .client_info .main_info {
-  display: flex;
-  flex-wrap: wrap;
-}
-#main_content .client_info .main_info .title-info {
-  width: 100%;
-}
-#main_content .client_info .main_info .main_info_item {
+.print_page .header .logo #img_brand_name {
+  display: block;
   width: 50%;
+  margin: 20px auto;
 }
-#main_content .client_info .main_info .main_info_item .nofication_input {
-  position: relative;
-}
-#main_content .client_info .main_info .main_info_item .nofication_input div {
-  position: absolute;
-  right: 35%;
-  top: 0;
-  color: #CBA94F;
-  font-size: 17px;
-}
-#main_content .client_info .main_info .main_info_item input {
-  width: 70%;
-}
-#main_content .client_info #measurements_info {
-  display: none;
-}
-#main_content .order_info {
-  padding: 20px;
-  min-height: 200px;
-  display: none;
-}
-#main_content .order_info .order_nav {
+.print_page .header .title {
+  height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
-#main_content .order_info .order_nav .order_nav_group_button {
+.print_page .header .store_info {
+  height: 100%;
   display: flex;
-  width: 50%;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
 }
-#main_content .order_info #order_items_list .order_item {
-  margin: 30px 0;
-  padding: 30px 40px;
-  border-radius: 20px;
-  border: 2px solid #8f714b;
-  position: relative;
+.print_page .header .store_info p {
+  font-size: 1rem;
 }
-#main_content .order_info #order_items_list .order_item .main_item_info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+.print_page .info_overall p {
+  font-size: 0.8rem;
 }
-#main_content .order_info #order_items_list .order_item .main_item_info .item_info:first-child {
-  width: 100%;
+.print_page .space {
+  height: 200px;
 }
-#main_content .order_info #order_items_list .order_item .main_item_info .item_info:first-child p {
-  font-size: 23px;
-  font-weight: 700;
-}
-#main_content .order_info #order_items_list .order_item .attribute_item_info {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-#main_content .order_info #order_items_list .order_item .attribute_item_info .item_attribute {
-  width: 20%;
-  margin: 5px 10px;
-}
-#main_content .order_info #order_items_list .order_item .attribute_item_info .item_attribute:last-child {
-  width: 100%;
-}
-#main_content .order_info #order_items_list .order_item .attribute_item_info .item_attribute:last-child .note {
-  width: 100%;
-}
-#main_content .order_info #order_items_list .order_item .delete-item {
-  position: absolute;
-  top: -5%;
-  right: -6px;
-}/*# sourceMappingURL=create.css.map */
+.print_page .total_money {
+  text-align: right;
+}/*# sourceMappingURL=printOrder.css.map */

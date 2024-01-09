@@ -1,7 +1,7 @@
 let urlParams = new URLSearchParams(window.location.search);
 let orderId = urlParams.get("orderid");
 
-const getDate = (date)=>{
+const getDate = (date) => {
     let newDate = new Date(date);
     let day = newDate.getDate();
     let month = newDate.getMonth() + 1;
@@ -9,35 +9,35 @@ const getDate = (date)=>{
     return `${day}/${month}/${year}`;
 }
 
-const renderNumber = (number)=>{
+const renderNumber = (number) => {
     return number.toLocaleString("da-DK");
 }
 
-const renderDate = (appointmentDay, createAt)=>{
+const renderDate = (appointmentDay, createAt) => {
     let strAppointmentDay = getDate(appointmentDay);
     let strCreateAt = getDate(createAt);
     document.getElementById("create_at").innerHTML = strCreateAt;
     document.getElementById("appointment_day").innerHTML = strAppointmentDay;
 }
 
-const renderClient = (orderClientDto)=>{
-    let {username, phoneNumber} = orderClientDto;
+const renderClient = (orderClientDto) => {
+    let { username, phoneNumber } = orderClientDto;
     document.getElementById("client_name").innerHTML = username;
     document.getElementById("client_phone").innerHTML = phoneNumber;
 }
 
-const renderSuit = (orderSuitDtoList) =>{
+const renderSuit = (orderSuitDtoList) => {
     let content = ``;
     for (const suit of orderSuitDtoList) {
-        let {kieuAo,price,total, amount} = suit;
+        let { fabric, price, total, amount } = suit;
         total = renderNumber(total);
         price = renderNumber(price);
-        content +=`
+        content += `
             <tr>
-                <td>Áo</td>
-                <td>${kieuAo}</td>
-                <td>${price}</td>
-                <td>${amount}</td>
+                <td>Suit</td>
+                <td>${fabric}</td>
+                <td class="total_money">${price}</td>
+                <td class="total_money">${amount}</td>
                 <td class="total_money">${total}</td>
             </tr>
         `;
@@ -45,18 +45,18 @@ const renderSuit = (orderSuitDtoList) =>{
     }
 }
 
-const renderTrousers =(orderTrousersDtoList) =>{
+const renderTrousers = (orderTrousersDtoList) => {
     let content = ``;
     for (const trousers of orderTrousersDtoList) {
-        let {formQuan,price,total, amount} = trousers;
+        let { fabric, price, total, amount } = trousers;
         total = renderNumber(total);
         price = renderNumber(price);
-        content +=`
+        content += `
             <tr>
                 <td>Quần</td>
-                <td>${formQuan}</td>
-                <td>${price}</td>
-                <td>${amount}</td>
+                <td>${fabric}</td>
+                <td class="total_money">${price}</td>
+                <td class="total_money">${amount}</td>
                 <td class="total_money">${total}</td>
             </tr>
         `;
@@ -64,18 +64,18 @@ const renderTrousers =(orderTrousersDtoList) =>{
     }
 }
 
-const renderAccessory = (orderAccessoryDtoList)=>{
+const renderShirt = (orderShirtDtoList) => {
     let content = ``;
-    for (const accessory of orderAccessoryDtoList) {
-        let {nameAccessory,price,total, amount} = accessory;
+    for (const shirt of orderShirtDtoList) {
+        let { fabric, price, total, amount } = shirt;
         total = renderNumber(total);
         price = renderNumber(price);
-        content +=`
+        content += `
             <tr>
-                <td>Phụ kiện</td>
-                <td>${nameAccessory}</td>
-                <td>${price}</td>
-                <td>${amount}</td>
+                <td>Sơ mi</td>
+                <td>${fabric}</td>
+                <td class="total_money">${price}</td>
+                <td class="total_money">${amount}</td>
                 <td class="total_money">${total}</td>
             </tr>
         `;
@@ -83,7 +83,26 @@ const renderAccessory = (orderAccessoryDtoList)=>{
     }
 }
 
-const renderPayment = (total, payment)=>{
+const renderAccessory = (orderAccessoryDtoList) => {
+    let content = ``;
+    for (const accessory of orderAccessoryDtoList) {
+        let { nameAccessory, price, total, amount } = accessory;
+        total = renderNumber(total);
+        price = renderNumber(price);
+        content += `
+            <tr>
+                <td>${nameAccessory}</td>
+                <td></td>
+                <td class="total_money">${price}</td>
+                <td class="total_money">${amount}</td>
+                <td class="total_money">${total}</td>
+            </tr>
+        `;
+        document.getElementById("info_table_detail").innerHTML += content;
+    }
+}
+
+const renderPayment = (total, payment) => {
     let remaining = Number(total) - Number(payment);
     let strTotal = renderNumber(Number(total));
     let strPayment = renderNumber(Number(payment));
@@ -108,32 +127,36 @@ const renderPayment = (total, payment)=>{
 axios({
     method: "get",
     url: `http://localhost:8080/order/detail/${orderId}`
-}).then(res =>{
+}).then(res => {
     let {
-        appointmentDay, 
+        appointmentDay,
         createAt,
         orderClientDto,
         orderSuitDtoList,
         orderTrousersDtoList,
+        orderShirtDtoList,
         orderAccessoryDtoList,
         total,
         payment
     } = res.data.object;
-    console.log(res.data.object);
+    console.log(orderShirtDtoList);
 
     renderDate(appointmentDay, createAt);
     renderClient(orderClientDto);
-    if(orderSuitDtoList){
+    if (orderSuitDtoList) {
         renderSuit(orderSuitDtoList);
     }
-    if(orderTrousersDtoList){
+    if (orderShirtDtoList) {
+        renderShirt(orderShirtDtoList);
+    }
+    if (orderTrousersDtoList) {
         renderTrousers(orderTrousersDtoList);
     }
-    if(orderAccessoryDtoList){
+    if (orderAccessoryDtoList) {
         renderAccessory(orderAccessoryDtoList);
     }
-    renderPayment(total,payment);
+    renderPayment(total, payment);
 
-}).catch(err=>{
+}).catch(err => {
     alert(err);
 })

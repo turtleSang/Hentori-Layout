@@ -4,6 +4,7 @@ class OrderSuitRequest {
         formAo,
         kieuVeAo,
         lotAo,
+        kieuXe,
         kieuNut,
         kieuTui,
         price,
@@ -21,5 +22,6 @@ class OrderSuitRequest {
         this.amount = amount;
         this.note = note;
         this.fabric = fabric;
+        this.kieuXe = kieuXe
     }
 }

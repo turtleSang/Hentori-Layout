@@ -31,7 +31,8 @@
     }
     .order_info {
         padding: 20px;
-        min-height: 500px; //delete
+        min-height: 200px;
+        display: none;
         .order_nav {
             display: flex;
             justify-content: space-between;

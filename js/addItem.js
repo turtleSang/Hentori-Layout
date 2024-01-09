@@ -46,7 +46,7 @@ document.getElementById("addShirt").onclick = (event) => {
     <div class="attribute_item_info">
         <div class="item_attribute">
             <div class="dropdown">
-                <button class="formquan btn btn-dropdown dropdown-toggle" type="button"
+                <button class="kieuCo btn btn-dropdown dropdown-toggle" type="button"
                     data-bs-toggle="dropdown">
                      Kiểu cổ
                 </button>
@@ -73,7 +73,7 @@ document.getElementById("addShirt").onclick = (event) => {
         </div>
         <div class="item_attribute">
             <div class="dropdown">
-                <button class="kieulung btn btn-dropdown dropdown-toggle" type="button"
+                <button class="mangsec btn btn-dropdown dropdown-toggle" type="button"
                     data-bs-toggle="dropdown">
                      Mangsec
                 </button>
@@ -90,7 +90,7 @@ document.getElementById("addShirt").onclick = (event) => {
         </div>
         <div class="item_attribute">
             <div class="dropdown">
-                <button class="kieutuitruoc btn btn-dropdown dropdown-toggle" type="button"
+                <button class="kieudinh btn btn-dropdown dropdown-toggle" type="button"
                     data-bs-toggle="dropdown">
                      Kiểu đinh
                 </button>
@@ -301,6 +301,12 @@ document.getElementById("addAccessory").onclick = (event) =>{
         <div class="item_info">
             <h4>Đơn Giá</h4>
             <input type="text" class="price input number" oninput="formatInputNumber(event)">
+        </div>
+    </div>
+    <div class="attribute_item_info">
+        <div class="item_attribute">
+            <h4>Chú thích</h4>
+            <textarea class="note"></textarea>
         </div>
     </div>
     <div class="delete-item">

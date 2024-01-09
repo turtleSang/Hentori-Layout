@@ -76,3 +76,9 @@ const selectStatus = (e) => {
     document.getElementById("order-status").innerHTML = nameStatus;
     document.getElementById("order-status").setAttribute("order-status", idStatus);
 }
+
+// Remove /n in inner Html
+const removeSpace = (ele)=>{
+    let str = ele.innerHTML;
+    return str.replace(/\s+/g, " ");
+}
