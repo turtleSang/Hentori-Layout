@@ -77,36 +77,44 @@
                 <div class="title">
                     <h2>Danh Sách Đơn Hàng</h2>
                 </div>
-                <div class="content">
+                <div id="content" class="content">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="order-due" data-bs-toggle="tab"
-                                data-bs-target="#order-due-pane" type="button" role="tab">Đơn Hàng Đến Hạng</button>
+                                data-bs-target="#order-due-pane" data-type-order="due" type="button" role="tab">Đơn Hàng
+                                Đến Hạng</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="processing-order" data-bs-toggle="tab"
                                 data-bs-target="#processing-order-pane" type="button" role="tab"
-                                aria-controls="processing-order-pane" aria-selected="false">Đơn Hàng Đang Xử Lý</button>
+                                data-type-order="processing">Đơn Hàng Đang Xử Lý</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="view-order-all" data-bs-toggle="tab"
+                                data-bs-target="#all-order-pane" data-type-order="all" type="button" role="tab"
+                                aria-selected="false">Xem
+                                Tất Cả Đơn Hàng</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="complete-order" data-bs-toggle="tab"
                                 data-bs-target="#complete-order-pane" type="button" role="tab"
-                                aria-controls="complete-order-pane" aria-selected="false">Đơn Hàng Đã Hoàn Thành
+                                data-type-order="complete">Đơn Hàng Đã Hoàn Thành
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="view-order" data-bs-toggle="tab"
-                                data-bs-target="#view-order-pane" type="button" role="tab"
-                                aria-controls="view-order-pane" aria-selected="false">Xem Đơn Hàng Theo Ngày</button>
+                                data-bs-target="#view-order-pane" type="button" role="tab" data-type-order="date">Xem
+                                Đơn Hàng Theo Ngày</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
+                        <!-- Due Pane -->
                         <div class="tab-pane fade show active" id="order-due-pane" role="tabpanel"
                             aria-labelledby="order-due" tabindex="0">
-
+                            <!-- List Order -->
                             <div class="list_orders">
-                                <h3>Danh Sách đơn hàng đến hạn</h3>
-                                <div class="list_orders_detail" id="list_orders_due">
+                                <h3>Danh sách đơn hàng đến hạn</h3>
+                                <div class="list_orders_detail">
                                     <div class="order_item" data-order="12">
                                         <div class="created_at">
                                             <p>Ngày tạo: <span>20/10/2020</span></p>
@@ -151,8 +159,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Nav page number -->
                             <nav class="page-nav" aria-label="Page navigation example">
-                                <ul data-call-api="due" data-render-id ="order-due-pane"  class="pagination">
+                                <ul data-call-api="due" data-render-id="order-due-pane" class="pagination">
                                     <li class="page-item" onclick="directionalPagePrevious(event)">
                                         <a class="page-link previous" href="#" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
@@ -176,11 +185,14 @@
                             </nav>
 
                         </div>
+
+                        <!-- Processing Pane -->
                         <div class="tab-pane fade" id="processing-order-pane" role="tabpanel"
                             aria-labelledby="processing-order" tabindex="0">
+                            <!-- List Order -->
                             <div class="list_orders">
                                 <h3>Danh Sách đơn hàng đang xử lý</h3>
-                                <div class="order_item" data-order="12">
+                                <div class="list_orders_detail">
                                     <div class="created_at">
                                         <p>Ngày tạo: <span>20/10/2020</span></p>
 
@@ -199,13 +211,93 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Nav page Pane -->
+                            <nav class="page-nav">
+                                <ul data-call-api="processing" data-render-id="processing-order-pane"
+                                    class="pagination">
+                                    <li class="page-item" onclick="directionalPagePrevious(event)">
+                                        <a class="page-link previous" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num" href="#">1</a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num active" href="#">2</a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num" href="#">3</a>
+                                    </li>
+                                    <li class="page-item" onclick="directionalPageNext(event)">
+                                        <a class="page-link next" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
+
+                        <!-- All pane -->
+                        <div class="tab-pane fade" id="all-order-pane" role="tabpanel" aria-labelledby="view-order"
+                            tabindex="0">
+                            <!-- List Order -->
+                            <div class="list_orders">
+                                <h3>Danh sách tất cả đơn hàng</h3>
+                                <div class="list_orders_detail">
+
+                                </div>
+                            </div>
+                            <!-- Nav page Pane -->
+                            <nav class="page-nav">
+                                <ul data-call-api="all" data-render-id="all-order-pane" class="pagination">
+                                    <li class="page-item" onclick="directionalPagePrevious(event)">
+                                        <a class="page-link previous" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num" href="#">1</a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num active" href="#">2</a>
+                                    </li>
+                                    <li class="page-item" onclick="chossePage(event)">
+                                        <a class="page-link page-num" href="#">3</a>
+                                    </li>
+                                    <li class="page-item" onclick="directionalPageNext(event)">
+                                        <a class="page-link next" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <!-- Complete pane -->
                         <div class="tab-pane fade" id="complete-order-pane" role="tabpanel"
                             aria-labelledby="complete-order" tabindex="0">
+                            <!-- List Order -->
+                            <div class="list_orders">
+                                <h3>Danh sách đơn hàng hoàn thành</h3>
+                                <div class="list_orders_detail">
+
+                                </div>
+                            </div>
+                            <!-- Nav page Pane -->
+                            <nav class="page-nav">
+                                <ul data-call-api="all" data-render-id="complete-order-pane" class="pagination">
+                                    
+                                </ul>
+                            </nav>
 
                         </div>
+                        <!-- Date Pane -->
                         <div class="tab-pane fade" id="view-order-pane" role="tabpanel" aria-labelledby="view-order"
-                            tabindex="0">view</div>
+                            tabindex="0">
+                        
+                        </div>
+
                     </div>
                 </div>
             </div>

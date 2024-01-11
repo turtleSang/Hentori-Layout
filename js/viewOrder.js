@@ -1,3 +1,7 @@
+const mainContent = document.getElementById("content");
+const rootURL = "http://localhost:8080"
+
+// Variable
 
 //function
 //Render Order Info
@@ -68,6 +72,21 @@ const renderPageNav = (pageNumber, elementRender) => {
     navEle.innerHTML = content;
 }
 
+const renderPane = async (targetElement) => {
+    let typeOrder = targetElement.getAttribute("data-type-order");
+    let elementRenderId = targetElement.getAttribute("data-bs-target");
+    let elementRender = document.querySelector(elementRenderId);
+    let url = `${rootURL}/order/${typeOrder}`;
+    let urlPage = `${rootURL}/order/${typeOrder}/page`;
+    let dataPage = await fetchDataOrder(urlPage,"Get","");
+    if (Number(dataPage.object) > 0) {
+        let dataOrder = await fetchDataOrder(url, "get", "");
+        renderOrder(dataOrder.object, elementRender);
+        renderPageNav(dataPage.object, elementRender);
+    }
+
+}
+
 //View detail Order
 const viewOrderDetail = (order_id) => {
     window.location.href = `./vieworderdetail.html?orderid=${order_id}`;
@@ -113,7 +132,7 @@ const directionalPageNext = (event) => {
         indexActive++;
         listPageNum[indexActive].classList.add("active");
     }
-    renderNewPagination(navElement);    
+    renderNewPagination(navElement);
 }
 
 const chossePage = (event) => {
@@ -125,12 +144,15 @@ const chossePage = (event) => {
         item.classList.remove("active");
     }
     pageChossenEle.classList.add("active");
-    
+
     renderNewPagination(navElement);
 }
 
+
+
 //Call API Get due order
-const renderNewPagination = (navElement)=>{
+const renderNewPagination = (navElement) => {
+    console.log(navElement);
     let pageChossen = navElement.querySelector(".active");
     let pageNumber = Number(pageChossen.innerHTML) - 1;
     let orderAPI = navElement.getAttribute("data-call-api");
@@ -146,6 +168,34 @@ const renderNewPagination = (navElement)=>{
         alert(err)
     })
 }
+// Event
+let listNavLink = mainContent.querySelectorAll(".nav-link")
+for (const item of listNavLink) {
+    item.addEventListener("click", (event) => {
+        let elementRender = event.currentTarget;
+        renderPane(elementRender);
+    });
+}
+
+// Load page
+// Axios data get
+const fetchDataOrder = async (url, method, params) => {
+    try {
+        let response = await axios({
+            url,
+            method,
+            params
+        })
+       return response.data;
+    } catch (error) {
+        return error;
+    }
+    
+}
+// event 
+
+
+
 axios({
     url: "http://localhost:8080/order/due",
     method: "GET"
@@ -167,5 +217,4 @@ axios({
 }).catch(err => {
     console.log(err);
 })
-
 
