@@ -1,0 +1,32 @@
+.nofication {
+    display: none;
+    .loader {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .logo-loader {
+            position: absolute;
+
+            img {
+                display: block;
+                width: 50px;
+            }
+        }
+        #loader {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 16px solid $bg-normal;
+            border-top: 16px solid $bg-yellow;
+            animation-name: spin;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+    }
+}

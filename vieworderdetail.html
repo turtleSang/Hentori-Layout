@@ -69,7 +69,7 @@
                             <li><a class="select-item dropdown-item" data-status="2" href="#"
                                     onclick="selectStatus(event)">Hẹn lần 2</a></li>
                             <li><a class="select-item dropdown-item" data-status="3" href="#"
-                                    onclick="selectStatus(event)">Hoàng thành</a></li>
+                                onblur="changeStatus()" onclick="selectStatus(event)">Hoàn thành</a></li>
                         </ul>
                     </div>
                 </div>
@@ -111,6 +111,20 @@
                     </div>
                 </div>
                 <div class="item accessory">
+                    <div class="item_name">Loại:<span></span></div>
+                    <div class="item_properties">Tên:<span></span></div>
+                    <div class="item_price">Đơn giá:<span></span></div>
+                    <div class="item_amount">Số lượng:<span></span></div>
+                    <div class="item_total">Tổng tiền:<span></span></div>
+                </div>
+                <div class="item accessory">
+                    <div class="item_name">Loại:<span></span></div>
+                    <div class="item_properties">Tên:<span></span></div>
+                    <div class="item_price">Đơn giá:<span></span></div>
+                    <div class="item_amount">Số lượng:<span></span></div>
+                    <div class="item_total">Tổng tiền:<span></span></div>
+                </div>
+                <div class="item shirt">
                     <div class="item_name">Loại:<span></span></div>
                     <div class="item_properties">Tên:<span></span></div>
                     <div class="item_price">Đơn giá:<span></span></div>
@@ -239,6 +253,24 @@
                         </div>
                     </div>
                     <div class="item_detail_info">
+                        <h6>Kiểu xẻ</h6>
+                        <div class="selection_status" class="btn-group">
+                            <button id="kieuXe" type="button" class="btn btn-dropdown dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                Kiểu Xẻ
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                       Xẻ 2 bên</a>
+                                </li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Xẻ 1 bên</a></li>
+                                <li><a class="select-item dropdown-item" href="#" onclick="selectDetailItem(event)">
+                                        Không lót</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
                         <h6>Mã vải</h6>
                         <input class="input" id="fabric_suit" type="text" value="">
                     </div>
@@ -261,7 +293,7 @@
                         <input class="input" id="total_suit" type="text" value="" disabled>
                     </div>
                 </div>
-                <div class="modal-footer">                    
+                <div class="modal-footer">
                     <button id="update_suit" type="button" class="btn btn-primary">Lưu Thay Đổi</button>
                     <button id="close_update_suit" type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">Đóng</button>
@@ -390,8 +422,8 @@
                     </div>
                     <div class="item_detail_info">
                         <h6>Đơn giá</h6>
-                        <input class="input input-number" id="price_trousers" type="text" value="" onblur="caculateTotalTrousers()"
-                            oninput="formatInputNumber(event)">
+                        <input class="input input-number" id="price_trousers" type="text" value=""
+                            onblur="caculateTotalTrousers()" oninput="formatInputNumber(event)">
                     </div>
                     <div class="item_detail_info">
                         <h6>Số lượng</h6>
@@ -405,8 +437,102 @@
                 </div>
                 <div class="modal-footer">
                     <button id="update_trousers" type="button" class="btn btn-primary">Lưu thay đổi</button>
-                    <button id="close_update_trousers" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    
+                    <button id="close_update_trousers" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Đóng</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="shirt" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="shirt_attribute" class="modal-body list-attribute">
+                    <div class="item_detail_info">
+                        <h6>Kiểu Cổ</h6>
+                        <div class="dropdown">
+                            <button id="kieuCo" class="kieuCo btn btn-dropdown dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">
+                                Kiểu cổ
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">A.01</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">A.02</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">A.03</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">A.04</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">B.01</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">B.02</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">B.03</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">B.04</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu Mangsec</h6>
+                        <div class="dropdown">
+                            <button id="mangSec" class="mangsec btn btn-dropdown dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">
+                                Mangsec
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                                        Tròn</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                                        vuông</a></li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">MS
+                                        đúp</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Kiểu đinh</h6>
+                        <div class="dropdown">
+                            <button id="kieuDinh" class="btn btn-dropdown dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">
+                                Kiểu đinh
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Đinh lật ra</a>
+                                </li>
+                                <li><a class="dropdown-item" onclick="selectDetailItem(event)" href="#">Đinh lật vô</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="item_detail_info">
+                        <h6>Mã vải</h6>
+                        <input class="input" id="fabric_shirt" type="text" value="">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Ghi chú</h6>
+                        <textarea name="" id="note_shirt" cols="25" rows="5"></textarea>
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Đơn giá</h6>
+                        <input class="input input-number" id="price_shirt" type="text" value=""
+                            onblur="caculateTotalShirt()" oninput="formatInputNumber(event)">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Số lượng</h6>
+                        <input class="input input-number" id="amount_shirt" type="text" value=""
+                            onblur="caculateTotalShirt()" oninput="formatInputNumber(event)">
+                    </div>
+                    <div class="item_detail_info">
+                        <h6>Tổng tiền</h6>
+                        <input class="input" id="total_shirt" type="text" value="" disabled>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="update_shirt" type="button" class="btn btn-primary">Lưu thay đổi</button>
+                    <button id="close_update_shirt" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Đóng</button>
+
                 </div>
             </div>
         </div>
@@ -432,6 +558,7 @@
     <script src="./js/model/orderSuitRequest.js"></script>
     <script src="./js/model/orderTrousersRequest.js"></script>
     <script src="./js/model/orderAccessoryList.js"></script>
+    <script src="./js/model/orderShirtRequest.js"></script>
 
     <!-- Format Data -->
     <script src="./js/formatData.js"></script>

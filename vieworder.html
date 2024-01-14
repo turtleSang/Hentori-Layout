@@ -74,6 +74,7 @@
             </div>
 
             <div id="main_content" class=" col-10 mt-0 px-0">
+                
                 <div class="title">
                     <h2>Danh Sách Đơn Hàng</h2>
                 </div>
@@ -103,10 +104,19 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="view-order" data-bs-toggle="tab"
-                                data-bs-target="#view-order-pane" type="button" role="tab" data-type-order="date">Xem
+                                data-bs-target="#view-order-date-pane" type="button" role="tab"
+                                data-type-order="date">Xem
                                 Đơn Hàng Theo Ngày</button>
                         </li>
                     </ul>
+                    <div id="loader-group" class="nofication">
+                        <div class="loader">
+                            <div id="loader"></div>
+                            <div class="logo-loader">
+                                <img src="./img/Logo.png" alt="">
+                            </div>
+                        </div>
+                    </div>
                     <div class="tab-content" id="myTabContent">
                         <!-- Due Pane -->
                         <div class="tab-pane fade show active" id="order-due-pane" role="tabpanel"
@@ -115,12 +125,12 @@
                             <div class="list_orders">
                                 <h3>Danh sách đơn hàng đến hạn</h3>
                                 <div class="list_orders_detail">
-                                    
+
                                 </div>
                             </div>
                             <!-- Nav page number -->
                             <nav class="page-nav" aria-label="Page navigation example">
-                                <ul data-call-api="due" data-render-id="order-due-pane" class="pagination">
+                                <ul data-call-api="due?" data-render-id="order-due-pane" class="pagination">
                                     
                                 </ul>
                             </nav>
@@ -134,14 +144,14 @@
                             <div class="list_orders">
                                 <h3>Danh Sách đơn hàng đang xử lý</h3>
                                 <div class="list_orders_detail">
-                                    
+
                                 </div>
                             </div>
                             <!-- Nav page Pane -->
                             <nav class="page-nav">
-                                <ul data-call-api="processing" data-render-id="processing-order-pane"
+                                <ul data-call-api="processing?" data-render-id="processing-order-pane"
                                     class="pagination">
-                                   
+
                                 </ul>
                             </nav>
                         </div>
@@ -158,8 +168,8 @@
                             </div>
                             <!-- Nav page Pane -->
                             <nav class="page-nav">
-                                <ul data-call-api="all" data-render-id="all-order-pane" class="pagination">
-                                   
+                                <ul data-call-api="all?" data-render-id="all-order-pane" class="pagination">
+
                                 </ul>
                             </nav>
                         </div>
@@ -176,20 +186,47 @@
                             </div>
                             <!-- Nav page Pane -->
                             <nav class="page-nav">
-                                <ul data-call-api="all" data-render-id="complete-order-pane" class="pagination">
-                                    
+                                <ul data-call-api="complete?" data-render-id="complete-order-pane" class="pagination">
+
                                 </ul>
                             </nav>
 
                         </div>
                         <!-- Date Pane -->
-                        <div class="tab-pane fade" id="view-order-pane" role="tabpanel" aria-labelledby="view-order"
-                            tabindex="0">
-                        
+                        <div class="tab-pane fade" id="view-order-date-pane" role="tabpanel"
+                            aria-labelledby="view-order" tabindex="0">
+                            <div class="list_orders">
+                                <h3>Danh sách đơn hàng theo ngày</h3>
+                                <div class="list_orders_nav">
+                                    <div class="list_orders_nav_group">
+                                        <label for="startDate">Từ ngày</label>
+                                        <input class="input" type="date" id="startDate">
+                                    </div>
+                                    <div class="list_orders_nav_group">
+                                        <label for="startDate">Đến ngày</label>
+                                        <input class="input" type="date" id="endDate">
+                                    </div>
+                                    <div class="list_orders_nav_group">
+                                        <button type="button" id="search-date" class="btn-search-little"><i
+                                                class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                </div>
+                                <div class="list_orders_detail">
+
+                                </div>
+                            </div>
+                            <!-- Nav page Pane -->
+                            <nav class="page-nav">
+                                <ul data-call-api="date" data-render-id="view-order-date-pane" class="pagination">
+
+                                </ul>
+                            </nav>
                         </div>
 
                     </div>
+
                 </div>
+                
             </div>
 
         </div>

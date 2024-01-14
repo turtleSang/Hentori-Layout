@@ -104,6 +104,14 @@ ul {
   transform: rotate(180deg);
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .btn-info {
   display: block;
   width: 40%;
@@ -411,6 +419,38 @@ ul {
   box-shadow: 0px 0px 11px 1px #CBA94F;
 }
 
+.nofication {
+  display: none;
+}
+.nofication .loader {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.nofication .loader .logo-loader {
+  position: absolute;
+}
+.nofication .loader .logo-loader img {
+  display: block;
+  width: 50px;
+}
+.nofication .loader #loader {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 16px solid #8f714b;
+  border-top: 16px solid #CBA94F;
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
 .menu_bar {
   background-color: #8f714b;
   height: 100vh;
@@ -556,6 +596,12 @@ ul {
 }
 #main_content #myTab {
   justify-content: center;
+}
+#main_content #myTabContent .list_orders .list_orders_nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: start;
 }
 #main_content #myTabContent .list_orders .order_item {
   width: 95%;

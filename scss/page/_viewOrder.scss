@@ -17,6 +17,12 @@
     }
     #myTabContent {
         .list_orders{
+            .list_orders_nav{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                text-align: start;
+            }
             .order_item{
                 width: 95%;
                 margin: 10px auto;

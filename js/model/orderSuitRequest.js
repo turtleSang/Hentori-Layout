@@ -16,12 +16,12 @@ class OrderSuitRequest {
         this.formAo = formAo;
         this.kieuVeAo = kieuVeAo;
         this.lotAo = lotAo;
+        this.kieuXe = kieuXe;
         this.kieuNut = kieuNut;
         this.kieuTui = kieuTui;
         this.price = price;
         this.amount = amount;
         this.note = note;
-        this.fabric = fabric;
-        this.kieuXe = kieuXe
+        this.fabric = fabric;        
     }
 }

@@ -73,18 +73,19 @@ const renderPageNav = (pageNumber, elementRender) => {
 }
 
 const renderPane = async (targetElement) => {
+    turnOnLoader();
     let typeOrder = targetElement.getAttribute("data-type-order");
     let elementRenderId = targetElement.getAttribute("data-bs-target");
     let elementRender = document.querySelector(elementRenderId);
     let url = `${rootURL}/order/${typeOrder}`;
     let urlPage = `${rootURL}/order/${typeOrder}/page`;
-    let dataPage = await fetchDataOrder(urlPage,"Get","");
+    let dataPage = await fetchDataOrder(urlPage, "Get", "");
     if (Number(dataPage.object) > 0) {
         let dataOrder = await fetchDataOrder(url, "get", "");
         renderOrder(dataOrder.object, elementRender);
         renderPageNav(dataPage.object, elementRender);
     }
-
+    turnOffLoader();
 }
 
 //View detail Order
@@ -148,25 +149,33 @@ const chossePage = (event) => {
     renderNewPagination(navElement);
 }
 
+// Loader
+const turnOnLoader = () => {
+    document.getElementById("loader-group").style.display = "block";
+}
 
+const turnOffLoader = () => {
+    document.getElementById("loader-group").style.display = "none";
+}
 
 //Call API Get due order
-const renderNewPagination = (navElement) => {
-    console.log(navElement);
+const renderNewPagination = async (navElement) => {
+    turnOnLoader();
     let pageChossen = navElement.querySelector(".active");
     let pageNumber = Number(pageChossen.innerHTML) - 1;
     let orderAPI = navElement.getAttribute("data-call-api");
     let idRender = navElement.getAttribute("data-render-id");
     let elementRender = document.getElementById(idRender);
-    axios({
-        url: `http://localhost:8080/order/${orderAPI}?pageNumber=${pageNumber}`,
-        method: "get"
-    }).then(res => {
-        let { object } = res.data;
+    let url = `${rootURL}/order/${orderAPI}&pageNumber=${pageNumber}`
+    try {
+        let data = await fetchDataOrder(url, "get", "");
+        let { object } = data;
         renderOrder(object, elementRender);
-    }).catch(err => {
-        alert(err)
-    })
+        turnOffLoader();
+    } catch (error) {
+        alert(error)
+    }
+
 }
 // Event
 let listNavLink = mainContent.querySelectorAll(".nav-link")
@@ -175,6 +184,42 @@ for (const item of listNavLink) {
         let elementRender = event.currentTarget;
         renderPane(elementRender);
     });
+}
+
+// Search by date
+document.getElementById("search-date").onclick = async () => {
+    turnOnLoader();
+    let paneDate = document.getElementById("view-order-date-pane");
+    paneDate.querySelector(".list_orders_detail").innerHTML = "";
+    paneDate.querySelectorAll(".pagination").innerHTML = "";
+    let rawStartDate = document.getElementById("startDate").value;
+    let rawEndDate = document.getElementById("endDate").value;
+    if ((!rawStartDate) || (!rawEndDate)) {
+        alert("Vui lòng nhập ngày bắt đầu và kết thúc");
+        turnOffLoader();
+        return;
+    }
+    let startDate = formatDateISOtoVN(document.getElementById("startDate").value);
+    let endDate = formatDateISOtoVN(document.getElementById("endDate").value);
+    let urlPage = `${rootURL}/order/date/page`;
+    let params = {
+        startDate,
+        endDate
+    }
+    let data = await fetchDataOrder(urlPage, "GET", params);
+    let numberPage = data.object;
+    if (numberPage > 0) {
+        let elementRender = document.getElementById("view-order-date-pane");
+        elementRender.querySelector(".pagination").setAttribute("data-call-api",
+            `date?startDate=${startDate}&endDate=${endDate}`)
+        renderPageNav(numberPage, elementRender);
+        let url = `${rootURL}/order/date`;
+        let data = await fetchDataOrder(url, "get", params);
+        let listOrderDto = data.object;
+        renderOrder(listOrderDto, elementRender);
+        turnOffLoader();
+    }
+
 }
 
 // Load page
@@ -186,16 +231,16 @@ const fetchDataOrder = async (url, method, params) => {
             method,
             params
         })
-       return response.data;
+        return response.data;
     } catch (error) {
         return error;
     }
-    
+
 }
-// event 
 
 
 
+turnOnLoader();
 axios({
     url: "http://localhost:8080/order/due",
     method: "GET"
@@ -203,8 +248,10 @@ axios({
     let { object } = res.data;
     let elementRender = document.getElementById("order-due-pane");
     renderOrder(object, elementRender);
+    turnOffLoader();
 }).catch(err => {
-    alert("Không tìm thấy danh sách đến hạn")
+    alert("Không tìm thấy danh sách đến hạn");
+    turnOffLoader();
 })
 
 axios({
@@ -212,9 +259,12 @@ axios({
     method: "GET"
 }).then(res => {
     let { object } = res.data;
-    let elementRender = document.getElementById("order-due-pane");
-    renderPageNav(object, elementRender);
-}).catch(err => {
-    console.log(err);
-})
+    if (object > 0) {
+        let elementRender = document.getElementById("order-due-pane");
+        renderPageNav(object, elementRender);
+    }
 
+    turnOffLoader();
+}).catch(err => {
+    turnOffLoader();
+})
