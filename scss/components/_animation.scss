@@ -1,11 +1,47 @@
-.rotate{
+.rotate {
     transform: rotate(180deg);
 }
 @keyframes spin {
-    0%{
+    0% {
         transform: rotate(0deg);
     }
-    100%{
+    100% {
         transform: rotate(360deg);
     }
+}
+
+@keyframes drop-down {
+    0% {
+        opacity: 0;
+        height: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 150px;
+    }
+}
+
+@keyframes drop-up {
+    0% {
+        opacity: 1;
+        height: 150px;
+    }
+    100% {
+        opacity: 0;
+        height: 0;
+    }
+}
+
+.drop-down-animation {
+    animation-name: drop-down;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+.drop-up-animation{
+    animation-name: drop-up;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
 }
