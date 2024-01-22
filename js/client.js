@@ -118,7 +118,6 @@ document.getElementById("input-phone").oninput = () => {
         document.getElementById("input-phone").value = deleteCharNumber;
     }
 }
-
 document.getElementById("seach-client").onclick = async ()=>{
     try {
         let listClient = await searchClient();
@@ -129,3 +128,15 @@ document.getElementById("seach-client").onclick = async ()=>{
     
     
 }
+
+// Event press enter
+document.getElementById("input-name").addEventListener("keypress",(event)=>{
+    if(event.key === "Enter"){
+        document.getElementById("seach-client").click();
+    }
+})
+document.getElementById("input-phone").addEventListener("keypress",(event)=>{
+    if(event.key === "Enter"){
+        document.getElementById("seach-client").click();
+    }
+})
