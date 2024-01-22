@@ -1,6 +1,28 @@
-#main_content{
-    .search-group{
+#main_content {
+    .search-group {
         width: 90%;
         margin: 0 auto;
+    }
+    .client-list {
+        #result-find {
+            .item-client {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                border: 1px solid $bg-normal;
+                border-radius: 20px;
+                width: 80%;
+                height: 10vh;
+                margin: 20px auto;
+                cursor: pointer;
+                transition: all 0.3s;
+                span{
+                    font-weight: 700;
+                }
+                &:hover{
+                    background-color: $bg-yellow;
+                }
+            }
+        }
     }
 }

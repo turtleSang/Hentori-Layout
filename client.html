@@ -51,7 +51,7 @@
                             </svg>
                             Xem Đơn
                         </a>
-                        <a class="menu_item active" href="./user.html"> 
+                        <a class="menu_item active" href="./client.html"> 
                             <i class="fa-solid fa-user"></i>
                              Khách hàng
                         </a>
@@ -76,29 +76,35 @@
                 </div>
                 <div class="search-group">
                     <div class="group-input">
-                        <div id="main-input" class="main-input" data-url="search">
-                            <input class="item" type="text" placeholder="Nhập tên ở đây">
-                            <span class="item"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <div id="main-input" class="main-input" data-url="find/name">
+                            <input id="input-name" class="item" type="text" placeholder="Nhập tên khách hàng">
+                            <input id="input-phone" class="item d-none" type="text" placeholder="Nhập số điện thoại" >
+                            <span id="seach-client" class="item"><i class="fa-solid fa-magnifying-glass"></i></span>
                             <button id="drop-type" class="item" type="button">Tìm kiếm theo tên <i class="fa-solid fa-caret-down"></i> </button>
                         </div>
                         <div id="list-type" class="select-type-search d-none">
-                            <a data-url="search" class="type-item">
+                            <a data-url="find/name" class="type-item">
                                 Tìm kiếm theo tên
                             </a> 
-                            <a data-url="find" class="type-item">
+                            <a data-url="find/phone" class="type-item">
                                 Tìm kiếm theo số điện thoại
                             </a>                            
 
                         </div>
-                        
-
-                           
-                        
+                    </div>
+                    <div id="suggest-result" class="suggest-result d-none">
+                       
                     </div>
                 </div>
-                
-                
+                <div class="client-list">
+        
+                    <div id="result-find" class="result-find">
+                       
+                    </div>
+                    
+                </div> 
             </div>
+           
 
         </div>
         

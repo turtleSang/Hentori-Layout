@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Montserrat:wght@300;400;500;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/detailClient.css">
+
+    <title>Xem Chi tiết khách hàng</title>
+
+</head>
+
+<body>
+
+    <header class="container-fuid text-center">
+        <div class="title-detail">
+            <h1>Xem chi tiết khách hàng</h1>
+        </div>
+    </header>
+
+    <section class="client_info">
+        <div class="client-title">
+            <h3>Thông tin khách hàng</h2>
+        </div>
+        <div class="client_main">
+            <div class="client_info_item">
+                <label for="client_name">Tên khách hàng</label>
+                <input class="input" id="client_name" type="text">
+            </div>
+            <div class="client_info_item">
+                <label for="client_phone">Số điện thoại</label>
+                <input class="input" id="client_phone" type="text">
+            </div>
+        </div>
+        <div id="measurements_info" class="mt-3">
+            <div class="title-info">
+                <h3>Thông tin số đo</h3>
+                <div class="nav-title">
+                    <button id="update_client" data-bs-toggle="modal" data-bs-target="#update-client-modal"
+                        class="btn-update">Cập nhật</button>
+                </div>
+            </div>
+            <div class="measurement_detail">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                            aria-selected="true">Số đo áo</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                            aria-selected="false">Số đo quần</button>
+                    </li>
+
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                        tabindex="0">
+                        <div id="suilt_detail" class="suilt_detail">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"> <label for="doxuoivai">Độ xuôi vai chuẩn</label>
+                                        </th>
+                                        <td><input type="text" id="doxuoivai"></td>
+                                        <th scope="row"> <label for="dangvai">Dáng vai</label> </th>
+                                        <td><input type="text" id="dangvai"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="rongvai">Rộng vai theo bảng thiết
+                                                kế</label>
+                                        </th>
+                                        <td><input type="text" id="rongvai"></td>
+                                        <th scope="row"> <label for="hacaikhuy">Hạ cài khuy</label> </th>
+                                        <td><input type="text" id="hacaikhuy"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="daitay">Dài tay</label>
+                                        </th>
+                                        <td><input type="text" id="daitay"></td>
+                                        <th scope="row"> <label for="hanguc">Hạ ngực</label>
+                                        </th>
+                                        <td><input type="text" id="hanguc"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="daiao">Dài áo T/S</label>
+                                        </th>
+                                        <td><input type="text" id="daiao"></td>
+                                        <th scope="row"> <label for="haeo">Hạ heo</label>
+                                        </th>
+                                        <td><input type="text" id="haeo"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="baptaykhuytay">Bắp tay / Khủy
+                                                tay</label>
+                                        </th>
+                                        <td><input type="text" id="baptaykhuytay"></td>
+                                        <th scope="row"> <label for="habung">Hạ bụng</label>
+                                        </th>
+                                        <td><input type="text" id="habung"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="mangsec">Măng sec</label>
+                                        </th>
+                                        <td><input type="text" id="mangsec"></td>
+                                        <th scope="row"> <label for="vongco">Vòng cổ</label>
+                                        </th>
+                                        <td><input type="text" id="vongco"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="vongnach">Vòng nách</label>
+                                        </th>
+                                        <td><input type="text" id="vongnach"></td>
+                                        <th scope="row"> <label for="hakhuy">Hạ khủy</label>
+                                        </th>
+                                        <td><input type="text" id="hakhuy"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="vongeobung">Vòng eo / bụng</label>
+                                        </th>
+                                        <td><input type="text" id="vongeobung"></td>
+                                        <th scope="row"> <label for="ngangbungts">Ngang bụng + T/S</label>
+                                        </th>
+                                        <td><input type="text" id="ngangbungts"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="mongao">Mông áo</label>
+                                        </th>
+                                        <td colspan="3"><input type="text" id="mongao"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="hahomlung">Hạ hõng lưng</label>
+                                        </th>
+                                        <td><input type="text" id="hahomlung"></td>
+                                        <th scope="row"> <label for="hachombung">Hạ chồm bụng</label>
+                                        </th>
+                                        <td><input type="text" id="hachombung"></td>
+                                    </tr>
+                                    <tr>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                        tabindex="0">
+                        <div id="trousers_detail" class="trousers_detail">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"> <label for="vonglung">Vòng lưng</label> </th>
+                                        <td><input type="text" id="vonglung"></td>
+                                        <th scope="row"> <label for="ngangbung">Ngang bụng</label> </th>
+                                        <td><input type="text" id="ngangbung"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="vongday">Vòng đáy</label> </th>
+                                        <td><input type="text" id="vongday"></td>
+                                        <th scope="row"> <label for="duigiua">Đùi giữa</label> </th>
+                                        <td><input type="text" id="duigiua"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="vongmong">Vòng mông</label> </th>
+                                        <td><input type="text" id="vongmong"></td>
+                                        <th scope="row"> <label for="daiquan">Dài quần</label> </th>
+                                        <td><input type="text" id="daiquan"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="vongdui">Vòng đùi</label> </th>
+                                        <td colspan="3"><input type="text" id="vongdui"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="vonggoi">Vòng gối</label> </th>
+                                        <td colspan="3"><input type="text" id="vonggoi"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="vongbapchan">Vòng bắp chân</label>
+                                        </th>
+                                        <td colspan="3"><input type="text" id="vongbapchan"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> <label for="ongquan">Ống quần</label> </th>
+                                        <td colspan="3"><input type="text" id="ongquan"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="client-title">
+            <h3>Thông tin đơn hàng</h2>
+        </div>
+        <div id="order" class="content">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item item-type-order" role="presentation">
+                    <button class="nav-link" id="processing-order" data-bs-toggle="tab"
+                        data-bs-target="#processing-order-pane" type="button" role="tab"
+                        data-type-order="processing">Đơn Hàng Đang Xử Lý</button>
+                </li>
+                <li class="nav-item item-type-order" role="presentation">
+                    <button class="nav-link" id="complete-order" data-bs-toggle="tab"
+                        data-bs-target="#complete-order-pane" type="button" role="tab"
+                        data-type-order="complete">Đơn Hàng Đã Hoàn Thành
+                    </button>
+                </li>
+                <li class="nav-item item-type-order" role="presentation">
+                    <button class="nav-link" id="view-order-all" data-bs-toggle="tab"
+                        data-bs-target="#all-order-pane" data-type-order="all" type="button" role="tab"
+                        aria-selected="false">Xem
+                        Tất Cả Đơn Hàng</button>
+                </li>
+            </ul>
+            <div id="loader-group" class="nofication">
+                <div class="loader">
+                    <div id="loader"></div>
+                    <div class="logo-loader">
+                        <img src="./img/Logo.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <!-- Processing Pane -->
+                <div class="tab-pane fade" id="processing-order-pane" role="tabpanel"
+                    aria-labelledby="processing-order" tabindex="0">
+                    <!-- List Order -->
+                    <div class="list_orders">
+                        <div class="list_orders_detail">
+
+                        </div>
+                    </div>
+                    <!-- Nav page Pane -->
+                    <nav class="page-nav">
+                        <ul data-call-api="processing?" data-render-id="processing-order-pane"
+                            class="pagination">
+
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Complete pane -->
+                <div class="tab-pane fade" id="complete-order-pane" role="tabpanel"
+                    aria-labelledby="complete-order" tabindex="0">
+                    <!-- List Order -->
+                    <div class="list_orders">
+                        <div class="list_orders_detail">
+
+                        </div>
+                    </div>
+                    <!-- Nav page Pane -->
+                    <nav class="page-nav">
+                        <ul data-call-api="complete?" data-render-id="complete-order-pane" class="pagination">
+
+                        </ul>
+                    </nav>
+
+                </div>
+
+                <!-- All pane -->
+                <div class="tab-pane fade" id="all-order-pane" role="tabpanel" aria-labelledby="view-order"
+                    tabindex="0">
+                    <!-- List Order -->
+                    <div class="list_orders">                        
+                        <div class="list_orders_detail">
+
+                        </div>
+                    </div>
+                    <!-- Nav page Pane -->
+                    <nav class="page-nav">
+                        <ul data-call-api="all?" data-render-id="all-order-pane" class="pagination">
+
+                        </ul>
+                    </nav>
+                </div>
+
+                
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- JS -->
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="./js/validate.js"></script>
+
+    <!-- Model -->
+    <!-- Client Model -->
+    <script src="./js/model/clientSuitRequest.js"></script>
+    <script src="./js/model/clientTrousersRequest.js"></script>
+    <script src="./js/model/clientRequest.js"></script>
+    <!-- Order Model -->
+    <script src="./js/model/orderSuitRequest.js"></script>
+    <script src="./js/model/orderTrousersRequest.js"></script>
+    <script src="./js/model/orderAccessoryList.js"></script>
+    <script src="./js/model/orderShirtRequest.js"></script>
+
+    <!-- Format Data -->
+    <script src="./js/formatData.js"></script>
+    <!-- Main JS -->
+    <script src="./js/detailClient.js"></script>
+
+</body>
+
+</html>

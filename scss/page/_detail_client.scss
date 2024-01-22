@@ -1,0 +1,14 @@
+body{
+    background-color: $bg-normal;
+}
+.client_info{
+    background-color: white;
+    width: 80%;
+    margin: 30px auto 0;
+    border-radius: 20px;
+    padding: 10px;
+    .client_main{
+        display: flex;
+        justify-content: space-around;
+    }
+}

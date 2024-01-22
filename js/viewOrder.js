@@ -159,6 +159,7 @@ const turnOffLoader = () => {
 }
 
 //Call API Get due order
+// Render new page
 const renderNewPagination = async (navElement) => {
     turnOnLoader();
     let pageChossen = navElement.querySelector(".active");
@@ -237,8 +238,6 @@ const fetchDataOrder = async (url, method, params) => {
     }
 
 }
-
-
 
 turnOnLoader();
 axios({
