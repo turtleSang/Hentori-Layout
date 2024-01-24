@@ -1,6 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const phoneNumber = urlParams.get("phoneNumber");
-const rootUrl = "http://localhost:8080"
+const rootUrl = "http://localhost:8080";
+const header = {};
 
 const setValue = (eleId, value) => {
     document.getElementById(eleId).value = value;
@@ -19,9 +20,12 @@ const turnOffLoader = () => {
     document.getElementById("loader-group").style.display = "none";
 }
 
+// Render Client
+
 const renderClient = (clientDto) => {
     document.getElementById("client_name").value = clientDto.username;
     document.getElementById("client_phone").value = clientDto.phoneNumber;
+    document.getElementById("client_name").setAttribute("data-id", clientDto.id);
     if (clientDto.clientSuitDto) {
         renderClientSuit(clientDto.clientSuitDto)
     }
@@ -176,15 +180,15 @@ const renderPane = async (targetElement) => {
     let elementRender = document.querySelector(elementRenderId);
     // Set up to call API
     let url = `${rootUrl}/client/order/${typeOrder}`;
-    let urlPage = `${rootUrl}/client/order/${typeOrder}/page`;    
-    let params ={phoneNumber}
+    let urlPage = `${rootUrl}/client/order/${typeOrder}/page`;
+    let params = { phoneNumber }
     let dataPage = await callAPI("get", urlPage, params);
-    if(dataPage.object > 0){
+    if (dataPage.object > 0) {
         let dataOrder = await callAPI("get", url, params);
         renderOrder(dataOrder.object, elementRender);
         renderPageNav(dataPage.object, elementRender);
     }
-    
+
     turnOffLoader();
 }
 
@@ -252,7 +256,7 @@ const renderNewPagination = async (navElement) => {
     let idRender = navElement.getAttribute("data-render-id");
     let elementRender = document.getElementById(idRender);
     let url = `${rootUrl}/client/order/${orderAPI}`
-    let params ={phoneNumber}
+    let params = { phoneNumber }
     try {
         let data = await callAPI("Get", url, params);
         let { object } = data;
@@ -264,17 +268,18 @@ const renderNewPagination = async (navElement) => {
 }
 
 // Call API
-const callAPI = async (method, url, params, header) => {
+const callAPI = async (method, url, params, header, data) => {
     try {
         let res = await axios({
             method,
             url,
             params,
-            header
+            header,
+            data
         })
         return res.data;
     } catch (error) {
-        return error
+        throw error;
     }
 }
 // Event
@@ -284,6 +289,101 @@ for (const item of listNavLink) {
         let elementRender = event.currentTarget;
         renderPane(elementRender);
     });
+}
+
+// Create client request
+
+const createClientSuitRequest = () => {
+
+    let doXuoiVai = document.getElementById("doxuoivai").value;
+    let dangVai = document.getElementById("dangvai").value;
+    let rongVai = document.getElementById("rongvai").value;
+    let hacaiKhuy = document.getElementById("hacaikhuy").value;
+    let daiTay = document.getElementById("daitay").value;
+    let haNguc = document.getElementById("hanguc").value;
+    let daiAo = document.getElementById("daiao").value;
+    let haEo = document.getElementById("haeo").value;
+    let bapTayKhuyTay = document.getElementById("baptaykhuytay").value;
+    let haBung = document.getElementById("habung").value;
+    let mangSec = document.getElementById("mangsec").value;
+    let vongCo = document.getElementById("vongco").value;
+    let vongNach = document.getElementById("vongnach").value;
+    let haKhuy = document.getElementById("hakhuy").value;
+    let vongEoBung = document.getElementById("vongeobung").value;
+    let ngangBungTS = document.getElementById("ngangbungts").value;
+    let mongAo = document.getElementById("mongao").value;
+    let haHomLung = document.getElementById("hahomlung").value;
+    let haChomBung = document.getElementById("hachombung").value;
+
+    if (doXuoiVai || dangVai || rongVai || hacaiKhuy || daiTay || haNguc ||
+        daiAo || haEo || bapTayKhuyTay || haBung || mangSec || vongCo ||
+        vongNach || haKhuy || vongEoBung || ngangBungTS || mongAo || haHomLung
+        || haChomBung) {
+        return new ClientSuitRequest(doXuoiVai, dangVai, rongVai, hacaiKhuy,
+            daiTay, haNguc, daiAo, haEo, bapTayKhuyTay, haBung, mangSec, vongCo, vongNach,
+            haKhuy, vongEoBung, ngangBungTS, mongAo, haHomLung, haChomBung)
+    }
+    return null;
+}
+
+const createClientTrouserRequest = () => {
+    let vongLung = document.getElementById("vonglung").value;
+    let ngangBung = document.getElementById("ngangbung").value;
+    let vongDay = document.getElementById("vongday").value;
+    let duiGiua = document.getElementById("duigiua").value;
+    let vongMong = document.getElementById("vongmong").value;
+    let daiQuan = document.getElementById("daiquan").value;
+    let vongDui = document.getElementById("vongdui").value;
+    let vongGoi = document.getElementById("vonggoi").value;
+    let vongBapChan = document.getElementById("vongbapchan").value;
+    let ongQuan = document.getElementById("ongquan").value;
+
+    if (
+        vongLung ||
+        ngangBung ||
+        vongDay ||
+        duiGiua ||
+        vongMong ||
+        daiQuan ||
+        vongDui ||
+        vongGoi ||
+        vongBapChan ||
+        ongQuan
+    ) {
+        return new ClientTrousersRequest(vongLung, ngangBung, vongDay, duiGiua, vongMong, daiQuan,
+            vongDui, vongGoi, vongBapChan, ongQuan)
+    }
+    return null;
+}
+
+const createClientRequest = () => {
+    let phoneNumber = document.getElementById("client_phone").value;
+    let username = document.getElementById("client_name").value
+    if (phoneNumber && username) {
+        let clientSuitRequest = createClientSuitRequest();
+        let clientTrousersRequest = createClientTrouserRequest();
+        return new ClientRequest(username, phoneNumber, clientSuitRequest, clientTrousersRequest);
+    }
+    return null;
+}
+
+// Event
+document.getElementById("update_client").onclick = async () => {
+    let clientRequest = createClientRequest();
+    if (clientRequest) {
+        let client_id = document.getElementById("client_name").getAttribute("data-id");
+        let url = `${rootUrl}/client/update`;
+        let data = clientRequest
+        try {
+            let res = await callAPI("put", url, { client_id }, header, data);
+            var newUrl = window.location.href.replace(`phoneNumber=${phoneNumber}`, `phoneNumber=${clientRequest.phoneNumber}`);
+            window.history.replaceState({}, document.title, newUrl);
+            alert(res.messenger);
+        } catch (error) {
+            alert("Số điện thoại bị trùng với khách hàng khác");
+        }
+    }
+
 }
 
 axios({

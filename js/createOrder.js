@@ -104,35 +104,34 @@ const checkPhoneNumberInput = (phoneNumber) => {
 
 }
 
-const renderFormConfirmOrder = (orderRequest)=>{
+const renderFormConfirmOrder = (orderRequest) => {
     document.getElementById("client_name_confirm").innerHTML = document.getElementById("client_name").getAttribute("data-name");
     document.getElementById("client_phone_confirm").innerHTML = document.getElementById("client_phone").value;
     document.getElementById("appointment_day_confirm").innerHTML = orderRequest.appointmentDay;
-    document.getElementById("confirm_order_table").innerHTML ="";
+    document.getElementById("confirm_order_table").innerHTML = "";
 
-    if(orderRequest.orderTrousersRequestList){
+    if (orderRequest.orderTrousersRequestList) {
         renderTrousersConfirm(orderRequest.orderTrousersRequestList);
     }
-    if(orderRequest.orderSuitRequestList){
+    if (orderRequest.orderSuitRequestList) {
         renderSuitConfirm(orderRequest.orderSuitRequestList);
     }
-    if(orderRequest.orderAccessoryRequestList){
-            renderAccessoryConfirm(orderRequest.orderAccessoryRequestList);
+    if (orderRequest.orderAccessoryRequestList) {
+        renderAccessoryConfirm(orderRequest.orderAccessoryRequestList);
     }
-    console.log();
-    if(orderRequest.orderShirtRequestList){
+    if (orderRequest.orderShirtRequestList) {
         renderShirtConfirm(orderRequest.orderShirtRequestList);
     }
     renderTotalBill(orderRequest);
-    
+
 }
 
-const renderSuitConfirm = (orderSuitRequestList)=>{
+const renderSuitConfirm = (orderSuitRequestList) => {
     let content = "";
     for (const item of orderSuitRequestList) {
         let price = Number(item.price);
-        let amount = Number(item.amount); 
-        let total =  Number(item.price)*Number(item.amount);   
+        let amount = Number(item.amount);
+        let total = Number(item.price) * Number(item.amount);
         content += `
         <tr>
             <th>Suit</th>
@@ -145,12 +144,12 @@ const renderSuitConfirm = (orderSuitRequestList)=>{
     document.getElementById("confirm_order_table").innerHTML += content;
 }
 
-const renderTrousersConfirm = (orderTrousersRequestList)=>{
+const renderTrousersConfirm = (orderTrousersRequestList) => {
     let content = "";
     for (const item of orderTrousersRequestList) {
         let price = Number(item.price);
-        let amount =Number(item.amount); 
-        let total = Number(item.price)*Number(item.amount);             
+        let amount = Number(item.amount);
+        let total = Number(item.price) * Number(item.amount);
         content += `
         <tr>
             <th>Quần</th>
@@ -163,13 +162,12 @@ const renderTrousersConfirm = (orderTrousersRequestList)=>{
     document.getElementById("confirm_order_table").innerHTML += content;
 }
 
-const renderShirtConfirm = (orderShirtRequestList)=>{
+const renderShirtConfirm = (orderShirtRequestList) => {
     let content = "";
     for (const item of orderShirtRequestList) {
-        console.log(item);
         let price = Number(item.price);
-        let amount =Number(item.amount); 
-        let total = Number(item.price)*Number(item.amount);             
+        let amount = Number(item.amount);
+        let total = Number(item.price) * Number(item.amount);
         content += `
         <tr>
             <th>Áo sơ mi</th>
@@ -182,12 +180,12 @@ const renderShirtConfirm = (orderShirtRequestList)=>{
     document.getElementById("confirm_order_table").innerHTML += content;
 }
 
-const renderAccessoryConfirm = (orderAccessoryRequestList)=>{
+const renderAccessoryConfirm = (orderAccessoryRequestList) => {
     let content = "";
     for (const item of orderAccessoryRequestList) {
         let price = Number(item.price);
-        let amount = Number(item.amount); 
-        let total =  Number(item.price)*Number(item.amount);   
+        let amount = Number(item.amount);
+        let total = Number(item.price) * Number(item.amount);
         content += `
         <tr>
             <th>Phụ kiện</th>
@@ -200,42 +198,42 @@ const renderAccessoryConfirm = (orderAccessoryRequestList)=>{
     document.getElementById("confirm_order_table").innerHTML += content;
 }
 
-const renderTotalBill = (orderRequest)=>{
+const renderTotalBill = (orderRequest) => {
     let listTrousers = orderRequest.orderTrousersRequestList;
     let listSuit = orderRequest.orderSuitRequestList;
     let listAccessory = orderRequest.orderAccessoryRequestList;
     let listShirt = orderRequest.orderShirtRequestList;
-    if(!listTrousers&&!listSuit&&!listAccessory){
+    if (!listTrousers && !listSuit && !listAccessory) {
         return;
     }
     let total = 0;
     for (const item of listTrousers) {
-        total += Number(item.price)*Number(item.amount);
+        total += Number(item.price) * Number(item.amount);
     }
     for (const item of listShirt) {
-        total += Number(item.price)*Number(item.amount);
+        total += Number(item.price) * Number(item.amount);
     }
     for (const item of listSuit) {
-        total += Number(item.price)*Number(item.amount);
+        total += Number(item.price) * Number(item.amount);
     }
     for (const item of listAccessory) {
-        total += Number(item.price)*Number(item.amount);
+        total += Number(item.price) * Number(item.amount);
     }
 
 
-    document.getElementById("confirm_order_table").innerHTML += 
-    `
+    document.getElementById("confirm_order_table").innerHTML +=
+        `
         <tr>
             <th colspan="3" style="text-align: right;">Tổng tiền</th>
             <td>${formatNumber(total)}</td>
         </tr>
     `
-    ;
+        ;
 
 
 }
 
-const renderDefaultAppointmentDay = ()=>{
+const renderDefaultAppointmentDay = () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -325,38 +323,38 @@ const createClientRequest = () => {
 //Suit
 const createOrderSuitRequest = (orderSuitEle) => {
     let kieuAo = removeSpace(orderSuitEle.querySelector(".kieuao"));
-    let formAo = removeSpace( orderSuitEle.querySelector(".formao"));
-    let kieuVeAo = removeSpace( orderSuitEle.querySelector(".kieuveao"));
-    let kieuXe = removeSpace( orderSuitEle.querySelector(".kieuxe"));
-    let lotAo = removeSpace( orderSuitEle.querySelector(".lotao"));
-    let kieuNut = removeSpace( orderSuitEle.querySelector(".kieunut"));
-    let kieuTui = removeSpace( orderSuitEle.querySelector(".kieutui"));
-    
+    let formAo = removeSpace(orderSuitEle.querySelector(".formao"));
+    let kieuVeAo = removeSpace(orderSuitEle.querySelector(".kieuveao"));
+    let kieuXe = removeSpace(orderSuitEle.querySelector(".kieuxe"));
+    let lotAo = removeSpace(orderSuitEle.querySelector(".lotao"));
+    let kieuNut = removeSpace(orderSuitEle.querySelector(".kieunut"));
+    let kieuTui = removeSpace(orderSuitEle.querySelector(".kieutui"));
+
     let price = formatNumberToRaw(orderSuitEle.querySelector(".price").value);
-    let amount = Number(orderSuitEle.querySelector(".amount").innerHTML);    
-    let fabric = orderSuitEle.querySelector(".fabric").value;    
+    let amount = Number(orderSuitEle.querySelector(".amount").innerHTML);
+    let fabric = orderSuitEle.querySelector(".fabric").value;
     let note = orderSuitEle.querySelector(".note").value;
-    if (!price || price <0) {
+    if (!price || price < 0) {
         alert("Đơn giá Suit không được để trống")
         return null;
     }
-    return new OrderSuitRequest(kieuAo,formAo,kieuVeAo,lotAo,kieuXe,kieuNut, kieuTui, price, amount, note, fabric);
+    return new OrderSuitRequest(kieuAo, formAo, kieuVeAo, lotAo, kieuXe, kieuNut, kieuTui, price, amount, note, fabric);
 
 }
 //Trousers
 const createOrderTrousersRequest = (orderTrousersEle) => {
-    let formQuan = removeSpace( orderTrousersEle.querySelector(".formquan"));    
-    let kieuLung = removeSpace( orderTrousersEle.querySelector(".kieulung"));
-    let kieuTuiTruoc = removeSpace( orderTrousersEle.querySelector(".kieutuitruoc"));
-    let kieuTuiSau = removeSpace( orderTrousersEle.querySelector(".kieutuisau"));
-    let soTui = removeSpace( orderTrousersEle.querySelector(".sotui"));
-    let kieuLai = removeSpace( orderTrousersEle.querySelector(".kieulai"));
+    let formQuan = removeSpace(orderTrousersEle.querySelector(".formquan"));
+    let kieuLung = removeSpace(orderTrousersEle.querySelector(".kieulung"));
+    let kieuTuiTruoc = removeSpace(orderTrousersEle.querySelector(".kieutuitruoc"));
+    let kieuTuiSau = removeSpace(orderTrousersEle.querySelector(".kieutuisau"));
+    let soTui = removeSpace(orderTrousersEle.querySelector(".sotui"));
+    let kieuLai = removeSpace(orderTrousersEle.querySelector(".kieulai"));
 
     let price = formatNumberToRaw(orderTrousersEle.querySelector(".price").value);
-    let amount = Number(orderTrousersEle.querySelector(".amount").innerHTML);    
-    let fabric = orderTrousersEle.querySelector(".fabric").value;    
+    let amount = Number(orderTrousersEle.querySelector(".amount").innerHTML);
+    let fabric = orderTrousersEle.querySelector(".fabric").value;
     let note = orderTrousersEle.querySelector(".note").value;
-    if (!price || price<0) {
+    if (!price || price < 0) {
         alert("Đơn giá quần không được để trống")
         return null;
     }
@@ -367,31 +365,31 @@ const createOrderTrousersRequest = (orderTrousersEle) => {
 const createOrderAccessoryRequest = (orderAccessoryEle) => {
     let nameAccessory = orderAccessoryEle.querySelector(".tenphukien").value;
     let price = formatNumberToRaw(orderAccessoryEle.querySelector(".price").value);
-    let amount = Number(orderAccessoryEle.querySelector(".amount").innerHTML); 
+    let amount = Number(orderAccessoryEle.querySelector(".amount").innerHTML);
     let note = orderAccessoryEle.querySelector(".note").value;
-    
-    if(!price || price <0){      
+
+    if (!price || price < 0) {
         alert("Đơn giá phụ kiện không được để trống");
         return null;
-    }else{
+    } else {
         return new OrderAccessoryRequest(nameAccessory, price, amount, note);
-    }    
+    }
 }
 
-const createOrderShirtRequest = (orderShirtEle) =>{
-    let kieuCo = removeSpace( orderShirtEle.querySelector(".kieuCo"));    
-    let mangSec = removeSpace( orderShirtEle.querySelector(".mangsec"));    
-    let kieuDinh = removeSpace( orderShirtEle.querySelector(".kieudinh")); 
+const createOrderShirtRequest = (orderShirtEle) => {
+    let kieuCo = removeSpace(orderShirtEle.querySelector(".kieuCo"));
+    let mangSec = removeSpace(orderShirtEle.querySelector(".mangsec"));
+    let kieuDinh = removeSpace(orderShirtEle.querySelector(".kieudinh"));
     let price = formatNumberToRaw(orderShirtEle.querySelector(".price").value);
-    let amount = Number(orderShirtEle.querySelector(".amount").innerHTML);    
-    let fabric = orderShirtEle.querySelector(".fabric").value;    
+    let amount = Number(orderShirtEle.querySelector(".amount").innerHTML);
+    let fabric = orderShirtEle.querySelector(".fabric").value;
     let note = orderShirtEle.querySelector(".note").value;
-    if(!price || price <0){      
+    if (!price || price < 0) {
         alert("Đơn giá sơ mi không được để trống");
         return null;
-    }else{
+    } else {
         return new OrderShirtRequest(kieuCo, mangSec, kieuDinh, note, fabric, price, amount);
-    }    
+    }
 }
 
 // Create List Request
@@ -428,7 +426,7 @@ const getAccessoryList = () => {
     return orderAccessoryRequestList;
 }
 
-const getShirtList = ()=>{
+const getShirtList = () => {
     let detailOrderEle = document.getElementById("order_items_list");
     let listEleTrousers = detailOrderEle.querySelectorAll(".somi");
     let orderShirtRequestList = [];
@@ -440,11 +438,11 @@ const getShirtList = ()=>{
 
 }
 
-const getAppointmentDay = ()=>{
+const getAppointmentDay = () => {
     let appointmentDay = document.getElementById("appointment_day").value;
-    let year = appointmentDay.slice(0,4);
-    let month = appointmentDay.slice(5,7);
-    let day = appointmentDay.slice(8,10);
+    let year = appointmentDay.slice(0, 4);
+    let month = appointmentDay.slice(5, 7);
+    let day = appointmentDay.slice(8, 10);
     return `${day}/${month}/${year}`;
 }
 
@@ -481,7 +479,7 @@ document.getElementById("find_user").onclick = () => {
 
         renderClientSuit("");
         renderClientTrousers("");
-    
+
     })
 
 }
@@ -557,8 +555,8 @@ document.getElementById("confirm_create_order").onclick = () => {
         return;
     }
     document.getElementById("create_order").disabled = false;
-    
-    orderRequest ={
+
+    orderRequest = {
         appointmentDay,
         client_id,
         orderStatusRequest,
@@ -567,32 +565,32 @@ document.getElementById("confirm_create_order").onclick = () => {
         orderAccessoryRequestList,
         orderShirtRequestList
     }
-    
+
     renderFormConfirmOrder(orderRequest);
-    
+
 }
-document.getElementById("create_order").onclick = ()=>{ 
-    let payment = formatNumberToRaw(document.getElementById("payment").value);    
-    orderRequest = {...orderRequest, payment};   
-    console.log(orderRequest);
+document.getElementById("create_order").onclick = () => {
+    let payment = formatNumberToRaw(document.getElementById("payment").value);
+    orderRequest = { ...orderRequest, payment };
     axios({
         method: "post",
         url: "http://localhost:8080/order/create",
         data: orderRequest
-    }).then(res =>{
-        let {data} = res;
+    }).then(res => {
+        let { data } = res;
         if (data.check) {
             location.reload();
             document.getElementById("close_create_order").click();
             window.open(`printOrder.html?orderid=${data.object}`, "_blank");
         }
-        
-    }).catch(err =>{
+
+    }).catch(err => {
         alert(err);
     })
 }
-
-// document.getElementById("confirm_create_order").onclick = ()=>{
-//     let orderSuitRequestList = getShirtList();
-//     console.log(orderSuitRequestList);
-// }
+// Press Enter
+document.getElementById("client_phone").addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        document.getElementById("find_user").click();
+    }
+})
