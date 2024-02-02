@@ -23,7 +23,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Main Css -->
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/report.css">
     <title>Hentori Management</title>
 </head>
 
@@ -51,16 +51,19 @@
                             </svg>
                             Xem Đơn
                         </a>
-                        <a class="menu_item" href="./client.html"> 
+                        <a class="menu_item" href="./client.html">
                             <i class="fa-solid fa-user"></i>
-                             Khách hàng
+                            Khách hàng
                         </a>
-                        <a class="menu_item active" href="./report.html"> 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data-fill" viewBox="0 0 16 16">
-                                <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
-                                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1"/>
-                              </svg>
-                            Báo Cáo 
+                        <a class="menu_item active" href="./report.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-clipboard-data-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z" />
+                                <path
+                                    d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1" />
+                            </svg>
+                            Báo Cáo
                         </a>
                     </div>
                     <div id="signature">
@@ -71,11 +74,174 @@
             </div>
 
             <div id="main_content" class=" col-10 mt-0 px-0">
+                <div class="title-page">
+                    <h2>Báo Cáo</h2>
+                </div>
+                <div class="report-nav">
+                    <div class="report-nav-item">
+                        <button id="create-target" class="btn-update" data-bs-toggle="modal"
+                            data-bs-target="#create-kpi" type="button">Thêm Target</button>
+                    </div>
+                    <div class="report-nav-item" id="month-report" class="nav-input">
+                        <select class="select-nav" name="" id="month-input">
+
+                        </select>
+                    </div>
+                    <div class="report-nav-item" id="quarter-report" class="nav-input">
+                        <select class="select-nav" name="" id="quarter-input">
+                            <option value="1">Quý 1</option>
+                            <option value="2">Quý 2</option>
+                            <option value="3">Quý 3</option>
+                            <option value="4">Quý 4</option>
+                        </select>
+
+                    </div>
+                    <div class="report-nav-item" id="year-report">
+                        <select class="select-nav" name="" id="year-input">
+
+                        </select>
+                    </div>
+                    <div class="report-nav-item button-type">
+                        <div class="dropdown">
+                            <button id="type_report" class="btn btn-update dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Báo cáo theo tháng
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" data-type="month"
+                                        onclick="selectTypeReport(event)">Báo cáo Theo
+                                        Tháng</a></li>
+                                <li><a class="dropdown-item" href="#" data-type="quarter"
+                                        onclick="selectTypeReport(event)">Báo Cáo Theo
+                                        Quý</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="report-nav-item">
+                        <button data-type="month" id="get_report" type="button" class="btn-create">Xuất Báo Cáo</button>
+                    </div>
+
+                </div>
+                <div id="loader-group" class="nofication">
+                    <div class="loader">
+                        <div id="loader"></div>
+                        <div class="logo-loader">
+                            <img src="./img/Logo.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div id="report" class="report">
+                    <div class="report-item">
+                        <h4 class="fw-bold">Doanh Thu</h4>
+                        <div class="total">
+                            <div class="info">
+                                <h5>Tổng doanh thu: <span id="complete" class="fw-bold"></span> /
+                                    <span id="target"></span>
+                                </h5>
+                            </div>
+                            <div class="percentage">
+                                <h5><span class="fw-bold" id="percentage_total"></span> đã hoàn thành</h5>
+                            </div>
+
+                        </div>
+                        <div id="chart-complete" class="chart-line">
+                            <div class="slice ao lengthen-animation">
+                                <span></span>
+                            </div>
+                            <div class="slice quan">
+                                <span></span>
+                            </div>
+                            <div class="slice suit">
+                                <span></span>
+                            </div>
+                            <div class="slice phukien">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-item">
+                                <h5 class="fw-bold"> <span class="color ao"></span> Doanh thu Áo</h5>
+                                <h5 id="total-ao"></h5>
+                            </div>
+                            <div class="detail-item">
+                                <h5 class="fw-bold"> <span class="color quan"></span> Doanh thu Quần</h5>
+                                <h5 id="total-quan"></h5>
+                            </div>
+                            <div class="detail-item">
+                                <h5 class="fw-bold"> <span class="color suit"></span> Doanh thu Suit</h5>
+                                <h5 id="total-suit"></h5>
+                            </div>
+                            <div class="detail-item">
+                                <h5 class="fw-bold"> <span class="color phukien"></span> Doanh thu Phụ kiện</h5>
+                                <h5 id="total-phukien"></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-item">
+                        <h4 class="fw-bold">Số lượng</h4>
+                        <div class="amount">
+                            <h5>Số lượng đơn hàng: <span class="fw-bold" id="amount"></span> đơn</h5>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="item">
+                                <h5>Số lượng Áo</h5>
+                                <div class="bar">
+                                    <div id="bar-ao" class="bar-item ao">10</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <h5>Số lượng Quần</h5>
+                                <div class="bar">
+                                    <div id="bar-quan" class="bar-item quan">10</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <h5>Số lượng Suit</h5>
+                                <div class="bar">
+                                    <div id="bar-suit" class="bar-item suit">10</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <h5>Số lượng phụ kiện</h5>
+                                <div class="bar">
+                                    <div id="bar-phukien" class="bar-item phukien">10</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
     </main>
+    <!-- Modal -->
+    <div class="modal fade" id="create-kpi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tạo KPI</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>
+                        Tạo KPI cho tháng <span id="month" class="fw-bold"></span>
+                        năm <span class="fw-bold" id="year"></span>
+                    </h5>
+                    <div class="input-inline">
+                        <label for="input-target">Chỉ tiêu</label>
+                        <input id="input-target" oninput="formatInputNumber(event)" class="input text-end" type="text">
+                    </div>
 
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm-kpi" type="button" class="btn btn-primary">Tạo KPI</button>
+                    <button id="close-confirm-kpi" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- JS -->
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -84,8 +250,6 @@
 
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <script src="./js/validate.js"></script>
 
     <!-- Model -->
     <!-- Client Model -->
@@ -96,9 +260,16 @@
     <script src="./js/model/orderSuitRequest.js"></script>
     <script src="./js/model/orderTrousersRequest.js"></script>
     <script src="./js/model/orderAccessoryList.js"></script>
-
+    <!-- KPI Model -->
+    <script src="./js/model/kpiRequest.js"></script>
+    <!-- Format -->
+    <script src="./js/formatData.js"></script>
+    <!-- Validate -->
+    <script src="./js/validate.js"></script>
+    <!-- CaLL API -->
+    <script src="./js/callAPI.js"></script>
     <!-- Main JS -->
-    <script src="./js/createOrder.js"></script>
+    <script src="./js/report.js"></script>
 
 
 </body>

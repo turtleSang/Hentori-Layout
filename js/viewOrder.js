@@ -90,7 +90,7 @@ const renderPane = async (targetElement) => {
 
 //View detail Order
 const viewOrderDetail = (order_id) => {
-    window.location.href = `./vieworderdetail.html?orderid=${order_id}`;
+    window.open(`./vieworderdetail.html?orderid=${order_id}`, "_blank");
 }
 
 // directional

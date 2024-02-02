@@ -591,6 +591,20 @@ p {
   background-color: #cba94f;
 }
 
+.input-inline {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.input-inline label {
+  font-weight: 600;
+  font-size: 20px;
+  width: 30%;
+}
+.input-inline .input {
+  width: 60%;
+}
+
 .nofication {
   display: none;
 }

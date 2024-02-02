@@ -23,14 +23,14 @@ const hideType = () => {
 
 const searchClient = async () => {
     let type = document.getElementById("main-input").getAttribute("data-url");
-    let params;   
-   
+    let params;
+
     if (type === "find/name") {
         let name = document.getElementById("input-name").value;
-        params ={name}
+        params = { name }
     } else {
         let phoneNumber = document.getElementById("input-phone").value;
-        params ={phoneNumber}
+        params = { phoneNumber }
     }
     let url = `${urlClinet}/${type}`;
     try {
@@ -42,12 +42,12 @@ const searchClient = async () => {
         return res.data.object;
     } catch (error) {
         throw error;
-    }  
+    }
 
 }
 
 // Render client
-const renderClientList = (listClient)=>{
+const renderClientList = (listClient) => {
     let content = "";
     for (const client of listClient) {
         content += `
@@ -64,10 +64,9 @@ const renderClientList = (listClient)=>{
 
 // View Detail Client
 
-const viewDetailClient = (e)=>{
+const viewDetailClient = (e) => {
     let eleClient = e.currentTarget;
     let phoneNumber = eleClient.querySelector(".phoneNumber").innerHTML;
-    console.log(`./detailclient.html?phoneNumber=${phoneNumber}`);
     window.location.href = `./detailclient.html?phoneNumber=${phoneNumber}`;
 }
 
@@ -118,25 +117,25 @@ document.getElementById("input-phone").oninput = () => {
         document.getElementById("input-phone").value = deleteCharNumber;
     }
 }
-document.getElementById("seach-client").onclick = async ()=>{
+document.getElementById("seach-client").onclick = async () => {
     try {
         let listClient = await searchClient();
         renderClientList(listClient);
     } catch (error) {
         console.log(error);
     }
-    
-    
+
+
 }
 
 // Event press enter
-document.getElementById("input-name").addEventListener("keypress",(event)=>{
-    if(event.key === "Enter"){
+document.getElementById("input-name").addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
         document.getElementById("seach-client").click();
     }
 })
-document.getElementById("input-phone").addEventListener("keypress",(event)=>{
-    if(event.key === "Enter"){
+document.getElementById("input-phone").addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
         document.getElementById("seach-client").click();
     }
 })

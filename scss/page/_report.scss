@@ -1,0 +1,46 @@
+#main_content {
+    .report-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        .report-nav-item {
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+        #quarter-report {
+            display: none;
+        }
+    }
+    .report {
+        display: none;
+        padding: 0 20px;
+        margin-top: 20px;
+        text-align: start;
+        .report-item {
+            background-color: rgb(128 128 128 / 22%);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            .total {
+                display: flex;
+                justify-content: space-between;
+            }
+            .detail {
+                margin-top: 20px;
+                .detail-item {
+                    display: flex;
+                    justify-content: space-between;
+                    h5 {
+                        margin: 0;
+                    }
+                }
+                .color {
+                    width: 15px;
+                    height: 15px;
+                    display: inline-block;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}

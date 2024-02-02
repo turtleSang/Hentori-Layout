@@ -664,6 +664,102 @@ p {
   animation-iteration-count: infinite;
 }
 
+.select-nav {
+  border: 1px solid #8f714b;
+  height: 50px;
+  width: 200px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.chart-line {
+  height: 20px;
+  background-color: rgba(91, 89, 89, 0.2039215686);
+  border-radius: 10px;
+  display: flex;
+}
+.chart-line .slice {
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+.chart-line .slice span {
+  text-align: center;
+  position: absolute;
+  background-color: white;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 30px;
+  width: 50px;
+  border-radius: 5px;
+  line-height: 30px;
+  display: none;
+  color: #1b0a03;
+}
+.chart-line .slice:hover span {
+  display: block;
+}
+.chart-line .slice:first-child {
+  border-radius: 10px 0 0 10px;
+}
+.chart-line .slice:last-child {
+  border-radius: 0 10px 10px 0;
+}
+.chart-line .ao:hover {
+  box-shadow: 0 0 0 2px #CBA94F;
+  z-index: 10;
+}
+.chart-line .quan:hover {
+  box-shadow: 0 0 0 2px #8f714b;
+  z-index: 10;
+}
+.chart-line .suit:hover {
+  box-shadow: 0 0 0 2px #1b0a03;
+  z-index: 10;
+}
+.chart-line .phukien:hover {
+  box-shadow: 0 0 0 2px brown;
+  z-index: 10;
+}
+
+.chart-bar .item {
+  display: flex;
+  align-items: center;
+}
+.chart-bar .item h5 {
+  width: 20%;
+}
+.chart-bar .item .bar {
+  width: 80%;
+}
+.chart-bar .item .bar .bar-item {
+  border-radius: 20px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.ao {
+  background-color: #CBA94F;
+}
+
+.quan {
+  background-color: #8f714b;
+  color: wheat;
+}
+
+.suit {
+  background-color: #1b0a03;
+  color: white;
+}
+
+.phukien {
+  background-color: brown;
+  color: white;
+}
+
 .menu_bar {
   background-color: #8f714b;
   height: 100vh;
@@ -794,95 +890,47 @@ p {
   width: 100%;
 }
 
-#main_content {
+#main_content .report-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#main_content .report-nav .report-nav-item {
+  margin-right: 20px;
+  margin-top: 20px;
+}
+#main_content .report-nav #quarter-report {
+  display: none;
+}
+#main_content .report {
+  display: none;
+  padding: 0 20px;
+  margin-top: 20px;
   text-align: start;
 }
-#main_content .client_info {
-  padding: 20px 20px;
-}
-#main_content .client_info .main_info {
-  display: flex;
-  flex-wrap: wrap;
-}
-#main_content .client_info .main_info .title-info {
-  width: 100%;
-}
-#main_content .client_info .main_info .main_info_item {
-  width: 50%;
-}
-#main_content .client_info .main_info .main_info_item .nofication_input {
-  position: relative;
-}
-#main_content .client_info .main_info .main_info_item .nofication_input div {
-  position: absolute;
-  right: 35%;
-  top: 0;
-  color: #CBA94F;
-  font-size: 17px;
-}
-#main_content .client_info .main_info .main_info_item input {
-  width: 70%;
-}
-#main_content .client_info #measurements_info {
-  display: none;
-}
-#main_content .order_info {
+#main_content .report .report-item {
+  background-color: rgba(128, 128, 128, 0.22);
   padding: 20px;
-  min-height: 200px;
-  display: none;
-}
-#main_content .order_info .order_nav {
-  display: flex;
-  justify-content: space-between;
-}
-#main_content .order_info .order_nav .order_nav_group_button {
-  display: flex;
-  width: 50%;
-  justify-content: space-evenly;
-}
-#main_content .order_info #order_items_list .order_item {
-  margin: 30px 0;
-  padding: 30px 40px;
   border-radius: 20px;
-  border: 2px solid #8f714b;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 20px;
 }
-#main_content .order_info #order_items_list .order_item .main_item_info {
+#main_content .report .report-item .total {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
 }
-#main_content .order_info #order_items_list .order_item .main_item_info .item_info:first-child {
-  width: 100%;
-}
-#main_content .order_info #order_items_list .order_item .main_item_info .item_info:first-child p {
-  font-size: 23px;
-  font-weight: 700;
-}
-#main_content .order_info #order_items_list .order_item .attribute_item_info {
+#main_content .report .report-item .detail {
   margin-top: 20px;
+}
+#main_content .report .report-item .detail .detail-item {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
-#main_content .order_info #order_items_list .order_item .attribute_item_info .item_attribute {
-  width: 20%;
-  margin: 5px 10px;
+#main_content .report .report-item .detail .detail-item h5 {
+  margin: 0;
 }
-#main_content .order_info #order_items_list .order_item .attribute_item_info .item_attribute:last-child {
-  width: 100%;
-}
-#main_content .order_info #order_items_list .order_item .attribute_item_info .item_attribute:last-child .note {
-  width: 100%;
-}
-#main_content .order_info #order_items_list .order_item .delete-item {
-  position: absolute;
-  top: -5%;
-  right: -6px;
-}
-#main_content .order_info #order_items_list .order_item:hover {
-  background-color: transparent;
-}/*# sourceMappingURL=create.css.map */
+#main_content .report .report-item .detail .color {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  border-radius: 50%;
+}/*# sourceMappingURL=report.css.map */
