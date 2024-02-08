@@ -36,22 +36,16 @@
 .btn-cancel {
     @include styleButton(200px, 50px, 5px, none, wheat, #6c757d, wheat, #565e64);
 }
-.input-phone-number {
-    display: flex;
-    .input.input-client {
-        margin-right: 5px;
-    }
-}
 
-.amount-group{
+.amount-group {
     display: flex;
     justify-content: space-around;
-    align-items: center
+    align-items: center;
 }
 
 .btn-amount {
     @include styleButton(30px, 30px, 50%, none, wheat, $bg-normal, $font-black-01, $bg-yellow);
-    &:disabled{
+    &:disabled {
         @include styleButton(30px, 30px, 50%, none, wheat, grey, wheat, grey);
     }
 }
@@ -146,13 +140,13 @@
     }
 }
 
-.btn-dropdown{
+.btn-dropdown {
     @include styleButton(100%, 40px, 5px, none, wheat, $bg-normal, $font-black-01, $bg-yellow);
-    &.show{
+    &.show {
         background-color: $bg-normal;
     }
-    &.btn-dropdown-selected{
-       background-color: $bg-yellow;
-       color: $font-black-01;
+    &.btn-dropdown-selected {
+        background-color: $bg-yellow;
+        color: $font-black-01;
     }
 }

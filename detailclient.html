@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="measurement_detail">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs" id="MeansurementTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                             data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
@@ -66,7 +66,7 @@
                     </li>
 
                 </ul>
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="MenasurementTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                         tabindex="0">
                         <div id="suilt_detail" class="suilt_detail">
@@ -209,11 +209,69 @@
                 </div>
             </div>
         </div>
+        <div class="client_logbook">
+            <div class="logbook_bar">
+                <h3>Log book</h3>
+                <div class="logbook_button">
+                    <button class="btn-update" type="button" data-bs-toggle="modal" data-bs-target="#log_book_form">Tạo
+                        LogBook</button>
+                </div>
+            </div>
+            <div id="logbook_content" class="logbook_content">
+                <div data-id-logbook="1" class="log_book_item">
+                    <div class="log_book_item_info">
+                        <div class="log_book_info">
+                            <p>Ngày đến: <span>20/10/2023</span></p>
+                        </div>
+                        <div class="log_book_info">
+                            <p>Giờ đến: <span>22h30</span></p>
+                        </div>
+                        <div class="log_book_info">
+                            <p>Nhu Cầu: <span>May đi làm</span> </p>
+                        </div>
+                        <div class="log_book_info">
+                            <p>Cách tiếp cận: <span>Được giới thiệu</span></p>
+                        </div>
+                        <div class="log_book_info">
+                            <p>Chú thích: <span>Được bạn giới thiệu qua may đo</span></p>
+                        </div>
+                    </div>
+                    <div class="log_book_item_nav">
+                        <button type="button" class="btn-create-small"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+
+            </div>
+            <nav class="page-nav">
+                <ul id="log_book_pagination" class="pagination">
+                    <li class="page-item" onclick="directionalPageLogbookPrevious(event)">
+                        <a class="page-link previous" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item" onclick="choossePageLogBook(event)">
+                        <a class="page-link page-num active" href="#">1</a>
+                    </li>
+
+                    <li class="page-item" onclick="choossePageLogBook(event)">
+                        <a class="page-link page-num" href="#">2</a>
+                    </li>
+
+                    <li class="page-item" onclick="directionalPageLogbookNext(event)">
+                        <a class="page-link next" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
         <div class="client-title">
             <h3>Thông tin đơn hàng</h2>
         </div>
         <div id="order" class="content">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="OrderTab" role="tablist">
                 <li class="nav-item item-type-order" role="presentation">
                     <button class="nav-link" id="processing-order" data-bs-toggle="tab"
                         data-bs-target="#processing-order-pane" type="button" role="tab"
@@ -239,7 +297,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-content" id="myTabContent">
+            <div class="tab-content" id="OrderTabContent">
                 <!-- Processing Pane -->
                 <div class="tab-pane fade" id="processing-order-pane" role="tabpanel" aria-labelledby="processing-order"
                     tabindex="0">
@@ -300,6 +358,46 @@
 
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="log_book_form" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Log Book</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="log_book_form">
+                        <label for="visit_date">Ngày Đến</label>
+                        <input class="input" id="visit_date" type="datetime-local">
+                    </div>
+                    <div class="log_book_form">
+                        <label for="demand">Nhu cầu</label>
+                        <input class="input" id="demand" type="text">
+                    </div>
+                    <div class="log_book_form">
+                        <label for="approach">Cách tiếp cận</label>
+                        <input class="input" id="approach" type="text">
+                    </div>
+                    <div class="log_book_form">
+                        <p>Chú thích</p>
+                        <textarea id="note"></textarea>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm_create_logbook" type="button" class="btn btn-primary">Tạo</button>
+                    <button id="close_create_logbook" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Hủy</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
     <!-- JS -->
@@ -324,6 +422,11 @@
     <script src="./js/model/orderAccessoryList.js"></script>
     <script src="./js/model/orderShirtRequest.js"></script>
 
+    <!-- LogBookModel -->
+    <script src="./js/model/logbookRequest.js"></script>
+
+    <!-- Call API -->
+    <script src="./js/callAPI.js"></script>
     <!-- Format Data -->
     <script src="./js/formatData.js"></script>
     <!-- Main JS -->

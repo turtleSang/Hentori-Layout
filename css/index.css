@@ -285,13 +285,6 @@ p {
   background-color: #565e64;
 }
 
-.input-phone-number {
-  display: flex;
-}
-.input-phone-number .input.input-client {
-  margin-right: 5px;
-}
-
 .amount-group {
   display: flex;
   justify-content: space-around;
@@ -589,6 +582,13 @@ p {
 }
 .search-group .suggest-result a:hover {
   background-color: #cba94f;
+}
+
+.input-phone-number {
+  display: flex;
+}
+.input-phone-number .input.input-client {
+  margin-right: 5px;
 }
 
 .input-inline {

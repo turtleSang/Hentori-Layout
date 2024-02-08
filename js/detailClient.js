@@ -1,7 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const phoneNumber = urlParams.get("phoneNumber");
-const rootUrl = "http://localhost:8080";
-const header = {};
+
 
 const setValue = (eleId, value) => {
     document.getElementById(eleId).value = value;
@@ -105,6 +104,79 @@ const renderClientTrousers = (clientTrousersDto) => {
     }
 }
 
+// Render Logbook 
+const renderLogBook = (logBookDtoList) => {
+    let content = "";
+    for (const logBookDto of logBookDtoList) {
+        let { day, month, year, hours, minutes } = formatDateTimeISOtoVN(logBookDto.visitDate)
+        content += `
+    <div data-id-logbook="${logBookDto.id}" class="log_book_item">
+       <div class="log_book_item_info">
+           <div class="log_book_info">
+               <p>Ngày đến: <span>${day}/${month}/${year}</span></p>
+           </div>
+           <div class="log_book_info">
+               <p>Giờ đến: <span>${hours}:${minutes}</span></p>
+           </div>
+           <div class="log_book_info">
+               <p>Nhu Cầu: <span>${logBookDto.demand}</span> </p>
+           </div>
+           <div class="log_book_info">
+               <p>Cách tiếp cận: <span>${logBookDto.approach}</span></p>
+           </div>
+           <div class="log_book_info">
+               <p>Chú thích: <span>${logBookDto.note}</span></p>
+           </div>
+       </div>
+       <div class="log_book_item_nav">
+           <button type="button" class="btn-create-small"><i class="fa-solid fa-trash"></i></button>
+       </div>
+    </div>    
+       
+ `
+    }
+    document.getElementById("logbook_content").innerHTML = content;
+}
+
+const renderPageNavLogBook = (numPage) => {
+    let content = "";
+    content += `
+    <li class="page-item" onclick="directionalPageLogbookPrevious(event)">
+        <a class="page-link previous" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    
+    `
+    for (let index = 1; index <= numPage; index++) {
+        if (index === 1) {
+            content += `
+            <li class="page-item" onclick="choossePageLogBook(event)">
+                <a class="page-link page-num active" href="#">1</a>
+            </li>           
+            
+            `
+        } else {
+            content += `
+            <li class="page-item" onclick="choossePageLogBook(event)">
+                <a class="page-link page-num" href="#">${index}</a>
+            </li>          
+            
+            `
+        }
+
+    }
+    content += `
+    <li class="page-item" onclick="directionalPageLogbookNext(event)">
+        <a class="page-link next" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+    
+    `
+    document.getElementById("log_book_pagination").innerHTML = content;
+}
+
 // Render Order
 const renderPageNav = (pageNumber, elementRender) => {
     let navEle = elementRender.querySelector(".pagination");
@@ -193,6 +265,7 @@ const renderPane = async (targetElement) => {
 }
 
 // directional
+// Order Page
 const directionalPagePrevious = (event) => {
     event.preventDefault();
     let navElement = event.currentTarget.parentElement;
@@ -256,7 +329,7 @@ const renderNewPagination = async (navElement) => {
     let idRender = navElement.getAttribute("data-render-id");
     let elementRender = document.getElementById(idRender);
     let url = `${rootUrl}/client/order/${orderAPI}`
-    let params = { phoneNumber }
+    let params = { phoneNumber, pageNumber }
     try {
         let data = await callAPI("Get", url, params);
         let { object } = data;
@@ -266,24 +339,84 @@ const renderNewPagination = async (navElement) => {
         alert(error)
     }
 }
+// LogBook Page
+const directionalPageLogbookPrevious = async (event) => {
+    event.preventDefault();
+    let navElement = event.currentTarget.parentElement;
+    let listPageNum = navElement.querySelectorAll(".page-num");
+    let indexActive = -1
+    for (const index in listPageNum) {
+        if (Object.hasOwnProperty.call(listPageNum, index)) {
+            const elementNum = listPageNum[index];
+            if (elementNum.classList.contains("active")) {
+                indexActive = index;
+            }
 
-// Call API
-const callAPI = async (method, url, params, header, data) => {
+        }
+    }
+    if (indexActive != 0) {
+        listPageNum[indexActive].classList.remove("active")
+        indexActive--;
+        listPageNum[indexActive].classList.add("active");
+    }
+    renderNewLogBookPage();
+}
+
+const directionalPageLogbookNext = async (event) => {
+    event.preventDefault();
+    let navElement = event.currentTarget.parentElement;
+    let listPageNum = navElement.querySelectorAll(".page-num");
+    let indexActive = -1
+    for (const index in listPageNum) {
+        if (Object.hasOwnProperty.call(listPageNum, index)) {
+            const elementNum = listPageNum[index];
+            if (elementNum.classList.contains("active")) {
+                indexActive = index;
+            }
+
+        }
+    }
+
+    if (indexActive != (listPageNum.length - 1)) {
+        listPageNum[indexActive].classList.remove("active")
+        indexActive++;
+        listPageNum[indexActive].classList.add("active");
+    }
+    renderNewLogBookPage();
+}
+
+const choossePageLogBook = async (event) => {
+    event.preventDefault();
+    let pageChossenEle = event.currentTarget.querySelector(".page-num");
+    let navElement = event.currentTarget.parentElement;
+    let listPageNum = navElement.querySelectorAll(".page-num");
+    for (const item of listPageNum) {
+        item.classList.remove("active");
+    }
+    pageChossenEle.classList.add("active");
+    renderNewLogBookPage();
+}
+
+const renderNewLogBookPage = async () => {
+    let navEle = document.getElementById("log_book_pagination")
+    let pageActive = navEle.querySelector(".active");
+    let pageNumber = Number(pageActive.innerHTML) - 1;
+    let url = `${rootUrl}/logbook/get`
+    let params = {
+        phoneNumber,
+        pageNumber
+    }
     try {
-        let res = await axios({
-            method,
-            url,
-            params,
-            header,
-            data
-        })
-        return res.data;
+        let res = await callAPI("get", url, params, header)
+        let listLogBookDto = res.object;
+        renderLogBook(listLogBookDto);
     } catch (error) {
-        throw error;
+        alert(error)
     }
 }
+
 // Event
-let listNavLink = document.querySelectorAll(".nav-link")
+let listNavLink = document.getElementById("OrderTab").querySelectorAll(".nav-link")
 for (const item of listNavLink) {
     item.addEventListener("click", (event) => {
         let elementRender = event.currentTarget;
@@ -367,6 +500,20 @@ const createClientRequest = () => {
     return null;
 }
 
+// Create Log Book Request
+const createLogBookRequest = () => {
+    let visitDate = getDateTimeInput("visit_date");
+    let demand = document.getElementById("demand").value;
+    let approach = document.getElementById("approach").value;
+    let clientID = document.getElementById("client_name").getAttribute("data-id");
+    let note = document.getElementById("note").value;
+    if (!demand || !visitDate || !approach || !clientID) {
+        return null;
+    }
+
+    return new LogBookRequest(visitDate, demand, approach, note, clientID);
+}
+
 // Event
 document.getElementById("update_client").onclick = async () => {
     let clientRequest = createClientRequest();
@@ -386,6 +533,21 @@ document.getElementById("update_client").onclick = async () => {
 
 }
 
+document.getElementById("confirm_create_logbook").onclick = async () => {
+    let logBookRequest = createLogBookRequest();
+    let url = `${rootUrl}/logbook/create`;
+    if (!logBookRequest) {
+        alert("Vui lòng điền đầy đủ thông tin")
+    }
+    try {
+        const res = await callAPI("post", url, {}, header, logBookRequest);
+        alert("Tạo Thành công");
+        location.reload();
+    } catch (error) {
+        alert("Không thể tạo")
+    }
+}
+
 axios({
     method: "get",
     url: `${rootUrl}/client/getclient`,
@@ -399,3 +561,29 @@ axios({
     alert(err)
 })
 
+axios({
+    method: "get",
+    url: `${rootUrl}/logbook/get`,
+    params: {
+        phoneNumber
+    }
+}).then(res => {
+    let logBookDtoList = res.data.object;
+    console.log(logBookDtoList);
+    renderLogBook(logBookDtoList);
+}).catch(err => {
+    console.log(err);
+})
+
+axios({
+    method: "get",
+    url: `${rootUrl}/logbook/get/page`,
+    params: {
+        phoneNumber
+    }
+}).then(res => {
+    let pageNumber = res.data.object;
+    renderPageNavLogBook(pageNumber);
+}).catch(err => {
+    console.log(err);
+})

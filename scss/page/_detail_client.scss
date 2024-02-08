@@ -1,14 +1,50 @@
-body{
+body {
     background-color: $bg-normal;
 }
-.client_info{
+.client_info {
     background-color: white;
     width: 80%;
     margin: 30px auto 0;
     border-radius: 20px;
     padding: 10px;
-    .client_main{
+    .client_main {
         display: flex;
         justify-content: space-around;
+    }
+    .client_logbook {
+        .logbook_bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logbook_content {
+            .log_book_item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid $bg-normal;
+                padding: 20px;
+                border-radius: 20px;
+                margin-bottom: 20px;
+                .log_book_item_info {
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 90%;
+                    .log_book_info {
+                        width: 40%;
+                        &:last-child {
+                            width: 100%;
+                        }
+                    }
+                }
+                .log_book_item_nav {
+                    width: 10%;
+                }
+            }
+        }
+        span {
+            font-weight: bold;
+        }
     }
 }

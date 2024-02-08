@@ -1,41 +1,66 @@
-const formatNumber = (numberRaw)=>{
+const formatNumber = (numberRaw) => {
     let number = Number(numberRaw);
     return number.toLocaleString("de-DE");
 }
-const formatDateToDefault = (date)=>{
+const formatDateToDefault = (date) => {
     return new Date(date);
 }
-const formatDateISOtoVN = (date)=>{
+const formatDateISOtoVN = (date) => {
     let newDate = new Date(date);
     let day = newDate.getDate();
-    let month = newDate.getMonth()+1;
+    let month = newDate.getMonth() + 1;
     let year = newDate.getFullYear();
     return `${day}/${month}/${year}`
 }
-const getDateFormInput = (element_id)=>{
+
+const formatDateTimeISOtoVN = (date) => {
+    let newDate = new Date(date);
+    let day = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    let hours = newDate.getHours();
+    let minutes = newDate.getMinutes();
+
+    return {
+        day, month, year, hours, minutes
+    }
+
+}
+
+const getDateFormInput = (element_id) => {
     let appointmentDay = document.getElementById(element_id).value;
-    let year = appointmentDay.slice(0,4);
-    let month = appointmentDay.slice(5,7);
-    let day = appointmentDay.slice(8,10);
+    let year = appointmentDay.slice(0, 4);
+    let month = appointmentDay.slice(5, 7);
+    let day = appointmentDay.slice(8, 10);
     return `${day}/${month}/${year}`;
 }
 
-const formatNumberToRaw = (number)=>{
+const getDateTimeInput = (element_id) => {
+    let dateTime = document.getElementById(element_id).value;
+    let date = new Date(dateTime)
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let time = `${date.getHours()}:${date.getMinutes()}`;
+    return `${day}/${month}/${year} ${time}`;
+}
+
+const formatNumberToRaw = (number) => {
     return number.replace(/\./g, "");
 }
 
-const formatInputNumber = (e)=>{
-    let regexNumber =/^\d+$/;
+const formatInputNumber = (e) => {
+    let regexNumber = /^\d+$/;
     let ele = e.target;
     let value = formatNumberToRaw(ele.value);
     if (regexNumber.test(value)) {
         ele.value = formatNumber(value);
-    }else{
-        ele.value ="";
-    }   
+    } else {
+        ele.value = "";
+    }
 }
 
-const addAmount = (event)=>{
+const addAmount = (event) => {
     let groupElement = event.target.parentElement.parentElement;
     let amountElement = groupElement.querySelector(".amount");
     let amount = Number(amountElement.innerHTML) + 1;
@@ -43,13 +68,13 @@ const addAmount = (event)=>{
     groupElement.querySelector(".btn-minus").disabled = false;
 }
 
-const minusAmount = (event)=>{
+const minusAmount = (event) => {
     let groupElement = event.target.parentElement.parentElement;
     let amountElement = groupElement.querySelector(".amount");
-    let amount = Number(amountElement.innerHTML) -1;
+    let amount = Number(amountElement.innerHTML) - 1;
     if (amount > 1) {
         amountElement.innerHTML = amount;
-    }else{
+    } else {
         amountElement.innerHTML = 1;
         groupElement.querySelector(".btn-minus").disabled = true;
     }
@@ -78,7 +103,7 @@ const selectStatus = (e) => {
 }
 
 // Remove /n in inner Html
-const removeSpace = (ele)=>{
+const removeSpace = (ele) => {
     let str = ele.innerHTML;
     return str.replace(/\s+/g, " ");
 }

@@ -118,6 +118,13 @@
     }
 }
 
+.input-phone-number {
+    display: flex;
+    .input.input-client {
+        margin-right: 5px;
+    }
+}
+
 .input-inline {
     display: flex;
     justify-content: space-around;
