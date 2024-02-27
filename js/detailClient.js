@@ -110,7 +110,7 @@ const renderLogBook = (logBookDtoList) => {
     for (const logBookDto of logBookDtoList) {
         let { day, month, year, hours, minutes } = formatDateTimeISOtoVN(logBookDto.visitDate)
         content += `
-    <div data-id-logbook="${logBookDto.id}" class="log_book_item">
+    <div  class="log_book_item">
        <div class="log_book_item_info">
            <div class="log_book_info">
                <p>Ngày đến: <span>${day}/${month}/${year}</span></p>
@@ -129,7 +129,7 @@ const renderLogBook = (logBookDtoList) => {
            </div>
        </div>
        <div class="log_book_item_nav">
-           <button type="button" class="btn-create-small"><i class="fa-solid fa-trash"></i></button>
+           <button onclick="deleteLogbook(event)" data-id-logbook="${logBookDto.id}" type="button" class="btn-create-small"><i class="fa-solid fa-trash"></i></button>
        </div>
     </div>    
        
@@ -177,6 +177,12 @@ const renderPageNavLogBook = (numPage) => {
     document.getElementById("log_book_pagination").innerHTML = content;
 }
 
+const clearFormLogbook = () => {
+    document.getElementById("visit_date").value = "";
+    document.getElementById("demand").value = "";
+    document.getElementById("approach").value = "";
+    document.getElementById("note").value = "";
+}
 // Render Order
 const renderPageNav = (pageNumber, elementRender) => {
     let navEle = elementRender.querySelector(".pagination");
@@ -415,6 +421,18 @@ const renderNewLogBookPage = async () => {
     }
 }
 
+const deleteLogbook = async (event) => {
+    let btnDelete = event.currentTarget;
+    let id = btnDelete.getAttribute("data-id-logbook");
+    let url = `${rootUrl}/logbook/delete`
+    try {
+        let res = await callAPI("delete", url, { id }, header, {});
+        location.reload();
+    } catch (error) {
+        alert("Không thể xóa" + error)
+    }
+
+}
 // Event
 let listNavLink = document.getElementById("OrderTab").querySelectorAll(".nav-link")
 for (const item of listNavLink) {
@@ -548,6 +566,12 @@ document.getElementById("confirm_create_logbook").onclick = async () => {
     }
 }
 
+document.getElementById("close_create_logbook").onclick = () => {
+    clearFormLogbook();
+}
+
+
+
 axios({
     method: "get",
     url: `${rootUrl}/client/getclient`,
@@ -569,7 +593,6 @@ axios({
     }
 }).then(res => {
     let logBookDtoList = res.data.object;
-    console.log(logBookDtoList);
     renderLogBook(logBookDtoList);
 }).catch(err => {
     console.log(err);

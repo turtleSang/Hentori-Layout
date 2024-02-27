@@ -1,8 +1,9 @@
 const rootUrl = "http://localhost:8080";
 let token = localStorage.getItem("token");
-let header = { token }
+let header = { token };
 
 
+// const url = window.location.origin;
 const callAPI = async (method, url, params, header, data) => {
     try {
         let res = await axios({
@@ -17,3 +18,8 @@ const callAPI = async (method, url, params, header, data) => {
         throw error;
     }
 }
+
+
+
+
+

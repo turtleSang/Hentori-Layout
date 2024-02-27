@@ -1,9 +1,15 @@
 // Font Color
-$font-black-01 : #1b0a03;
+$font-black-01: #1b0a03;
 
 //Background Color
 $bg-normal: #8f714b;
-$bg-yellow: #CBA94F;
+$bg-yellow: #cba94f;
 
 //Font size
 $fs-01: 14px;
+
+$break-point: (
+    "desktop": 1400,
+    "ipad": 1200px,
+    "mobile": 992px
+);

@@ -107,3 +107,24 @@ const removeSpace = (ele) => {
     let str = ele.innerHTML;
     return str.replace(/\s+/g, " ");
 }
+
+// Show hide password
+
+const showHidePassword = (e) => {
+    let groupEle = e.currentTarget;
+    let inputEle = groupEle.parentElement.querySelector(".input");
+    let itemEleList = groupEle.children;
+    for (const item of itemEleList) {
+        item.classList.toggle("active");
+        item.classList.toggle("d-none");
+    }
+    let activeEle = groupEle.querySelector(".active");
+    let show = activeEle.classList.contains("show");
+    if (show) {
+        inputEle.type = "text";
+    } else {
+        inputEle.type = "password";
+    }
+
+
+}

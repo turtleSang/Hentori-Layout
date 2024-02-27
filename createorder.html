@@ -24,7 +24,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Main Css -->
     <link rel="stylesheet" href="./css/create.css">
-    <title>Hentori Management</title>
+    <title>Hentori Manager</title>
 </head>
 
 <body>
@@ -284,13 +284,16 @@
                             <div class="dropdown">
                                 <button id="order-status" class="btn btn-dropdown dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" order-status="1">
-                                     Hẹn lần 1
+                                    Hẹn lần 1
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item"  data-status="1" onclick="selectStatus(event)" href="#">Hẹn lần 1</a></li>
-                                    <li><a class="dropdown-item" data-status="2" onclick="selectStatus(event)" href="#">Hẹn lần 2
-                                            </a></li>
-                                    <li><a class="dropdown-item" data-status="3" onclick="selectStatus(event)" href="#">Hoàn thành</a></li>
+                                    <li><a class="dropdown-item" data-status="1" onclick="selectStatus(event)"
+                                            href="#">Hẹn lần 1</a></li>
+                                    <li><a class="dropdown-item" data-status="2" onclick="selectStatus(event)"
+                                            href="#">Hẹn lần 2
+                                        </a></li>
+                                    <li><a class="dropdown-item" data-status="3" onclick="selectStatus(event)"
+                                            href="#">Hoàn thành</a></li>
 
                                 </ul>
                             </div>
@@ -323,13 +326,14 @@
 
                         </div>
                         <div class="order_nav_button">
-                            <button id="confirm_create_order" data-bs-toggle="modal" data-bs-target="#create_order_modal" class="btn-create-small">
+                            <button id="confirm_create_order" data-bs-toggle="modal"
+                                data-bs-target="#create_order_modal" class="btn-create-small">
                                 <i class="fa-solid fa-check"></i>
                             </button>
                         </div>
                     </div>
                     <div id="order_items_list">
-                       
+
                     </div>
                 </div>
             </div>
@@ -411,7 +415,7 @@
                         </table>
                         <div class="payment">
                             <label for="payment">Số tiền khách hàng thanh toán</label>
-                            <input id="payment" type="text" class="input number"  oninput="formatInputNumber(event)">
+                            <input id="payment" type="text" class="input number" oninput="formatInputNumber(event)">
                         </div>
                     </div>
                 </div>

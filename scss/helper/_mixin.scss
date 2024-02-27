@@ -14,7 +14,21 @@
     background-color: $bg-color;
     transition: 0.5s;
     &:hover {
-        color:$color-hover;
+        color: $color-hover;
         background-color: $bg-hover;
+    }
+}
+
+@mixin respondsive($screen-width) {
+    @if map-has-key($map: $break-point, $key: $screen-width) {
+        $value: map-get(
+            $map: $break-point,
+            $key: $screen-width
+        );
+        @media screen and (max-width: $value) {
+            @content;
+        }
+    } @else {
+        @warn "Can not get break point";
     }
 }

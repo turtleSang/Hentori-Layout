@@ -10,8 +10,6 @@
     <!-- Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-
     <!-- GG FONT -->
     <link
         href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Montserrat:wght@300;400;500;600;800&display=swap"
@@ -24,61 +22,65 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Slick -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- Main Css -->
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/register.css">
     <title>Hentori Manager</title>
 </head>
 
 <body>
 
-    <section class="login">
+    <section class="register">
+
         <div class="main-content">
-            <div class="slide">
-                <div class="slide-tiem">
-                    <img src="./img/carousel-1.jpg" alt="">
-                </div>
-                <div class="slide-tiem">
-                    <img src="./img/carousel-2.jpg" alt="">
-                </div>
-                <div class="slide-tiem">
-                    <img src="./img/carousel-3.jpg" alt="">
-                </div>
-                <div class="slide-tiem">
-                    <img src="./img/carousel-4.jpg" alt="">
-                </div>
-            </div>
-            <div class="form-login">
-                <h2 class="title">Hentori Manager</h2>
+            <div class="form-register">
+                <h2 class="title">Đăng ký</h2>
                 <div id="alert" class="alert alert-danger d-none" role="alert">
 
                 </div>
                 <div class="input-item">
                     <label for="username">Tên Đăng Nhập</label>
                     <input class="input" type="text" id="username">
+                    <span id="check_username"><i class="fa-solid fa-check"></i></span>
                 </div>
                 <div class="input-item">
                     <label for="password">Mật khẩu</label>
                     <input class="input" type="password" id="password">
+                    <div class="show-password" onclick="showHidePassword(event)">
+                        <span class="show d-none"><i class="fa-solid fa-eye"></i></span>
+                        <span class="hide active"><i class="fa-solid fa-eye-slash"></i></span>
+                    </div>
                 </div>
-                <div class="link-item">
-                    <a href="./forgotpassword.html">Quên mật khẩu?</a>
-                </div>
-                <div class="link-item">
-                    <a href="./confirmadmin.html">Xác nhận tài khoản</a>
+                <div class="input-item">
+                    <label for="comfirm-password">Xác nhận mật khẩu</label>
+                    <input class="input" type="password" id="comfirm-password">
+                    <div class="show-password" onclick="showHidePassword(event)">
+                        <span class="show d-none"><i class="fa-solid fa-eye"></i></span>
+                        <span class="hide active"><i class="fa-solid fa-eye-slash"></i></span>
+                    </div>
+
                 </div>
                 <div class="button-group">
-                    <button id="signin" class="btn-create" type="button">
-                        Đăng Nhập
+                    <button id="register" class="btn-create" type="button">
+                        Đăng ký
                     </button>
-                    <button id="register" type="button" class="btn-update">Đăng ký</button>
                 </div>
-
             </div>
+        </div>
 
+
+    </section>
+
+    <section id="load" class="load d-none">
+        <div id="loader-group" class="nofication d-block">
+            <div class="loader">
+                <div id="loader"></div>
+                <div class="logo-loader">
+                    <img src="./img/Logo.png" alt="">
+                </div>
+            </div>
         </div>
     </section>
+
 
     <!-- JS -->
     <!-- Bootstrap -->
@@ -89,23 +91,15 @@
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <!-- Slick -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"
-        integrity="sha512-KgffulL3mxrOsDicgQWA11O6q6oKeWcV00VxgfJw4TcM8XRQT8Df9EsrYxDf7tpVpfl3qcYD96BpyPvA4d1FDQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="./js/swiperCustom.js"></script>
+    <!-- Validate -->
+    <script src="./js/validate.js"></script>
     <!-- CallAPI -->
     <script src="./js/callAPI.js"></script>
 
+    <!-- Format Data -->
+    <script src="./js/formatData.js"></script>
     <!-- Main JS -->
-
-
-    <script src="./js/index.js"></script>
+    <script src="./js/register.js"></script>
 
 </body>
 

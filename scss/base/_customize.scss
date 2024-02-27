@@ -1,25 +1,25 @@
-.modal{
-    .modal-dialog{
-        .modal-content{
-            .modal-footer{
+.modal {
+    .modal-dialog {
+        .modal-content {
+            .modal-footer {
                 justify-content: space-evenly;
             }
         }
     }
 }
-.nav{
+.nav {
     justify-content: space-around;
 }
-.nav-tabs{
+.nav-tabs {
     border-bottom: none;
-    .nav-item{
-        .nav-link{
+    .nav-item {
+        .nav-link {
             border: none;
             position: relative;
             font-size: 16px;
             color: $font-black-01;
             font-weight: 700;
-            &::after{
+            &::after {
                 content: "";
                 display: block;
                 position: absolute;
@@ -29,46 +29,48 @@
                 left: 0;
                 transition: all 0.5s;
             }
-            &.active{
-                &::after{
+            &.active {
+                &::after {
                     width: 100%;
                 }
                 color: $bg-yellow;
             }
-            &:hover{
+            &:hover {
                 color: $bg-yellow;
-                &::after{
+                &::after {
                     width: 100%;
                 }
             }
         }
     }
-    
-
 }
-.page-nav{
+.page-nav {
     display: flex;
     justify-content: center;
-    .pagination{
+
+    .pagination {
         flex-wrap: wrap;
         justify-content: center;
-        .page-item{
-          .page-link{
-            border: 1px solid $bg-yellow;
-            background-color: $bg-normal;
-            color: wheat;
-            &.active{
-                background-color: $bg-yellow;
-                color: $font-black-01;
+        .page-item {
+            .page-link {
+                border: 1px solid $bg-yellow;
+                background-color: $bg-normal;
+                color: wheat;
+                span {
+                    font-weight: bold;
+                }
+                &.active {
+                    background-color: $bg-yellow;
+                    color: $font-black-01;
+                }
+                &:focus {
+                    box-shadow: none;
+                }
             }
-            &:focus{
-                box-shadow: none;
-            }
-          }  
         }
     }
 }
-.order_item{
+.order_item {
     width: 95%;
     margin: 10px auto;
     display: grid;
@@ -78,14 +80,17 @@
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.5s;
-    border: 2px solid #8F714B;
-    &:hover{
+    border: 2px solid #8f714b;
+    &:hover {
         background-color: $bg-yellow;
     }
-    span{
+    span {
         font-weight: 700;
     }
-    p{
+    p {
         margin: 0;
     }
+}
+.arlert {
+    margin-bottom: 0;
 }

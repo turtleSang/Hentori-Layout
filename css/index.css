@@ -23,7 +23,7 @@ textarea {
 }
 textarea:focus-visible {
   outline: none;
-  border: 2px solid #CBA94F;
+  border: 2px solid #cba94f;
   box-shadow: 0px 0px 11px 1px #CBA94F;
 }
 
@@ -71,13 +71,13 @@ p {
   transition: all 0.5s;
 }
 .nav-tabs .nav-item .nav-link.active {
-  color: #CBA94F;
+  color: #cba94f;
 }
 .nav-tabs .nav-item .nav-link.active::after {
   width: 100%;
 }
 .nav-tabs .nav-item .nav-link:hover {
-  color: #CBA94F;
+  color: #cba94f;
 }
 .nav-tabs .nav-item .nav-link:hover::after {
   width: 100%;
@@ -92,12 +92,15 @@ p {
   justify-content: center;
 }
 .page-nav .pagination .page-item .page-link {
-  border: 1px solid #CBA94F;
+  border: 1px solid #cba94f;
   background-color: #8f714b;
   color: wheat;
 }
+.page-nav .pagination .page-item .page-link span {
+  font-weight: bold;
+}
 .page-nav .pagination .page-item .page-link.active {
-  background-color: #CBA94F;
+  background-color: #cba94f;
   color: #1b0a03;
 }
 .page-nav .pagination .page-item .page-link:focus {
@@ -114,16 +117,20 @@ p {
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.5s;
-  border: 2px solid #8F714B;
+  border: 2px solid #8f714b;
 }
 .order_item:hover {
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 .order_item span {
   font-weight: 700;
 }
 .order_item p {
   margin: 0;
+}
+
+.arlert {
+  margin-bottom: 0;
 }
 
 .rotate {
@@ -185,11 +192,11 @@ p {
 }
 .btn-info:hover {
   color: #1b0a03;
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 .btn-info.active {
   color: black;
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 
 .btn-search-little {
@@ -203,7 +210,7 @@ p {
 }
 .btn-search-little:hover {
   color: #1b0a03;
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 
 .btn-delete {
@@ -219,7 +226,7 @@ p {
 }
 .btn-delete:hover {
   color: #1b0a03;
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 
 .btn-create {
@@ -231,7 +238,7 @@ p {
   border-radius: 5px;
   border: none;
   color: #1b0a03;
-  background-color: #CBA94F;
+  background-color: #cba94f;
   transition: 0.5s;
 }
 .btn-create:hover {
@@ -251,7 +258,7 @@ p {
 }
 .btn-create-small:hover {
   color: #1b0a03;
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 
 .btn-update {
@@ -302,7 +309,7 @@ p {
 }
 .btn-amount:hover {
   color: #1b0a03;
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 .btn-amount:disabled {
   width: 30px;
@@ -351,14 +358,14 @@ p {
   cursor: pointer;
 }
 .group-open .group-controller:hover {
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 .group-open::after {
   content: "";
   display: block;
   height: 0px;
   width: 0px;
-  background-color: #CBA94F;
+  background-color: #cba94f;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -418,13 +425,13 @@ p {
 }
 .btn-dropdown:hover {
   color: #1b0a03;
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 .btn-dropdown.show {
   background-color: #8f714b;
 }
 .btn-dropdown.btn-dropdown-selected {
-  background-color: #CBA94F;
+  background-color: #cba94f;
   color: #1b0a03;
 }
 
@@ -468,7 +475,7 @@ p {
 }
 .input:focus-visible {
   outline: none;
-  border: 1px solid #CBA94F;
+  border: 1px solid #cba94f;
   box-shadow: 0px 0px 11px 1px #cba94f;
 }
 
@@ -512,7 +519,7 @@ p {
   transition: all 0.5s;
 }
 .search-group .group-input .main-input span:hover {
-  background-color: #CBA94F;
+  background-color: #cba94f;
   color: #1b0a03;
 }
 .search-group .group-input .main-input button {
@@ -527,7 +534,7 @@ p {
 }
 .search-group .group-input .main-input button:hover {
   color: #1b0a03;
-  background-color: #CBA94F;
+  background-color: #cba94f;
 }
 .search-group .group-input .main-input #drop-type:focus-visible {
   outline: none;
@@ -560,7 +567,7 @@ p {
   cursor: pointer;
 }
 .search-group .group-input .select-type-search .type-item:hover {
-  background-color: #CBA94F;
+  background-color: #cba94f;
   color: #1b0a03;
 }
 .search-group .suggest-result {
@@ -626,7 +633,7 @@ p {
 }
 
 .title-detail {
-  background-color: #CBA94F;
+  background-color: #cba94f;
   width: 80%;
   margin: 30px auto;
   border-radius: 20px;
@@ -657,7 +664,7 @@ p {
   margin: 0 auto;
   border-radius: 50%;
   border: 16px solid #8f714b;
-  border-top: 16px solid #CBA94F;
+  border-top: 16px solid #cba94f;
   animation-name: spin;
   animation-duration: 2s;
   animation-timing-function: linear;
@@ -792,4 +799,86 @@ p {
   background-repeat: no-repeat;
   height: 100vh;
   width: 100%;
-}/*# sourceMappingURL=index.css.map */
+}
+
+.login {
+  height: 100vh;
+  background: linear-gradient(148deg, rgb(143, 113, 75) 30%, rgb(203, 169, 79) 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login .main-content {
+  background-color: white;
+  width: 80%;
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 7px 8px rgba(81, 69, 69, 0.7215686275);
+  display: flex;
+  justify-content: start;
+}
+.login .main-content .slide {
+  width: 50%;
+}
+.login .main-content .slide img {
+  display: block;
+  width: 100%;
+}
+.login .main-content .form-login {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+}
+.login .main-content .form-login .title {
+  text-align: center;
+  font-family: "Allerta Stencil", sans-serif;
+}
+.login .main-content .form-login .input-item {
+  padding-left: 10%;
+  width: 100%;
+}
+.login .main-content .form-login .input-item input {
+  width: 80%;
+}
+.login .main-content .form-login .link-item a {
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.login .main-content .form-login .link-item a:hover {
+  color: #cba94f;
+}
+@media screen and (max-width: 1200px) {
+  .login .main-content {
+    width: 50%;
+    flex-direction: column;
+  }
+  .login .main-content .slide {
+    width: 100%;
+  }
+  .login .main-content .form-login {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .login .main-content {
+    width: 50%;
+  }
+  .login .main-content .slide {
+    width: 100%;
+  }
+  .login .main-content .form-login {
+    width: 100%;
+  }
+  .login .main-content .form-login .button-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .login .main-content .form-login .button-group #signin {
+    margin-bottom: 5px;
+  }
+}

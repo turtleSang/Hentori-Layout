@@ -801,40 +801,90 @@ p {
   width: 100%;
 }
 
-.print_page {
-  font-family: "Times New Roman", Times, serif;
-}
-.print_page .header .logo #img_logo {
-  display: block;
-  width: 10%;
-  margin: 0 auto;
-}
-.print_page .header .logo #img_brand_name {
-  display: block;
-  width: 50%;
-  margin: 20px auto;
-}
-.print_page .header .title {
-  height: 100%;
+.forgot {
+  height: 100vh;
+  background: linear-gradient(148deg, rgb(143, 113, 75) 30%, rgb(203, 169, 79) 60%);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.print_page .header .store_info {
-  height: 100%;
+.forgot .main-content {
+  background-color: white;
+  width: 30%;
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 7px 8px rgba(81, 69, 69, 0.7215686275);
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  padding: 20px;
 }
-.print_page .header .store_info p {
-  font-size: 1rem;
+.forgot .main-content .form-forgot {
+  width: 100%;
 }
-.print_page .info_overall p {
-  font-size: 0.8rem;
+.forgot .main-content .form-forgot .input-item {
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-.print_page .space {
-  height: 200px;
+.forgot .main-content .form-forgot .input-item label {
+  display: block;
+  width: 100%;
 }
-.print_page .total_money {
-  text-align: right;
+.forgot .main-content .form-forgot .input-item .input {
+  width: 60%;
+  display: block;
+}
+.forgot .main-content .form-forgot .input-item .input#username {
+  width: 80%;
+}
+.forgot .main-content .form-forgot .input-item #find_user {
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+}
+.forgot .main-content .form-forgot .input-item #check_username {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  color: #cba94f;
+  display: none;
+}
+.forgot .main-content .form-forgot .input-item .show-password {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+}
+.forgot .main-content .form-forgot .input-item .show-password span {
+  color: grey;
+}
+.forgot .main-content .form-forgot .reset-form {
+  display: none;
+}
+.forgot .main-content .form-forgot .reset-form .input-item {
+  display: block;
+}
+.forgot .main-content .form-forgot .reset-form .input-item .input {
+  width: 100%;
+}
+.forgot .main-content .form-forgot #reset {
+  display: block;
+  width: 100%;
+}
+.forgot .main-content .form-forgot #reset:hover {
+  cursor: pointer;
+}
+
+.load {
+  height: 100vh;
+  background-color: rgba(165, 42, 42, 0.541);
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
