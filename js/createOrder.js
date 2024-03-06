@@ -451,13 +451,15 @@ const getAppointmentDay = () => {
 // renderDefaultAppointmentDay();
 renderDefaultAppointmentDay();
 // Find client
-document.getElementById("find_user").onclick = () => {
+document.getElementById("find_user").onclick = async () => {
     let phoneNumber = document.getElementById("client_phone").value;
-    axios({
-        method: "get",
-        url: `http://localhost:8080/client/getclient?phoneNumber=${phoneNumber}`
-    }).then(res => {
-        let userDto = res.data.object;
+    let method = "get";
+    let url = `${rootUrl}/client/getclient`;
+    let params = { phoneNumber };
+    turnOnLoadSection();
+    try {
+        let { object } = await callAPI(method, url, params, headers, {});
+        let userDto = object;
         document.getElementById("client_name").value = userDto.username;
         document.getElementById("client_name").setAttribute("data-id", userDto.id);
         document.getElementById("client_name").setAttribute("data-name", userDto.username);
@@ -466,9 +468,10 @@ document.getElementById("find_user").onclick = () => {
         document.getElementById("measurements_info").style.display = "block";
         document.getElementById("order_info").style.display = "block"
         renderClientSuit(userDto.clientSuitDto);
-        renderClientTrousers(userDto.clientTrousersDto)
+        renderClientTrousers(userDto.clientTrousersDto);
 
-    }).catch(err => {
+    } catch (error) {
+        handleFobiden(error);
         document.getElementById("client_name").setAttribute("data-id", "");
         document.getElementById("client_name").value = "";
         document.getElementById("client_name").disabled = false;
@@ -479,8 +482,9 @@ document.getElementById("find_user").onclick = () => {
 
         renderClientSuit("");
         renderClientTrousers("");
+    }
 
-    })
+    turnOffLoadSection();
 
 }
 // Valitdate phonenumber
@@ -490,15 +494,17 @@ document.getElementById("client_phone").oninput = () => {
 }
 
 // Confirm create client
-document.getElementById("confirm_create_client").onclick = () => {
+document.getElementById("confirm_create_client").onclick = async () => {
     let clientRequest = createClientRequest();
     if (clientRequest) {
-        axios({
-            method: 'post',
-            url: 'http://localhost:8080/client/createclient',
-            data: clientRequest
-        }).then(res => {
-            let client = res.data.object;
+        let method = "post";
+        let url = `${rootUrl}/client/createclient`;
+        let data = clientRequest;
+        turnOnLoadSection();
+        try {
+
+            let res = await callAPI(method, url, {}, headers, data);
+            let client = res.object;
             document.getElementById("close_confirm_create").click();
             document.getElementById("client_name").setAttribute("data-id", client.id)
             document.getElementById("client_name").setAttribute("data-name", client.username)
@@ -507,31 +513,33 @@ document.getElementById("confirm_create_client").onclick = () => {
             document.getElementById("client_name").disabled = true;
             document.getElementById("order_info").style.display = "block";
             alert("Đã tạo mới khách hàng thành công");
-        }).catch(err => {
-            alert(err);
-        })
+        } catch (error) {
+            handleFobiden(error)
+            alert("Tạo mới khách hàng không thành công")
+        }
     } else {
         alert("Vui lòng điền tên và số điện thoại");
     }
+
+    turnOffLoadSection();
 }
 //Confirm update client
-document.getElementById("confirm_update_client").onclick = () => {
+document.getElementById("confirm_update_client").onclick = async () => {
     let clientRequest = createClientRequest();
     let client_id = document.getElementById("client_name").getAttribute("data-id");
     if (client_id) {
-        axios({
-            method: 'put',
-            url: "http://localhost:8080/client/update",
-            params: {
-                client_id
-            },
-            data: clientRequest
-        }).then(res => {
+        let method = "put";
+        let params = { client_id };
+        let data = clientRequest;
+        let url = `${rootUrl}/client/update`
+        try {
+            let res = await callAPI(method, url, params, headers, data);
             alert("Đã cập nhật thành công")
             document.getElementById("close_confirm_update").click();
-        }).catch(err => {
-            alert(`Không cập nhật thành công ${err}`)
-        })
+        } catch (error) {
+            handleFobiden(error);
+            alert(`Không cập nhật thành công ${err}`);
+        }
     } else {
         alert("Vui lòng tìm số điện thoại trước");
         document.getElementById("close_confirm_update").click();
@@ -569,24 +577,26 @@ document.getElementById("confirm_create_order").onclick = () => {
     renderFormConfirmOrder(orderRequest);
 
 }
-document.getElementById("create_order").onclick = () => {
+document.getElementById("create_order").onclick = async () => {
     let payment = formatNumberToRaw(document.getElementById("payment").value);
     orderRequest = { ...orderRequest, payment };
-    axios({
-        method: "post",
-        url: "http://localhost:8080/order/create",
-        data: orderRequest
-    }).then(res => {
-        let { data } = res;
-        if (data.check) {
+
+    let method = "post";
+    let url = `${rootUrl}/order/create`;
+    let data = orderRequest;
+    try {
+        turnOnLoadSection();
+        let res = await callAPI(method, url, {}, headers, data);
+        if (res.check) {
             location.reload();
             document.getElementById("close_create_order").click();
-            window.open(`printOrder.html?orderid=${data.object}`, "_blank");
+            window.open(`printOrder.html?orderid=${res.object}`, "_blank");
         }
-
-    }).catch(err => {
-        alert(err);
-    })
+    } catch (error) {
+        handleFobiden(error);
+        alert("Không thể tạo mới đơn hàng" + error);
+    }
+    turnOffLoadSection();
 }
 // Press Enter
 document.getElementById("client_phone").addEventListener("keypress", (event) => {

@@ -124,9 +124,13 @@ const renderPayment = (total, payment) => {
     document.getElementById("info_table_detail").innerHTML += content;
 }
 
+
+
+
 axios({
     method: "get",
-    url: `http://localhost:8080/order/detail/${orderId}`
+    url: `${rootUrl}/order/detail/${orderId}`,
+    headers,
 }).then(res => {
     let {
         appointmentDay,
@@ -139,8 +143,6 @@ axios({
         total,
         payment
     } = res.data.object;
-    console.log(orderShirtDtoList);
-
     renderDate(appointmentDay, createAt);
     renderClient(orderClientDto);
     if (orderSuitDtoList) {

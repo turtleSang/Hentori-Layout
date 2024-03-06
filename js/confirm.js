@@ -12,13 +12,14 @@ document.getElementById("confirm").onclick = async () => {
         let url = `${rootUrl}/admin/confirm`;
         let data = {
             username,
-            password
+            password,
+            otp
         }
-        let params = { otp }
         try {
-            let res = await callAPI(method, url, params, header, data)
+            let res = await callAPI(method, url, {}, headers, data)
             window.location.href = "./index.html";
         } catch (error) {
+            console.log(error);
             document.getElementById("alert").innerText = "Vui lòng xem lại thông tin hoặc tạo tài khoản mới";
             document.getElementById("alert").classList.remove("d-none");
         }

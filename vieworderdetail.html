@@ -34,6 +34,7 @@
         <div class="main_info">
             <div class="main_title">
                 <h3>Thông tin khách hàng</h3>
+                <button id="print_order" class="btn btn-update">In Hóa Đơn</button>
                 <button id="update_main_orders" type="button" class="btn btn-success">Cập nhật lại thông tin</button>
             </div>
             <div id="client_info">
@@ -130,6 +131,17 @@
                     <div class="item_price">Đơn giá:<span></span></div>
                     <div class="item_amount">Số lượng:<span></span></div>
                     <div class="item_total">Tổng tiền:<span></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="load" class="load d-none">
+        <div id="loader-group" class="nofication d-block">
+            <div class="loader">
+                <div id="loader"></div>
+                <div class="logo-loader">
+                    <img src="./img/Logo.png" alt="">
                 </div>
             </div>
         </div>
@@ -546,6 +558,8 @@
 
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="./js/callAPI.js"></script>
 
     <script src="./js/validate.js"></script>
 

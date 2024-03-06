@@ -30,3 +30,16 @@
         }
     }
 }
+
+.load {
+    height: 100vh;
+    background-color: rgba(165, 42, 42, 0.541);
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}

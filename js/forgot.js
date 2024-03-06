@@ -4,7 +4,7 @@ document.getElementById("find_user").onclick = async () => {
     let method = "post"
     try {
         document.getElementById("load").classList.remove("d-none");
-        let res = await callAPI(method, url, {}, header, { username })
+        let res = await callAPI(method, url, {}, headers, { username })
         document.getElementById("reset-form").style.display = "block";
         document.getElementById("alert").classList.add("d-none");
         document.getElementById("username").disabled = true;

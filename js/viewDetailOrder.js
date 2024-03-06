@@ -2,7 +2,6 @@
 let urlParams = new URLSearchParams(window.location.search);
 let orderId = urlParams.get("orderid");
 
-const urlRoot = "http://localhost:8080";
 
 // Render main info of orders
 const renderCreateAt = (createAt) => {
@@ -16,6 +15,9 @@ const renderAppointmentDay = (appointmentDay) => {
     let day = dateAppointmentDay.getDate();
     if (month < 10) {
         month = `0${month}`
+    }
+    if (day < 10) {
+        day = `0${day}`
     }
     document.getElementById("appointment_day").value = `${year}-${month}-${day}`;
 }
@@ -219,50 +221,57 @@ const renderShirtDetail = (orderShirtDtoList) => {
     document.getElementById("amount_shirt").value = formatNumber(amount);
     document.getElementById("total_shirt").value = formatNumber(total);
 
-    document.getElementById("shirt_attribute").setAttribute("data-item-id",id)
+    document.getElementById("shirt_attribute").setAttribute("data-item-id", id)
 }
 // Get detail
-const getDetailSuit = (e) => {
+const getDetailSuit = async (e) => {
+    turnOnLoadSection();
     let ele = e.currentTarget.parentElement;
     let suitId = ele.getAttribute("data-item-id");
-    axios({
-        method: "Get",
-        url: `${urlRoot}/suit/detail/${suitId}`
-    }).then(res => {
-        let orderSuitDto = res.data.object;
-        renderSuitDetail(orderSuitDto);
-    }).catch(err => {
-        alert(err)
-    })
+    let method = "Get";
+    let url = `${rootUrl}/suit/detail/${suitId}`;
+    turnOnLoadSection();
+    try {
+        let { object } = await callAPI(method, url, {}, headers, {});
+        renderSuitDetail(object);
+    } catch (error) {
+        handleFobiden(error);
+        alert(error);
+    }
+    turnOffLoadSection();
+
 }
 
-const getDetailTrousers = (e) => {
+const getDetailTrousers = async (e) => {
+    turnOnLoadSection();
     let ele = e.currentTarget.parentElement;
     let trousersId = ele.getAttribute("data-trousers-id");
-    axios({
-        method: "Get",
-        url: `${urlRoot}/trousers/detail/${trousersId}`
-    }).then(res => {
-        let orderTrousersDto = res.data.object;
-        renderTrouserDetail(orderTrousersDto);
-
-    }).catch(err => {
-        console.log(err);
-    })
+    let method = "Get";
+    let url = `${rootUrl}/trousers/detail/${trousersId}`;
+    try {
+        let { object } = await callAPI(method, url, {}, headers, {})
+        renderTrouserDetail(object);
+    } catch (error) {
+        handleFobiden(error);
+        alert(error);
+    }
+    turnOffLoadSection();
 }
 
-const getDetailShirt = (e) => {
+const getDetailShirt = async (e) => {
+    turnOnLoadSection();
     let ele = e.currentTarget.parentElement;
     let shirtId = ele.getAttribute("data-shirt-id");
-    axios({
-        method: "get",
-        url: `${urlRoot}/shirt/detail/${shirtId}`
-    }).then(res => {
-        let orderShirtDto = res.data.object;
-        renderShirtDetail(orderShirtDto);
-    }).catch(err => {
-        console.log(err);
-    })
+    let method = "Get";
+    let url = `${rootUrl}/shirt/detail/${shirtId}`;
+    try {
+        let { object } = await callAPI(method, url, {}, headers, {})
+        renderShirtDetail(object);
+    } catch (error) {
+        handleFobiden(error);
+        alert(error);
+    }
+    turnOffLoadSection();
 }
 
 // Caculate total 
@@ -313,8 +322,8 @@ const createOrderSuitRequest = () => {
     let amount = formatNumberToRaw(document.getElementById("amount_suit").value);
     let note = document.getElementById("note_suit").value;
     let fabric = document.getElementById("fabric_suit").value;
-    return new OrderSuitRequest(kieuAo,formAo,kieuVeAo,lotAo,kieuXe,kieuNut,kieuTui,
-        price,amount,note,fabric);
+    return new OrderSuitRequest(kieuAo, formAo, kieuVeAo, lotAo, kieuXe, kieuNut, kieuTui,
+        price, amount, note, fabric);
 }
 
 const createOrderTrouserRequest = () => {
@@ -343,7 +352,7 @@ const createOrderShirtRequest = () => {
     let price = formatNumberToRaw(document.getElementById("price_shirt").value);
     let amount = formatNumberToRaw(document.getElementById("amount_shirt").value);
 
-    return new OrderShirtRequest(kieuCo,mangSec,kieuDinh,note,fabric,price,amount);
+    return new OrderShirtRequest(kieuCo, mangSec, kieuDinh, note, fabric, price, amount);
 }
 // Chagne status complete
 const changeStatus = () => {
@@ -356,76 +365,91 @@ const changeStatus = () => {
     }
 }
 // Event call API
-document.getElementById("update_suit").onclick = () => {
+document.getElementById("update_suit").onclick = async () => {
     let suitId = document.getElementById("suit_attribute").getAttribute("data-item-id");
     let orderSuitRequest = createOrderSuitRequest();
-    axios({
-        method: "put",
-        url: `${urlRoot}/suit/${suitId}`,
-        data: orderSuitRequest
-    }).then(res => {
+    turnOnLoadSection();
+    let method = "put"
+    let url = `${rootUrl}/suit/${suitId}`;
+    let data = orderSuitRequest;
+    try {
+        await callAPI(method, url, {}, headers, data);
         alert("Đã cập nhật thành công");
         document.getElementById("close_update_suit").click();
         location.reload();
-    }).catch(err => {
-        alert(err)
-    })
+    } catch (error) {
+        handleFobiden(error);
+        alert("Không thể cập nhật" + error);
+    }
+    turnOffLoadSection();
 
 }
 
-document.getElementById("update_trousers").onclick = () => {
+document.getElementById("update_trousers").onclick = async () => {
     let orderTrousersRequest = createOrderTrouserRequest();
     let trousersId = document.getElementById("trousers_attribute").getAttribute("data-item-id");
-    axios({
-        method: "put",
-        url: `${urlRoot}/trousers/${trousersId}`,
-        data: orderTrousersRequest
-    }).then(res => {
+    turnOnLoadSection();
+    let method = "put"
+    let url = `${rootUrl}/trousers/${trousersId}`;
+    let data = orderTrousersRequest;
+    try {
+        await callAPI(method, url, {}, headers, data);
         alert("Đã cập nhật thành công");
         document.getElementById("close_update_trousers").click();
         location.reload();
-    }).catch(err => {
-        alert(err)
-    })
+    } catch (error) {
+        handleFobiden();
+        alert("Không thể cập nhật" + error);
+    }
+    turnOffLoadSection();
 }
 
-document.getElementById("update_main_orders").onclick = () => {
+document.getElementById("update_main_orders").onclick = async () => {
+    turnOnLoadSection();
+
     let orderUpdateRequest = createOrderUpdateRequest();
-    axios({
-        url: `${urlRoot}/order/update/${orderId}`,
-        method: "put",
-        data: orderUpdateRequest
-    }).then(res => {
-        alert("Đã cập nhật thành công")
-    }).catch(err => {
-        alert(err)
-    })
+    let url = `${rootUrl}/order/update/${orderId}`;
+    let method = "put";
+    let data = orderUpdateRequest;
+    try {
+        await callAPI(method, url, {}, headers, data);
+        alert("Đã cập nhật thành công");
+    } catch (error) {
+        handleFobiden(error)
+        alert(error)
+    }
+    turnOffLoadSection();
+
 }
 
-document.getElementById("update_shirt").onclick = ()=>{
+document.getElementById("update_shirt").onclick = async () => {
     let orderShirtRequest = createOrderShirtRequest();
     let shirtId = document.getElementById("shirt_attribute").getAttribute("data-item-id");
-    console.log(orderShirtRequest);
-    console.log(shirtId);
-    console.log(`${urlRoot}/shirt/${shirtId}`);
-    axios({
-        url: `${urlRoot}/shirt/${shirtId}`,
-        method: "put",
-        data: orderShirtRequest
-    }).then(res =>{
+    let method = "put"
+    let url = `${rootUrl}/shirt/${shirtId}`;
+    let data = orderShirtRequest;
+    turnOnLoadSection();
+    try {
+        await callAPI(method, url, {}, headers, data)
         alert("Đã cập nhật thành công");
         document.getElementById("close_update_trousers").click();
         location.reload();
-    }).catch(err => {
-        alert(err)
-    })
+    } catch (error) {
+        handleFobiden(error);
+        alert(error)
+    }
+    turnOffLoadSection();
+}
+
+document.getElementById("print_order").onclick = () => {
+    window.location.href = `./printOrder.html?orderid=${orderId}`
 }
 // Load
 axios({
-    url: `${urlRoot}/order/detail/${orderId}`,
-    method: "get"
+    url: `${rootUrl}/order/detail/${orderId}`,
+    method: "get",
+    headers
 }).then(res => {
-    // console.log(res.data.object);
     let {
         appointmentDay,
         orderStatusDto,
@@ -457,8 +481,8 @@ axios({
     if (orderShirtDtoList) {
         renderShirt(orderShirtDtoList);
     }
-
 }).catch(err => {
+    handleFobiden(err)
     alert(err)
 })
 

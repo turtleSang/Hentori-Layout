@@ -1,5 +1,4 @@
 const mainContent = document.getElementById("content");
-const rootURL = "http://localhost:8080"
 
 // Variable
 
@@ -77,14 +76,23 @@ const renderPane = async (targetElement) => {
     let typeOrder = targetElement.getAttribute("data-type-order");
     let elementRenderId = targetElement.getAttribute("data-bs-target");
     let elementRender = document.querySelector(elementRenderId);
-    let url = `${rootURL}/order/${typeOrder}`;
-    let urlPage = `${rootURL}/order/${typeOrder}/page`;
-    let dataPage = await fetchDataOrder(urlPage, "Get", "");
-    if (Number(dataPage.object) > 0) {
-        let dataOrder = await fetchDataOrder(url, "get", "");
-        renderOrder(dataOrder.object, elementRender);
-        renderPageNav(dataPage.object, elementRender);
+    let url = `${rootUrl}/order/${typeOrder}`;
+    let urlPage = `${rootUrl}/order/${typeOrder}/page`;
+    let method = "get";
+
+    try {
+        let dataPage = await callAPI(method, urlPage, {}, headers, {});
+
+        if (Number(dataPage.object) > 0) {
+            let dataOrder = await callAPI(method, url, {}, headers, {});
+            renderOrder(dataOrder.object, elementRender);
+            renderPageNav(dataPage.object, elementRender);
+        }
+    } catch (error) {
+        handleFobiden(error);
+        alert("Vui lòng chọn ngày tháng");
     }
+
     turnOffLoader();
 }
 
@@ -167,13 +175,18 @@ const renderNewPagination = async (navElement) => {
     let orderAPI = navElement.getAttribute("data-call-api");
     let idRender = navElement.getAttribute("data-render-id");
     let elementRender = document.getElementById(idRender);
-    let url = `${rootURL}/order/${orderAPI}&pageNumber=${pageNumber}`
+
+    let method = "get";
+    let url = `${rootUrl}/order/${orderAPI}&pageNumber=${pageNumber}`;
+
+    // let url = `${rootUrl}/order/${orderAPI}&pageNumber=${pageNumber}`
     try {
-        let data = await fetchDataOrder(url, "get", "");
+        let data = await callAPI(method, url, {}, headers, {});
         let { object } = data;
         renderOrder(object, elementRender);
         turnOffLoader();
     } catch (error) {
+        handleFobiden(error);
         alert(error)
     }
 
@@ -202,60 +215,61 @@ document.getElementById("search-date").onclick = async () => {
     }
     let startDate = formatDateISOtoVN(document.getElementById("startDate").value);
     let endDate = formatDateISOtoVN(document.getElementById("endDate").value);
-    let urlPage = `${rootURL}/order/date/page`;
+    let urlPage = `${rootUrl}/order/date/page`;
     let params = {
         startDate,
         endDate
     }
-    let data = await fetchDataOrder(urlPage, "GET", params);
-    let numberPage = data.object;
-    if (numberPage > 0) {
+    let method = "get"
+    try {
+        let data = await callAPI(method, urlPage, params, headers, {});
+        let numberPage = data.object;
         let elementRender = document.getElementById("view-order-date-pane");
         elementRender.querySelector(".pagination").setAttribute("data-call-api",
-            `date?startDate=${startDate}&endDate=${endDate}`)
-        renderPageNav(numberPage, elementRender);
-        let url = `${rootURL}/order/date`;
-        let data = await fetchDataOrder(url, "get", params);
-        let listOrderDto = data.object;
-        renderOrder(listOrderDto, elementRender);
+            `date?startDate=${startDate}&endDate=${endDate}`);
+        if (numberPage > 0) {
+            renderPageNav(numberPage, elementRender);
+            let url = `${rootUrl}/order/date`;
+            let data = await callAPI(method, url, params, headers, {});
+            let listOrderDto = data.object;
+            renderOrder(listOrderDto, elementRender);
+        } else {
+            renderPageNav(numberPage, elementRender);
+            renderOrder([], elementRender);
+            alert("Không tìm thấy danh sách");
+
+        }
         turnOffLoader();
+    } catch (error) {
+        handleFobiden(error);
+        alert("Không lấy được danh sách");
     }
+
 
 }
 
 // Load page
-// Axios data get
-const fetchDataOrder = async (url, method, params) => {
-    try {
-        let response = await axios({
-            url,
-            method,
-            params
-        })
-        return response.data;
-    } catch (error) {
-        return error;
-    }
-
-}
 
 turnOnLoader();
 axios({
-    url: "http://localhost:8080/order/due",
-    method: "GET"
+    url: `${rootUrl}/order/due`,
+    method: "GET",
+    headers
 }).then(res => {
     let { object } = res.data;
     let elementRender = document.getElementById("order-due-pane");
     renderOrder(object, elementRender);
     turnOffLoader();
 }).catch(err => {
+    handleFobiden(err)
     alert("Không tìm thấy danh sách đến hạn");
     turnOffLoader();
 })
 
 axios({
-    url: "http://localhost:8080/order/due/page",
-    method: "GET"
+    url: `${rootUrl}/order/due/page`,
+    method: "GET",
+    headers
 }).then(res => {
     let { object } = res.data;
     if (object > 0) {
@@ -265,5 +279,6 @@ axios({
 
     turnOffLoader();
 }).catch(err => {
+    handleFobiden(err);
     turnOffLoader();
 })

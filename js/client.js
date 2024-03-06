@@ -1,5 +1,4 @@
-const urlRoot = "http://localhost:8080";
-const urlClinet = `${urlRoot}/client`;
+const urlClinet = `${rootUrl}/client`;
 
 
 
@@ -37,10 +36,12 @@ const searchClient = async () => {
         const res = await axios({
             method: "get",
             url,
+            headers,
             params
         })
         return res.data.object;
     } catch (error) {
+
         throw error;
     }
 
@@ -118,6 +119,7 @@ document.getElementById("input-phone").oninput = () => {
     }
 }
 document.getElementById("seach-client").onclick = async () => {
+    turnOnLoadSection();
     try {
         let listClient = await searchClient();
         renderClientList(listClient);
@@ -125,7 +127,7 @@ document.getElementById("seach-client").onclick = async () => {
         console.log(error);
     }
 
-
+    turnOffLoadSection();
 }
 
 // Event press enter

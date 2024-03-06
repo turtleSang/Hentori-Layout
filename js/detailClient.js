@@ -260,12 +260,19 @@ const renderPane = async (targetElement) => {
     let url = `${rootUrl}/client/order/${typeOrder}`;
     let urlPage = `${rootUrl}/client/order/${typeOrder}/page`;
     let params = { phoneNumber }
-    let dataPage = await callAPI("get", urlPage, params);
-    if (dataPage.object > 0) {
-        let dataOrder = await callAPI("get", url, params);
-        renderOrder(dataOrder.object, elementRender);
-        renderPageNav(dataPage.object, elementRender);
+    try {
+        let dataPage = await callAPI("get", urlPage, params, headers, {});
+
+        if (dataPage.object > 0) {
+
+            let dataOrder = await callAPI("get", url, params, headers, {});
+            renderOrder(dataOrder.object, elementRender);
+            renderPageNav(dataPage.object, elementRender);
+        }
+    } catch (error) {
+
     }
+
 
     turnOffLoader();
 }
@@ -350,7 +357,7 @@ const directionalPageLogbookPrevious = async (event) => {
     event.preventDefault();
     let navElement = event.currentTarget.parentElement;
     let listPageNum = navElement.querySelectorAll(".page-num");
-    let indexActive = -1
+    let indexActive = -1;
     for (const index in listPageNum) {
         if (Object.hasOwnProperty.call(listPageNum, index)) {
             const elementNum = listPageNum[index];
@@ -413,7 +420,7 @@ const renderNewLogBookPage = async () => {
         pageNumber
     }
     try {
-        let res = await callAPI("get", url, params, header)
+        let res = await callAPI("get", url, params, headers)
         let listLogBookDto = res.object;
         renderLogBook(listLogBookDto);
     } catch (error) {
@@ -426,7 +433,7 @@ const deleteLogbook = async (event) => {
     let id = btnDelete.getAttribute("data-id-logbook");
     let url = `${rootUrl}/logbook/delete`
     try {
-        let res = await callAPI("delete", url, { id }, header, {});
+        let res = await callAPI("delete", url, { id }, headers, {});
         location.reload();
     } catch (error) {
         alert("Không thể xóa" + error)
@@ -540,7 +547,7 @@ document.getElementById("update_client").onclick = async () => {
         let url = `${rootUrl}/client/update`;
         let data = clientRequest
         try {
-            let res = await callAPI("put", url, { client_id }, header, data);
+            let res = await callAPI("put", url, { client_id }, headers, data);
             var newUrl = window.location.href.replace(`phoneNumber=${phoneNumber}`, `phoneNumber=${clientRequest.phoneNumber}`);
             window.history.replaceState({}, document.title, newUrl);
             alert(res.messenger);
@@ -558,7 +565,7 @@ document.getElementById("confirm_create_logbook").onclick = async () => {
         alert("Vui lòng điền đầy đủ thông tin")
     }
     try {
-        const res = await callAPI("post", url, {}, header, logBookRequest);
+        const res = await callAPI("post", url, {}, headers, logBookRequest);
         alert("Tạo Thành công");
         location.reload();
     } catch (error) {
@@ -575,6 +582,7 @@ document.getElementById("close_create_logbook").onclick = () => {
 axios({
     method: "get",
     url: `${rootUrl}/client/getclient`,
+    headers,
     params: {
         phoneNumber
     }
@@ -588,6 +596,7 @@ axios({
 axios({
     method: "get",
     url: `${rootUrl}/logbook/get`,
+    headers,
     params: {
         phoneNumber
     }
@@ -601,6 +610,7 @@ axios({
 axios({
     method: "get",
     url: `${rootUrl}/logbook/get/page`,
+    headers,
     params: {
         phoneNumber
     }

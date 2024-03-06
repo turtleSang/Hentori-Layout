@@ -22,7 +22,7 @@ document.getElementById("username").addEventListener("input", (event) => {
     timeoutId = setTimeout(async () => {
         document.getElementById("load").classList.remove("d-none")
         try {
-            let res = await callAPI(method, url, {}, header, { username });
+            let res = await callAPI(method, url, {}, headers, { username });
             document.getElementById("check_username").style.display = "block";
             eleInput.setAttribute("data-check", res.check);
         } catch (error) {
@@ -78,7 +78,7 @@ document.getElementById("register").onclick = async () => {
         let url = `${rootUrl}/admin/create`;
         let method = "post";
         try {
-            await callAPI(method, url, {}, header, { username, password });
+            await callAPI(method, url, {}, headers, { username, password });
             window.location.href = "./confirmadmin.html";
         } catch (error) {
             document.getElementById("load").classList.remove("d-none");

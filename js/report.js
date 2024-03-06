@@ -20,6 +20,7 @@ for (let index = year - 5; index < year + 10; index++) {
         document.getElementById("year-input").innerHTML += `<option value="${index}">Năm ${index}</option>`;
     }
 }
+
 for (let index = 1; index <= 12; index++) {
     if (index === (month + 1)) {
         document.getElementById("month-input").innerHTML += `<option selected value="${index}">Tháng ${index}</option>`;
@@ -47,9 +48,10 @@ const renderReport = (reportDto) => {
     let maxTotal = total > target ? total : target;
     let completePercentage = (total * 100 / target).toFixed(2);
     // Render revenue
+    target = target.toFixed(0)
     document.getElementById("target").innerHTML = formatNumber(target) + " đồng";
     document.getElementById("complete").innerHTML = formatNumber(total) + " đồng";
-    document.getElementById("percentage_total").innerHTML = completePercentage + "%";
+    document.getElementById("percentage_total").innerHTML = target === 0 ? "Target" : completePercentage + "%";
 
     renderBarTotal(".ao", maxTotal, shirtTotal, "total-ao");
     renderBarTotal(".quan", maxTotal, trousersTotal, "total-quan");
@@ -94,7 +96,7 @@ const renderBarAmountList = (maxAmount, listAmount) => {
 const renderBarAmount = (maxAmount, typeAmount, idEle) => {
     let percentage = (typeAmount * 100 / maxAmount).toFixed(2);
     document.getElementById(idEle).innerHTML = typeAmount == 0 ? "" : typeAmount;
-    document.getElementById(idEle).style.width = `${percentage}%`;
+    document.getElementById(idEle).style.width = maxAmount == 0 ? "" : `${percentage}%`;
 }
 // Select type
 const selectTypeReport = (e) => {
@@ -104,11 +106,26 @@ const selectTypeReport = (e) => {
     if (type === "month") {
         document.getElementById("month-report").style.display = "block";
         document.getElementById("quarter-report").style.display = "none";
-        document.getElementById("create-target").style.display = "block"
-    } else {
+        document.getElementById("create-target").style.display = "block";
+        document.getElementById("year-report").style.display = "block";
+        document.getElementById("day-report").style.display = "none";
+
+
+    } else if (type === "day") {
+        document.getElementById("month-report").style.display = "none";
+        document.getElementById("quarter-report").style.display = "none";
+        document.getElementById("create-target").style.display = "none";
+        document.getElementById("year-report").style.display = "none";
+        document.getElementById("day-report").style.display = "block";
+    }
+    else {
         document.getElementById("month-report").style.display = "none";
         document.getElementById("quarter-report").style.display = "block";
-        document.getElementById("create-target").style.display = "none"
+        document.getElementById("create-target").style.display = "none";
+        document.getElementById("year-report").style.display = "block";
+        document.getElementById("day-report").style.display = "none";
+
+
     }
 
     document.getElementById("type_report").innerHTML = contentSelect;
@@ -118,10 +135,16 @@ const selectTypeReport = (e) => {
 const createParams = (type) => {
     let value = document.getElementById(`${type}-input`).value;
     let year = document.getElementById("year-input").value;
-    if (type == "month") {
+    if (type === "month") {
         return {
             month: value,
             year
+        }
+    } else if (type === "day") {
+        let date = formatDateTimeISOtoVN(value);
+        let day = `${date.day}/${date.month}/${date.year}`
+        return {
+            day
         }
     } else {
         return {
@@ -133,18 +156,19 @@ const createParams = (type) => {
 }
 
 // Event click
-document.getElementById("get_report").onclick = async () => {
+document.getElementById("get_report").onclick = async (event) => {
     let type = event.target.getAttribute("data-type");
     let params = createParams(type);
     let url = `${rootUrl}/report/${type}`
     try {
         turnOnLoader();
-        let { object } = await callAPI("get", url, params, {})
+        let { object } = await callAPI("get", url, params, headers, {});
         console.log(object);
         renderReport(object);
         document.getElementById("report").style.display = "block"
     } catch (error) {
         alert("Không có dữ liệu");
+        console.log(error);
         document.getElementById("report").style.display = "none"
     }
     turnOffLoader();
@@ -167,7 +191,7 @@ document.getElementById("confirm-kpi").onclick = async () => {
     try {
         let kpiRequest = new KPIRequest(month, year, target);
         let url = `${rootUrl}/kpi/create`;
-        let data = await callAPI("post", url, {}, header, kpiRequest);
+        let data = await callAPI("post", url, {}, headers, kpiRequest);
         alert("Cập nhật KPI thành công")
     } catch (error) {
         alert("Cập nhật KPI thất bại")

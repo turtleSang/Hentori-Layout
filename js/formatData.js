@@ -95,6 +95,7 @@ const selectDetailItem = (e) => {
 }
 
 const selectStatus = (e) => {
+    e.preventDefault();
     let selectItem = e.target;
     let idStatus = selectItem.getAttribute("data-status");
     let nameStatus = selectItem.innerHTML;
@@ -125,6 +126,13 @@ const showHidePassword = (e) => {
     } else {
         inputEle.type = "password";
     }
+}
+
+const turnOnLoadSection = () => {
+    document.getElementById("load").classList.remove("d-none");
+}
 
 
+const turnOffLoadSection = () => {
+    document.getElementById("load").classList.add("d-none");
 }
